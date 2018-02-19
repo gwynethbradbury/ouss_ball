@@ -17,7 +17,7 @@ import dbconfig
 from flask_sqlalchemy import SQLAlchemy
 iaas_uri = '{}://{}:{}@{}/{}' \
         .format('mysql+pymysql',
-                'root',
+                dbconfig.dbuser,
                 dbconfig.dbpwd,
                 dbconfig.dbhost,
                 'eisitirio')
