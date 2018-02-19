@@ -20,7 +20,7 @@ iaas_uri = '{}://{}:{}@{}/{}' \
                 dbconfig.dbuser,
                 dbconfig.dbpwd,
                 dbconfig.dbhost,
-                'eisitirio')
+                dbconfig.dbname)
 
 APP.config['SQLALCHEMY_DATABASE_URI'] =iaas_uri
 APP.config['DATABASE_URL'] =iaas_uri
