@@ -9,14 +9,14 @@ import os
 import sys
 
 import boto
-from PIL import Image
+# from PIL import Image
 
 from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 LOG = logging.getLogger(__name__)
 
@@ -114,33 +114,34 @@ def delete_photo(photo):
     bucket.new_key("thumb/" + photo.filename).delete()
 
 def rotate_photo(photo, degrees):
-    """Rotate a user's photo so that they're the right way up."""
-    bucket = get_bucket()
-
-    full_key = bucket.new_key("full/" + photo.filename)
-
-    upload_folder = APP.config['TEMP_UPLOAD_FOLDER']
-
-    if not os.path.exists(upload_folder):
-        os.makedirs(upload_folder)
-
-    temp_filename = os.path.join(upload_folder, photo.filename)
-    thumb_temp_filename = os.path.join(upload_folder, "thumb-" + photo.filename)
-
-    full_key.get_contents_to_filename(temp_filename)
-
-    im = Image.open(temp_filename).rotate(degrees, expand=True)
-    im.save(temp_filename)
-    im.thumbnail(APP.config['THUMBNAIL_SIZE'])
-    im.save(thumb_temp_filename)
-
-    full_url, thumb_url = upload_photo(photo.filename, temp_filename,
-                                       thumb_temp_filename)
-
-    photo.full_url = full_url
-    photo.thumb_url = thumb_url
-
-    os.unlink(temp_filename)
-    os.unlink(thumb_temp_filename)
-
-    DB.session.commit()
+    return
+    # """Rotate a user's photo so that they're the right way up."""
+    # bucket = get_bucket()
+    #
+    # full_key = bucket.new_key("full/" + photo.filename)
+    #
+    # upload_folder = APP.config['TEMP_UPLOAD_FOLDER']
+    #
+    # if not os.path.exists(upload_folder):
+    #     os.makedirs(upload_folder)
+    #
+    # temp_filename = os.path.join(upload_folder, photo.filename)
+    # thumb_temp_filename = os.path.join(upload_folder, "thumb-" + photo.filename)
+    #
+    # full_key.get_contents_to_filename(temp_filename)
+    #
+    # im = Image.open(temp_filename).rotate(degrees, expand=True)
+    # im.save(temp_filename)
+    # im.thumbnail(APP.config['THUMBNAIL_SIZE'])
+    # im.save(thumb_temp_filename)
+    #
+    # full_url, thumb_url = upload_photo(photo.filename, temp_filename,
+    #                                    thumb_temp_filename)
+    #
+    # photo.full_url = full_url
+    # photo.thumb_url = thumb_url
+    #
+    # os.unlink(temp_filename)
+    # os.unlink(thumb_temp_filename)
+    #
+    # DB.session.commit()

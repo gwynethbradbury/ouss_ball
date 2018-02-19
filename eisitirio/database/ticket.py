@@ -12,12 +12,13 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.helpers import util
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class Ticket(DB.Model):
     """Model for tickets."""
     __tablename__ = 'ticket'
+    object_id = DB.Column(DB.Integer,primary_key=True)
 
     ticket_type = DB.Column(
         DB.Unicode(50),

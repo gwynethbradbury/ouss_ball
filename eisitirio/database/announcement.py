@@ -10,8 +10,8 @@ from eisitirio.database import db
 from eisitirio.database import user
 
 APP = app.APP
-DB = db.DB
-
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 USER_ANNOUNCE_LINK = DB.Table(
     'user_announce_link',
     DB.Model.metadata,
@@ -45,6 +45,7 @@ EMAIL_ANNOUNCE_LINK = DB.Table(
 class Announcement(DB.Model):
     """Model for an announcement sent to registered users."""
     __tablename__ = 'announcement'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     timestamp = DB.Column(
         DB.DateTime(),

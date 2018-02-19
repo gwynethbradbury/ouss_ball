@@ -6,14 +6,15 @@ from __future__ import unicode_literals
 from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import transaction
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 APP = app.APP
 
 class BattelsTransaction(transaction.Transaction):
     """Model for representing a battels transaction."""
     __tablename__ = 'battels_transaction'
     __mapper_args__ = {'polymorphic_identity': 'Battels'}
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     object_id = DB.Column(
         DB.Integer(),

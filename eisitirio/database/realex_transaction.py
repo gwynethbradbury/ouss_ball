@@ -4,8 +4,8 @@
 from __future__ import unicode_literals
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 REALEX_RESULT_CODES = {
     None :  (None, 'Transaction not completed'),
@@ -18,7 +18,8 @@ REALEX_RESULT_CODES = {
 }
 
 class RealexTransaction(DB.model):
-  """Model for representing a Realex transtion."""
-  __tablename__ = 'realex_transaction'
+    """Model for representing a Realex transtion."""
+    __tablename__ = 'realex_transaction'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
 

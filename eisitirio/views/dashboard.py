@@ -18,8 +18,8 @@ from eisitirio.helpers import util
 from eisitirio.logic import affiliation_logic
 from eisitirio.scripts import create_qr_codes
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 DASHBOARD = flask.Blueprint('dashboard', __name__)
 

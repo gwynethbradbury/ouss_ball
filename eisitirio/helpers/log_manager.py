@@ -11,8 +11,8 @@ import flask
 
 from eisitirio.database import db
 from eisitirio.database import models
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class LogManager(object):
     """Helper to log events, both for users actions and for system errors.

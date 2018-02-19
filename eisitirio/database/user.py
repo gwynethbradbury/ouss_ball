@@ -13,8 +13,8 @@ from eisitirio.database import db
 from eisitirio.database import photo as photo_model # pylint: disable=unused-import
 from eisitirio.database import ticket
 from eisitirio.helpers import util
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 APP = app.APP
 
 BCRYPT = bcrypt.Bcrypt(APP)
@@ -22,6 +22,8 @@ BCRYPT = bcrypt.Bcrypt(APP)
 class User(DB.Model):
     """Model for users."""
     __tablename__ = 'user'
+
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     # Class level properties for Flask-Login
     #

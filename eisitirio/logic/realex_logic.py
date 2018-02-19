@@ -16,8 +16,8 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class SHA1CheckError(Exception):
     """Risen on SHA1hashes mismatch """

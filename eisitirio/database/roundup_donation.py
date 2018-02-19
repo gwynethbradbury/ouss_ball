@@ -4,12 +4,13 @@
 from __future__ import unicode_literals
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class RoundupDonation(DB.Model):
     """Model for representing a roundup donation"""
     __tablename__ = 'roundup_donation'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     base_donation_amt = DB.Column(
         DB.Integer(),

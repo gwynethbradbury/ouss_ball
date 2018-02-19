@@ -15,8 +15,8 @@ from eisitirio.helpers import login_manager
 from eisitirio.helpers import validators
 from eisitirio.logic import collection_logic
 from eisitirio.logic import sms_logic
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 AJAX = flask.Blueprint('ajax', __name__)
 

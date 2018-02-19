@@ -22,8 +22,8 @@ from eisitirio.helpers import statistic_plots
 from eisitirio.helpers import statistics
 from eisitirio.logic import purchase_logic
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 @contextlib.contextmanager
 def file_lock(lock_file):

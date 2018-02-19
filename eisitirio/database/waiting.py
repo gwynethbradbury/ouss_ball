@@ -6,12 +6,13 @@ from __future__ import unicode_literals
 import datetime
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class Waiting(DB.Model):
     """Model for entries on the waiting list."""
     __tablename__ = 'waiting'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     waiting_since = DB.Column(
         DB.DateTime(),

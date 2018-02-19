@@ -7,11 +7,15 @@ from eisitirio import app
 from eisitirio.database import db
 
 APP = app.APP
-DB = db.DB
+# DB = db.DB
+
+from eisitirio.app import eisitiriodb as DB
 
 class AdminFee(DB.Model):
     """Model for representing an administration fee."""
     __tablename__ = 'admin_fee'
+
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     amount = DB.Column(
         DB.Integer(),

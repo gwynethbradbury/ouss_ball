@@ -5,13 +5,14 @@ from __future__ import unicode_literals
 
 from eisitirio.database import db
 from eisitirio.database import transaction_item
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class AdminFeeTransactionItem(transaction_item.TransactionItem):
     """Model for representing an admin fee in a transaction."""
     __tablename__ = 'admin_fee_transaction_item'
     __mapper_args__ = {'polymorphic_identity': 'AdminFee'}
+    # id = DB.Column(DB.Integer, primary_key=True)
 
     object_id = DB.Column(
         DB.Integer(),

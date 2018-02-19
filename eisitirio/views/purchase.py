@@ -17,10 +17,10 @@ from eisitirio.logic import cancellation_logic
 from eisitirio.logic import realex_logic
 from eisitirio.logic import purchase_logic
 from eisitirio.logic import payment_logic
-from eisitirio.logic.custom_logic import ticket_logic
+# from eisitirio.logic.custom_logic import ticket_logic
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 PURCHASE = flask.Blueprint('purchase', __name__)
 

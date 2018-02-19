@@ -7,8 +7,8 @@ import collections
 import datetime
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 STATISTIC_GROUPS = collections.OrderedDict([
     ('college_users', 'Registered Users by College'),
@@ -23,6 +23,7 @@ STATISTIC_GROUPS = collections.OrderedDict([
 class Statistic(DB.Model):
     """Model for representing a statistic in a timeseries."""
     __tablename__ = 'statistic'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     timestamp = DB.Column(
         DB.DateTime,

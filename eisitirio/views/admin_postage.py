@@ -15,8 +15,8 @@ from eisitirio.database import models
 from eisitirio.helpers import login_manager
 from eisitirio.helpers import unicode_csv
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 ADMIN_POSTAGE = flask.Blueprint('admin_postage', __name__)
 

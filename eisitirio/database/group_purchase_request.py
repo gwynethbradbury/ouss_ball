@@ -5,12 +5,13 @@ from __future__ import unicode_literals
 
 from eisitirio import app
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class GroupPurchaseRequest(DB.Model):
     """Model for a request for tickets in a group purchase."""
     __tablename__ = 'group_purchase_request'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     ticket_type_slug = DB.Column(
         DB.Unicode(50),

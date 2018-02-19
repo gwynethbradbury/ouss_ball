@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 import datetime
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 LOG_TICKET_LINK = DB.Table(
     'log_ticket_link',
@@ -25,6 +25,7 @@ LOG_TICKET_LINK = DB.Table(
 class Log(DB.Model):
     """Model for log entries persisted to the database."""
     __tablename__ = 'log'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     timestamp = DB.Column(
         DB.DateTime,

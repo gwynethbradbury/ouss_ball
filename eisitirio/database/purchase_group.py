@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 from eisitirio.database import db
 from eisitirio.helpers import util
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 GROUP_MEMBER_LINK = DB.Table(
     'purchase_group_member_link',
@@ -24,6 +24,7 @@ GROUP_MEMBER_LINK = DB.Table(
 class PurchaseGroup(DB.Model):
     """Model for a purchase group to allow pooling allowances."""
     __tablename__ = 'purchase_group'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     code = DB.Column(
         DB.Unicode(10),

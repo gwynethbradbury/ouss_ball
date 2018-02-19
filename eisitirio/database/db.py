@@ -12,18 +12,19 @@ import sqlalchemy
 from eisitirio import app
 from eisitirio.database import custom_model
 
-DB = flask_sqlalchemy.SQLAlchemy(app.APP)
 
+# DB = flask_sqlalchemy.SQLAlchemy(app.APP)
+DB = app.eisitiriodb
 # Awkward hack to use a custom model class. Flask-SQLAlchemy 3.0 (in beta as of
 # 2016-01-11) has a model_class parameter to the above constructor, which should
 # be used once v3.0 is released as stable.
-DB.Model = declarative.declarative_base(
-    cls=custom_model.CustomModel,
-    name='Model'.encode('us-ascii'),
-    metadata=None,
-    metaclass=custom_model.CustomModelMeta
-)
-DB.Model.query = flask_sqlalchemy._QueryProperty(DB) # pylint: disable=protected-access
+# DB.Model = declarative.declarative_base(
+#     cls=custom_model.CustomModel,
+#     name='Model'.encode('us-ascii'),
+#     metadata=None,
+#     metaclass=custom_model.CustomModelMeta
+# )
+# DB.Model.query = flask_sqlalchemy._QueryProperty(DB) # pylint: disable=protected-access
 
 @sqlalchemy.event.listens_for(sqlalchemy.Table, "column_reflect")
 def column_reflect(_, unused, column_info):

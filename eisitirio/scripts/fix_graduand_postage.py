@@ -10,8 +10,8 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class FixGraduandPostageCommand(script.Command):
     """Flask-Script command for fixing postage entries for graduands."""

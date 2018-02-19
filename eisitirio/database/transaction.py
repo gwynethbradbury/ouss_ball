@@ -7,13 +7,14 @@ import datetime
 
 from eisitirio import app
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 APP = app.APP
 
 class Transaction(DB.Model):
     """Model for representing a monetary exchange transaction."""
     __tablename__ = 'transaction'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     payment_method = DB.Column(
         DB.Enum(

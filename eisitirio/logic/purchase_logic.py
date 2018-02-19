@@ -17,7 +17,8 @@ from eisitirio.helpers import postage_option
 
 LARGE_NUMBER = 999999
 APP = app.APP
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 _TicketInfo = collections.namedtuple(
     "TicketInfo",

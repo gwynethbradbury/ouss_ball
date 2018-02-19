@@ -12,8 +12,8 @@ from eisitirio.database import db
 from eisitirio.database import models
 from eisitirio.helpers import login_manager
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 ADMIN_ANNOUNCEMENTS = flask.Blueprint('admin_announcements', __name__)
 

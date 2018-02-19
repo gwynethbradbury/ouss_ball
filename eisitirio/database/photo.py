@@ -4,12 +4,13 @@
 from __future__ import unicode_literals
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class Photo(DB.Model):
     """Model for representing a photo stored on S3."""
     __tablename__ = 'photo'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     filename = DB.Column(
         DB.Unicode(50),

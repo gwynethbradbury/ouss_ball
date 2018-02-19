@@ -14,7 +14,8 @@ from eisitirio.database import db
 from eisitirio.database import models
 
 APP = app.APP
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 def cancel_tickets(tickets, quiet=False):
     """Cancel a set of tickets.

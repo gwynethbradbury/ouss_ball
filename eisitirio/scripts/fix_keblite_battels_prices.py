@@ -8,10 +8,10 @@ import flask_script as script
 from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
-from eisitirio.logic.custom_logic import ticket_logic
+# from eisitirio.logic.custom_logic import ticket_logic
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 f1 = open("./output", "w+")
 

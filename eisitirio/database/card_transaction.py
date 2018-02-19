@@ -7,14 +7,15 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import eway_transaction
 from eisitirio.database import transaction
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 APP = app.APP
 
 class CardTransaction(transaction.Transaction):
     """Model for representing a card transaction."""
     __tablename__ = 'card_transaction'
     __mapper_args__ = {'polymorphic_identity': 'Card'}
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     object_id = DB.Column(
         DB.Integer(),

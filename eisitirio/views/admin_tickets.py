@@ -15,8 +15,8 @@ from eisitirio.helpers import login_manager
 from eisitirio.logic import cancellation_logic
 from eisitirio.scripts import create_qr_codes
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 ADMIN_TICKETS = flask.Blueprint('admin_tickets', __name__)
 

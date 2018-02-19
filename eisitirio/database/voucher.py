@@ -6,12 +6,13 @@ from __future__ import unicode_literals
 import datetime
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class Voucher(DB.Model):
     """Model for a discount voucher."""
     __tablename__ = 'voucher'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     code = DB.Column(
         DB.Unicode(30),

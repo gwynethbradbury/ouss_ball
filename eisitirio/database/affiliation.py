@@ -4,12 +4,13 @@
 from __future__ import unicode_literals
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 class Affiliation(DB.Model):
     """Model for representing a users affiliation to their college."""
     __tablename__ = 'affiliation'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     name = DB.Column(
         DB.Unicode(25),

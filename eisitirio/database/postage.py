@@ -4,8 +4,8 @@
 from __future__ import unicode_literals
 
 from eisitirio.database import db
-
-DB = db.DB
+#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 POSTAGE_TICKET_LINK = DB.Table(
     'postage_ticket_link',
@@ -23,6 +23,7 @@ POSTAGE_TICKET_LINK = DB.Table(
 class Postage(DB.Model):
     """Model for representing postage for one or more tickets."""
     __tablename__ = 'postage'
+    object_id = DB.Column(DB.Integer, primary_key=True)
 
     paid = DB.Column(
         DB.Boolean(),

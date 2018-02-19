@@ -13,8 +13,8 @@ from eisitirio.database import models
 from eisitirio.helpers import util
 from eisitirio.logic import purchase_logic
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 GROUP_PURCHASE = flask.Blueprint('group_purchase', __name__)
 

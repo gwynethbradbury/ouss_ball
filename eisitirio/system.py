@@ -15,7 +15,35 @@ import flask
 import jinja2
 
 from eisitirio import app
-from eisitirio.permissions import all_permissions # pylint: disable=unused-import
+
+APP = app.APP
+
+APP.config.from_pyfile('config/default.py')
+APP.config.from_pyfile('config/ticket_types.py')
+APP.config.from_pyfile('config/postage.py')
+#
+# from flask_sqlalchemy import SQLAlchemy
+
+# iaas_uri = '{}://{}:{}@{}/{}' \
+#         .format('mysql+pymysql',
+#                 'root',
+#                 'GTG24DDa',
+#                 'localhost',
+#                 'eisitirio')
+#
+# APP.config['SQLALCHEMY_DATABASE_URI'] =iaas_uri
+# APP.config['DATABASE_URL'] =iaas_uri
+#
+# SQLALCHEMY_BINDS={'eisitirio':iaas_uri}
+# APP.config['SQLALCHEMY_BINDS'] =SQLALCHEMY_BINDS
+# eisitiriodb = SQLAlchemy(APP)
+# db = eisitiriodb
+#
+# db.create_all()
+
+
+
+# from eisitirio.permissions import all_permissions # pylint: disable=unused-import
 from eisitirio.views import all_views
 from eisitirio.helpers import log_manager
 from eisitirio.helpers import login_manager
@@ -24,11 +52,6 @@ from eisitirio.helpers import sms_manager
 from eisitirio.helpers import timed_config
 from eisitirio.helpers import util
 
-APP = app.APP
-
-APP.config.from_pyfile('config/default.py')
-APP.config.from_pyfile('config/ticket_types.py')
-APP.config.from_pyfile('config/postage.py')
 
 timed_config.augment_config(APP)
 
@@ -212,3 +235,12 @@ def context_processor():
         current_year=datetime.datetime.utcnow().year,
         format_timedelta=util.format_timedelta
     )
+
+
+def main():
+    app.eisitiriodb.create_all()
+    APP.run(debug=True,port=5000)
+
+
+if __name__ == '__main__':
+    main()

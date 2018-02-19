@@ -18,8 +18,8 @@ from eisitirio.database import static
 from eisitirio.helpers import login_manager
 from eisitirio.helpers import statistics
 
-APP = app.APP
-DB = db.DB
+APP = app.APP#DB = db.DB
+from eisitirio.app import eisitiriodb as DB
 
 ADMIN_DATA = flask.Blueprint('admin_data', __name__)
 
