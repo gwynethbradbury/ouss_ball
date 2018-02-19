@@ -24,22 +24,7 @@ APP.config.from_pyfile('config/postage.py')
 #
 # from flask_sqlalchemy import SQLAlchemy
 
-# iaas_uri = '{}://{}:{}@{}/{}' \
-#         .format('mysql+pymysql',
-#                 'root',
-#                 'GTG24DDa',
-#                 'localhost',
-#                 'eisitirio')
-#
-# APP.config['SQLALCHEMY_DATABASE_URI'] =iaas_uri
-# APP.config['DATABASE_URL'] =iaas_uri
-#
-# SQLALCHEMY_BINDS={'eisitirio':iaas_uri}
-# APP.config['SQLALCHEMY_BINDS'] =SQLALCHEMY_BINDS
-# eisitiriodb = SQLAlchemy(APP)
-# db = eisitiriodb
-#
-# db.create_all()
+
 
 
 

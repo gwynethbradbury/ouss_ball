@@ -12,12 +12,13 @@ APP.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', False)
 APP.jinja_env.trim_blocks = True
 APP.jinja_env.lstrip_blocks = True
 
+import dbconfig
 
 from flask_sqlalchemy import SQLAlchemy
 iaas_uri = '{}://{}:{}@{}/{}' \
         .format('mysql+pymysql',
                 'root',
-                'GTG24DDa',
+                dbconfig.dbpwd,
                 'localhost',
                 'eisitirio')
 
