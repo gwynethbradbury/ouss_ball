@@ -19,7 +19,7 @@ iaas_uri = '{}://{}:{}@{}/{}' \
         .format('mysql+pymysql',
                 'root',
                 dbconfig.dbpwd,
-                'localhost',
+                dbconfig.dbhost,
                 'eisitirio')
 
 APP.config['SQLALCHEMY_DATABASE_URI'] =iaas_uri
