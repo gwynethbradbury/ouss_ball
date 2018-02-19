@@ -1,5 +1,5 @@
 *.pyc
-#config/*
+config/*
 .watsonrc
 *.sass-cache*
 *cron_timestamp*
