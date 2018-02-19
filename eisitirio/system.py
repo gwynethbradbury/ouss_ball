@@ -18,15 +18,15 @@ import jinja2
 import app
 APP = app.APP
 
-import dbconfig
-if dbconfig.dbhost=='localhost':
-    APP.config.from_pyfile('config/default.py')
-    APP.config.from_pyfile('config/ticket_types.py')
-    APP.config.from_pyfile('config/postage.py')
-else:
-    APP.config.from_pyfile('ouss_ball/eisitirio/config/default.py')
-    APP.config.from_pyfile('ouss_ball/eisitirio/config/ticket_types.py')
-    APP.config.from_pyfile('ouss_ball/eisitirio/config/postage.py')
+# import dbconfig
+# if dbconfig.dbhost=='localhost':
+APP.config.from_pyfile('config/default.py')
+APP.config.from_pyfile('config/ticket_types.py')
+APP.config.from_pyfile('config/postage.py')
+# else:
+#     APP.config.from_pyfile('ouss_ball/eisitirio/config/default.py')
+#     APP.config.from_pyfile('ouss_ball/eisitirio/config/ticket_types.py')
+#     APP.config.from_pyfile('ouss_ball/eisitirio/config/postage.py')
 #
 # from flask_sqlalchemy import SQLAlchemy
 
