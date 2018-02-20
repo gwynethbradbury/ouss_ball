@@ -259,7 +259,7 @@ def confirm_email(user_id, secret_key):
     The user is sent a link to this view in an email. Visiting this view
     confirms the validity of their email address.
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user is not None and user.secret_key == secret_key:
         user.secret_key = None
@@ -449,7 +449,7 @@ def reset_password(user_id, secret_key):
     Upon clicking it, they are presented with a form to define a new password,
     which is saved when the form is submitted (to this view)
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user is None or user.secret_key != secret_key:
         if user is not None:
@@ -516,7 +516,7 @@ def destroy_account(user_id, secret_key):
     If a user is verified, it gets a little too complicated to destroy their
     account (what happens to any tickets they own?)
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user is not None and user.secret_key == secret_key:
         if not user.is_verified:
@@ -575,7 +575,7 @@ def logout():
             user=login.current_user
         )
 
-        actor = models.User.get_by_id(flask.session['actor_id'])
+        actor = models.User.query.get_or_404(flask.session['actor_id'])
 
         flask.session.pop('actor_id', None)
 

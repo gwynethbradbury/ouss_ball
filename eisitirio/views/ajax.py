@@ -59,7 +59,7 @@ def collect_ticket(ticket_id):
     Performs the requisite logic to check the barcode submitted for a ticket,
     and marks the ticket as collected.
     """
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if not ticket:
         response = {
@@ -91,7 +91,7 @@ def update_waiting(entry_id):
 
     Deletes the entry if the number is reduced to 0.
     """
-    entry = models.Waiting.get_by_id(entry_id)
+    entry = models.Waiting.query.get_or_404(entry_id)
 
     if not entry:
         response = {

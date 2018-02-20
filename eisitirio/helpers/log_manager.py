@@ -93,7 +93,7 @@ class LogManager(object):
 
         if in_app:
             if 'actor_id' in flask.session:
-                actor = models.User.get_by_id(flask.session['actor_id'])
+                actor = models.User.query.get_or_404(flask.session['actor_id'])
             elif not login.current_user.is_anonymous:
                 actor = login.current_user
 

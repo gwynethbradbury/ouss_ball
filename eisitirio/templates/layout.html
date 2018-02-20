@@ -13,7 +13,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}?v=2" />
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.jpg') }}?v=2" />
         {% if template_config['ENABLE_ANALYTICS'] %}
             <script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -98,62 +98,39 @@
         </div>
 
 
-    <div class="jumbotron jumbotron-fluid" style="background-image: url({{ url_for('static', filename='images/salsa_ball.jpg') }}); background-size: 100%;">
-        <div class="container">
-            <h1><h2>{{ template_config['TITLE'] }}</h2>
-            <h1 class="headline">{{ template_config['THEME'] }}</h1>
-            <h3>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</h3></h1>
+    <div class="jumbotron jumbotron-fluid" style="min-height:150px;
+            background-color: transparent;
+            background-image: url({{ url_for('static', filename='images/salsa_ball_bg.jpg') }});
+            background-repeat: no-repeat;
+            background-size: 120% auto;
+            background-position: center;
+            background-position-y: 35%;
+            ">
+        <div class="container" style="min-height:150px;
+{#                background-color: transparent;#}
+                background-image: url({{ url_for('static', filename='images/salsa_ball_text_wide.png') }});
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                mix-blend-mode: difference;
+">
+{#            <h1 style="font-size: xx-large">{{ template_config['TITLE'] }}</h1>#}
+{#            <h1 class="headline">{{ template_config['THEME'] }}</h1>#}
+{#            <h3>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</h3>#}
         </div>
     </div>
 
-{#      <header class="header">#}
-{#        <section id="user" class="small-12 large-offset-6 large-6 columns">#}
-{#          {% if current_user.is_anonymous %}#}
-{#          <p style="color: white;">You are not currently logged in. <a href="{{ url_for('front.home') }}#log-in-form">Log in.</a></p>#}
-{#          {% else %}#}
-{#          <p style="color: white;">You are currently logged in as {{ current_user.full_name }}. <a href="{{ url_for('front.logout') }}">Log out.</a></p>#}
-{#          {% endif %}#}
-{#        </section>#}
-{#        <div class="header-text">#}
-{#          <a href="/">#}
-{#            <h2>{{ template_config['TITLE'] }}</h2>#}
-{#            <h1 class="headline">{{ template_config['THEME'] }}</h1>#}
-{#            <h3>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</h3>#}
-{#          </a>#}
-{#        </div>#}
-{#        <ul class="header-subnav">#}
-{#          {% block navigation %}#}
-{#            {% if not current_user.is_anonymous %}#}
-{#            <div class="row">#}
-{#              <div class="large-12 columns centered" id="navigation-main">#}
-{#                {% include 'blocks/dashboard-navigation.html' %}#}
-{#              </div>#}
-{#              <div class="large-12 columns" id="navigation-main">#}
-{#                {% if current_user.is_admin %}#}
-{#                  {% include 'blocks/admin-navigation.html' %}#}
-{#                {% endif %}#}
-{#              </div>#}
-{#            </div>#}
-{#            {% endif %}#}
-{#          {% endblock %}#}
-{#        </ul>#}
-{#      </header>#}
+
 <div class="container">
         <div class="row">
             <div class="col col-sm-12 col-lg-12 col-md-12" style="padding-top: 0.5rem;">
 
                 {% include 'blocks/sms_verify.html' %}
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <section id="flashes" class="row">
-                            <ul class="large-12 columns">
-                                {% for category, message in messages %}
-                                    <li class="{{ category }}" title="Click to dismiss">{{ message|safe }}</li>
-                                {% endfor %}
-                            </ul>
-                        </section>
-                    {% endif %}
-                {% endwith %}
+
                 <section id="page-title" class="row">
                     <div class="large-12 columns">
                         <h2>{{ self.title() }}</h2>

@@ -34,7 +34,7 @@ ADMIN_USERS = flask.Blueprint('admin_users', __name__)
 @login_manager.admin_required
 def view_user(user_id, self_actions_page=1, actions_page=1, events_page=1):
     """Display a user's information."""
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         self_actions = user.actions.filter(
@@ -93,7 +93,7 @@ def impersonate_user(user_id):
     noting that it is an administrator performing these actions (used for
     logging)
         """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         flask.session['actor_id'] = login.current_user.object_id
@@ -129,7 +129,7 @@ def give_user(user_id):
         return flask.redirect(flask.request.referrer or
                               flask.url_for('admin.admin_home'))
 
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         try:
@@ -220,7 +220,7 @@ def note_user(user_id):
         return flask.redirect(flask.request.referrer or
                               flask.url_for('admin.admin_home'))
 
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         user.note = flask.request.form['notes']
@@ -256,7 +256,7 @@ def verify_user(user_id):
     themselves, we can do it as adminstrators to save the hassle of walking the
     user through the process.
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         user.verified = True
@@ -287,7 +287,7 @@ def verify_user(user_id):
 @login_manager.admin_required
 def demote_user(user_id):
     """Make an admin not an admin."""
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         user.demote()
@@ -318,7 +318,7 @@ def demote_user(user_id):
 @login_manager.admin_required
 def promote_user(user_id):
     """Make a user an administrator."""
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         user.promote()
@@ -355,7 +355,7 @@ def add_manual_battels(user_id):
     undergraduates), we can manually create a battels account tied to the user's
     email address.
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         user.add_manual_battels()
@@ -389,7 +389,7 @@ def verify_affiliation(user_id):
     In limited release, users' affiliations must be varified to ensure only
     current college members and graduands are able to purchase tickets.
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         affiliation_logic.verify_affiliation(user)
@@ -406,7 +406,7 @@ def verify_affiliation(user_id):
 @login_manager.admin_required
 def deny_affiliation(user_id):
     """Mark a user's affiliation as incorrect/invalid."""
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         affiliation_logic.deny_affiliation(user)
@@ -440,7 +440,7 @@ def collect_tickets(user_id):
     an interface displaying all the users tickets, with a field for adding the
     barcode to each (intended to be filled using a barcode scanner).
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user:
         return flask.render_template(
@@ -463,7 +463,7 @@ def collect_tickets(user_id):
 @login_manager.admin_required
 def charge_admin_fee(user_id):
     """Display an interface to create an admin fee for the user to pay."""
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if not user:
         flask.flash(

@@ -64,7 +64,7 @@ def refund_user(user):
 #def refund_user(user):
 #
 #    # Get the admin user
-#    admin_user = models.User.get_by_id(1);
+#    admin_user = models.User.query.get_or_404(1);
 #
 #    refunded_ticket = None
 #    for ticket in tickets:

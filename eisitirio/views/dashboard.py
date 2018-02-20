@@ -132,8 +132,8 @@ def update_profile():
 
     affiliation_logic.update_affiliation(
         login.current_user,
-        models.College.get_by_id(flask.request.form['college']),
-        models.Affiliation.get_by_id(flask.request.form['affiliation'])
+        models.College.query.get_or_404(flask.request.form['college']),
+        models.Affiliation.query.get_or_404(flask.request.form['affiliation'])
     )
 
     DB.session.commit()
@@ -415,7 +415,7 @@ def display_announcement(announcement_id):
     The dashboard shows a condensed listing of announcements, this view allows
     the user to see an announcement in full.
     """
-    announcement = models.Announcement.get_by_id(announcement_id)
+    announcement = models.Announcement.query.get_or_404(announcement_id)
 
     if not announcement:
         flask.flash(
@@ -504,7 +504,7 @@ def relinquish_ticket():
 @login.login_required
 def reclaim_ticket(ticket_id):
     """Allow a ticket owner to reclaim a claimed ticket."""
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if not ticket:
         flask.flash('No such ticket.', 'error')

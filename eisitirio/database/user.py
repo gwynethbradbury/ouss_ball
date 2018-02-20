@@ -274,7 +274,7 @@ class User(DB.Model):
         """
         return self.role == 'Admin' or (
             'actor_id' in flask.session and
-            User.get_by_id(flask.session['actor_id']).role == 'Admin'
+            User.query.get_or_404(flask.session['actor_id']).role == 'Admin'
         )
 
     @property

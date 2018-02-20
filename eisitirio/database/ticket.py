@@ -116,6 +116,21 @@ class Ticket(DB.Model):
             self.owner.object_id
         )
 
+
+    def can_be_cancelled(self):
+        if datetime.datetime.utcnow()<datetime.datetime(2018,5,11):
+            return True
+        return False
+
+    def can_be_resold(self):
+        return False
+
+    def can_be_claimed(self):
+        return False
+
+    def can_be_reclaimed(self):
+        return False
+
     @property
     def price_pounds(self):
         """Get the price of this ticket as a string of pounds and pence."""

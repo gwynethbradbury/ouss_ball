@@ -179,7 +179,7 @@ def generate_payment_form(transaction):
 
     DB.session.commit()
 
-    APP.log_manager.log_event(
+    flask.current_app.log_manager.log_event(
         'Started Card Payment',
         tickets=transaction.tickets,
         user=login.current_user,
@@ -211,7 +211,7 @@ def process_payment(request):
         )
         return None
 
-    transaction = models.Transaction.get_by_id(
+    transaction = models.Transaction.query.get_or_404(
         get_transaction_id(request.form['ORDER_ID'])
     )
 

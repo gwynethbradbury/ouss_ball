@@ -162,7 +162,7 @@ def vouchers(page=1):
 @login_manager.admin_required
 def delete_voucher(voucher_id):
     """Delete a discount voucher."""
-    voucher = models.Voucher.get_by_id(voucher_id)
+    voucher = models.Voucher.query.get_or_404(voucher_id)
 
     if voucher:
         DB.session.delete(voucher)

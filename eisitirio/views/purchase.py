@@ -552,7 +552,7 @@ def buy_postage():
 @login.login_required
 def pay_admin_fee(admin_fee_id):
     """Allow the user to pay an admin fee."""
-    admin_fee = models.AdminFee.get_by_id(admin_fee_id)
+    admin_fee = models.AdminFee.query.get_or_404(admin_fee_id)
 
     if not admin_fee:
         flask.flash('Admin Fee not found', 'warning')
@@ -621,7 +621,7 @@ def payment_processed():
 
 @PURCHASE.route('/purchase/verify-ticket/<int:ticket_id>')
 def api_verify_ticket(ticket_id):
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     print ticket
 

@@ -72,11 +72,11 @@ def announcements(page=1):
         if success:
             college = None
             if 'college' in form and form['college'] != 'any':
-                college = models.College.get_by_id(form['college'])
+                college = models.College.query.get_or_404(form['college'])
 
             affiliation = None
             if 'affiliation' in form and form['affiliation'] != 'any':
-                affiliation = models.Affiliation.get_by_id(form['affiliation'])
+                affiliation = models.Affiliation.query.get_or_404(form['affiliation'])
 
             has_tickets = None
             if 'owned_tickets' in form:
@@ -158,7 +158,7 @@ def delete_announcement(announcement_id):
     Removes an announcement from the database, but cannot recall any emails
     which have already been sent
     """
-    announcement = models.Announcement.get_by_id(announcement_id)
+    announcement = models.Announcement.query.get_or_404(announcement_id)
 
     if announcement:
         DB.session.delete(announcement)
@@ -186,7 +186,7 @@ def cancel_announcement_emails(announcement_id):
     Remove from the sending queue any pending emails for an announcement. Does
     not recall previously sent emails.
     """
-    announcement = models.Announcement.get_by_id(announcement_id)
+    announcement = models.Announcement.query.get_or_404(announcement_id)
 
     if announcement:
         announcement.emails = []

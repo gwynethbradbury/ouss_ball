@@ -2,10 +2,10 @@
 <li>
     <h5>Choose Postage</h5>
 
-    {% if current_user.college.name == 'Keble' and current_user.affiliation.name == 'Graduand' %}
-        <p>There is no need for you to select a postage option as your ticket(s) will be included in your Graduand pack</p>
-        <input type="hidden" name="postage" value="graduand" />
-    {% else %}
+{#    {% if current_user.college.name == 'Keble' and current_user.affiliation.name == 'Graduand' %}#}
+{#        <p>There is no need for you to select a postage option as your ticket(s) will be included in your Graduand pack</p>#}
+{#        <input type="hidden" name="postage" value="graduand" />#}
+{#    {% else %}#}
         {% if not hide_collection %}
             <p class="small"><strong>Please note</strong>: This year, there will only be three collection times preceding the Ball, at 5-7pm on 4th-6th May 2017. If you are unable to attend these collection times, please select a postage option as you will be unable to enter the Ball without your ticket.</p>
         {% endif %}
@@ -24,6 +24,6 @@
                 <p>Send to <textarea placeholder="Address" name="address">{% if form and form['address'] and form['address'] %}{{ form['address'] }}{% endif %}</textarea></p>
             </div>
         </div>
-    {% endif %}
+{#    {% endif %}#}
 </li>
 {% endif %}

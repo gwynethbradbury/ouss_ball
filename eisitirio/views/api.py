@@ -19,7 +19,7 @@ API = flask.Blueprint('api', __name__)
 
 @API.route('/api/verify-ticket/<int:ticket_id>')
 def api_verify_ticket(ticket_id):
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     print ticket
 

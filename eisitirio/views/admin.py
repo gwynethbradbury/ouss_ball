@@ -351,7 +351,7 @@ def admin_home(page=1):
 @login_manager.admin_required
 def view_log(entry_id):
     """View a log entry."""
-    log = models.Log.get_by_id(entry_id)
+    log = models.Log.query.get_or_404(entry_id)
 
     return flask.render_template(
         'admin/view_log.html',
@@ -366,7 +366,7 @@ def view_log(entry_id):
 @login_manager.admin_required
 def view_transaction(transaction_id, events_page=1):
     """View a card transaction object."""
-    transaction = models.Transaction.get_by_id(transaction_id)
+    transaction = models.Transaction.query.get_or_404(transaction_id)
 
     if transaction:
         events = transaction.events.paginate(
@@ -389,7 +389,7 @@ def view_transaction(transaction_id, events_page=1):
 @login_manager.admin_required
 def view_eway_transaction(eway_transaction_id):
     """View a card transaction object."""
-    eway_transaction = models.EwayTransaction.get_by_id(eway_transaction_id)
+    eway_transaction = models.EwayTransaction.query.get_or_404(eway_transaction_id)
 
     return flask.render_template(
         'admin/view_eway_transaction.html',
@@ -401,7 +401,7 @@ def view_eway_transaction(eway_transaction_id):
 @login_manager.admin_required
 def delete_waiting(entry_id):
     """Delete an entry from the waiting list."""
-    waiting = models.Waiting.get_by_id(entry_id)
+    waiting = models.Waiting.query.get_or_404(entry_id)
 
     if waiting:
         DB.session.delete(waiting)
@@ -427,7 +427,7 @@ def delete_waiting(entry_id):
 @login_manager.admin_required
 def view_purchase_group(group_id, events_page=1):
     """View a ticket object."""
-    purchase_group = models.PurchaseGroup.get_by_id(group_id)
+    purchase_group = models.PurchaseGroup.query.get_or_404(group_id)
 
     if purchase_group:
         events = purchase_group.events.paginate(

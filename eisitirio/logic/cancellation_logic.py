@@ -105,7 +105,7 @@ def cancel_tickets(tickets, quiet=False):
             DB.session.commit()
 
     if cancelled:
-        APP.log_manager.log_event(
+        flask.current_app.log_manager.log_event(
             'Cancelled tickets',
             tickets=cancelled,
             user=login.current_user
