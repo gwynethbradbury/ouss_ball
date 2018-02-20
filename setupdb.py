@@ -46,7 +46,7 @@ c.append(Affiliation("OUSS Extended Comittee"))
 c.append(Affiliation("Artist"))
 
 for a in c:
-    db.session.add(c)
+    db.session.add(a)
     db.session.commit()
 
 
