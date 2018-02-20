@@ -14,7 +14,7 @@ _TicketType = collections.namedtuple(
         "limit_per_person",
         "total_limit",
         "counts_towards_guest_limit",
-        "can_buy",
+        "can_buy_",
     ]
 )
 
@@ -36,6 +36,12 @@ class TicketType(_TicketType):
              whether the given user can buy/create tickets of this type through
              the main purchase flow.
     """
+
+    # @property
+    def can_buy(self,user):
+        if user.affiliation_verified and user.affiliation.name==self.name:
+            return True
+        return False
 
     @property
     def price_pounds(self):

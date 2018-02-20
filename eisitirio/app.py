@@ -27,6 +27,32 @@ APP.config['DATABASE_URL'] =iaas_uri
 
 SQLALCHEMY_BINDS={'eisitirio':iaas_uri}
 APP.config['SQLALCHEMY_BINDS'] =SQLALCHEMY_BINDS
+
+
+APP.config.from_pyfile('config/default.py')
+APP.config.from_pyfile('config/ticket_types.py')
+APP.config.from_pyfile('config/postage.py')
+APP.config.from_pyfile('config/payment.py')
+APP.config.from_pyfile('config/production.py')
+
+# import flask_misaka as misaka
+#
+# from eisitirio.helpers import log_manager
+# from eisitirio.helpers import login_manager
+# from eisitirio.helpers import email_manager
+# from eisitirio.helpers import sms_manager
+#
+# log_manager.LogManager(APP)
+# email_manager.EmailManager(APP)
+# login_manager.LOGIN_MANAGER.init_app(APP)
+# misaka.Misaka(APP)
+# # markdown.Markdown(APP)
+#
+# APP.sms_manager = sms_manager.SmsManager()
+#
+# LOG = APP.log_manager.log_main
+
+
 eisitiriodb = SQLAlchemy(APP)
 # db = eisitiriodb
 

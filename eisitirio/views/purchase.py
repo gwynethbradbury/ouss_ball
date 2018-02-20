@@ -18,8 +18,8 @@ from eisitirio.logic import realex_logic
 from eisitirio.logic import purchase_logic
 from eisitirio.logic import payment_logic
 # from eisitirio.logic.custom_logic import ticket_logic
-
-APP = app.APP#DB = db.DB
+# APP = app.APP#DB = db.DB
+APP = flask.current_app
 from eisitirio.app import eisitiriodb as DB
 
 PURCHASE = flask.Blueprint('purchase', __name__)
@@ -599,7 +599,7 @@ def pay_admin_fee(admin_fee_id):
 @login.login_required
 def payment_interstitial(transaction_id):
     form = realex_logic.generate_payment_form(
-        models.Transaction.get_by_id(transaction_id)
+        models.Transaction.query.get_or_404(transaction_id)
     )
     return flask.render_template('purchase/payment_interstitial.html', form=form)
 

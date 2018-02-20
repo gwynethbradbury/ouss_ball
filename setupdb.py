@@ -38,6 +38,19 @@ from eisitirio.database.roundup_donation import RoundupDonation
 db.create_all()
 
 
+c=[]
+c.append(College("N/a"))
+c.append(Affiliation("None"))
+c.append(Affiliation("OUSS Member"))
+c.append(Affiliation("OUSS Extended Comittee"))
+c.append(Affiliation("Artist"))
+
+for a in c:
+    db.session.add(c)
+    db.session.commit()
+
+
+
 
 
 

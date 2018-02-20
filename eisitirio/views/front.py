@@ -16,7 +16,8 @@ from eisitirio.helpers import photos
 from eisitirio.helpers import util
 from eisitirio.logic import affiliation_logic
 
-APP = app.APP#DB = db.DB
+# APP = app.APP#DB = db.DB
+APP = flask.current_app
 from eisitirio.app import eisitiriodb as DB
 
 FRONT = flask.Blueprint('front', __name__)
@@ -151,17 +152,17 @@ def register():
     ):
         flashes.append('Phone cannot be blank')
 
-    if (
-            'college' not in flask.request.form or
-            flask.request.form['college'] == '---'
-    ):
-        flashes.append('Please select a college')
-
-    if (
-            'affiliation' not in flask.request.form or
-            flask.request.form['affiliation'] == '---'
-    ):
-        flashes.append('Please select an affiliation')
+    # if (
+    #         'college' not in flask.request.form or
+    #         flask.request.form['college'] == '---'
+    # ):
+    #     flashes.append('Please select a college')
+    #
+    # if (
+    #         'affiliation' not in flask.request.form or
+    #         flask.request.form['affiliation'] == '---'
+    # ):
+    #     flashes.append('Please select an affiliation')
 
     if APP.config['REQUIRE_USER_PHOTO'] and (
             'photo' not in flask.request.files or
@@ -204,8 +205,8 @@ def register():
         flask.request.form['forenames'],
         flask.request.form['surname'],
         flask.request.form['phone'],
-        models.College.get_by_id(flask.request.form['college']),
-        models.Affiliation.get_by_id(flask.request.form['affiliation']),
+        models.College.query.get_or_404(1),#flask.request.form['college']),
+        models.Affiliation.query.get_or_404(1),#flask.request.form['affiliation']),
         photo
     )
 
@@ -217,24 +218,25 @@ def register():
         user=user
     )
 
-    APP.email_manager.send_template(
-        flask.request.form['email'],
-        'Confirm your Email Address',
-        'email_confirm.email',
-        name=user.forenames,
-        confirmurl=flask.url_for(
-            'front.confirm_email',
-            user_id=user.object_id,
-            secret_key=user.secret_key,
-            _external=True
-        ),
-        destroyurl=flask.url_for(
-            'front.destroy_account',
-            user_id=user.object_id,
-            secret_key=user.secret_key,
-            _external=True
-        )
-    )
+#todo: reinstate
+    # APP.email_manager.send_template(
+    #     flask.request.form['email'],
+    #     'Confirm your Email Address',
+    #     'email_confirm.email',
+    #     name=user.forenames,
+    #     confirmurl=flask.url_for(
+    #         'front.confirm_email',
+    #         user_id=user.object_id,
+    #         secret_key=user.secret_key,
+    #         _external=True
+    #     ),
+    #     destroyurl=flask.url_for(
+    #         'front.destroy_account',
+    #         user_id=user.object_id,
+    #         secret_key=user.secret_key,
+    #         _external=True
+    #     )
+    # )
 
     flask.flash('Your user account has been registered', 'success')
     flask.flash(

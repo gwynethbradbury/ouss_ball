@@ -60,14 +60,14 @@ def guest_tickets_available():
 
     return max(
         0,
-        app.APP.config['GUEST_TICKETS_AVAILABLE'] - guest_ticket_count
+        app.APP.config['GUEST_TICKETS_AVAILABLE_TOTAL'] - guest_ticket_count
     )
 
 def _total_tickets_available(user, now):
     """Get how many tickets are available for a user to buy."""
     return max(0, min(
-        app.APP.config.get('MAX_TICKETS', now=now) - user.active_ticket_count,
-        app.APP.config.get('MAX_TICKETS_PER_TRANSACTION', now=now)
+        app.APP.config['MAX_TICKETS'] - user.active_ticket_count,
+        app.APP.config['MAX_TICKETS_PER_TRANSACTION']
     ))
 
 def _type_limit_per_person(user, ticket_type):

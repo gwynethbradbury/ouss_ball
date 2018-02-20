@@ -10,7 +10,7 @@ from eisitirio.helpers import timed_config
 
 # App Config
 
-SECRET_KEY = (
+SECRET_KEY = ('123456790'
     # Generate some bytes.
 )
 MAINTENANCE_MODE = False
@@ -39,24 +39,25 @@ ANALYTICS_DOMAIN = ''
 
 _LIMITED_RELEASE_STARTS = datetime.datetime(2015, 11, 30, 9, 0, 0)
 _LIMITED_RELEASE_ENDS = datetime.datetime(2016, 01, 25, 9, 0, 0)
-GENERAL_RELEASE_STARTS = datetime.datetime(2016, 01, 30, 10, 0, 0)
+GENERAL_RELEASE_STARTS = datetime.datetime(2018, 02, 01, 10, 0, 0)
 
-GUEST_TICKETS_AVAILABLE = timed_config.Until(
-    1550,
-    datetime.datetime(2016, 04, 14, 19, 30, 0),
-    1666
-)
+GUEST_TICKETS_AVAILABLE_TOTAL = 500
+GUEST_TICKETS_AVAILABLE = GUEST_TICKETS_AVAILABLE_TOTAL#timed_config.Until(
+#     1550,
+#     datetime.datetime(2018, 05, 10, 23, 59, 0),
+#     1666
+# )
 TICKET_EXPIRY_TIME = datetime.timedelta(days=1)
 MAX_TICKETS_PER_TRANSACTION = 4
 MAX_TICKETS_WAITING = 4
 GENERAL_RELEASE_MAX_TICKETS = 4
-MAX_TICKETS = timed_config.Until(
-    2,
-    _LIMITED_RELEASE_ENDS,
-    GENERAL_RELEASE_MAX_TICKETS
-)
+MAX_TICKETS = GENERAL_RELEASE_MAX_TICKETS#timed_config.Until(
+#     2,
+#     _LIMITED_RELEASE_ENDS,
+#     GENERAL_RELEASE_MAX_TICKETS
+# )
 CURRENT_TERM = 'TT'
-EMAIL_FROM = 'noreply@kebleball.com'
+EMAIL_FROM = 'noreply@oussball.com'
 SEND_EMAILS = True
 LIMITED_RELEASE = timed_config.Until(
     False,
@@ -70,14 +71,14 @@ WAITING_OPEN = timed_config.Until(False, GENERAL_RELEASE_STARTS, True)
 EMAILS_BATCH = 100 # Number of emails to send in one batch
 STATISTICS_KEEP = datetime.timedelta(days=7)
 HOST_COLLEGES = [
-    'Keble',
+    'OUSS Member',
 ]
 
 MAX_TICKET_CLAIMS = 2
 
 # Features
 
-REQUIRE_USER_PHOTO = True
+REQUIRE_USER_PHOTO = False
 
 ENABLE_POSTAGE = True
 
@@ -117,7 +118,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2016, 04, 23)
+LOCKDOWN_STARTS = datetime.datetime(2018, 05, 11)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -155,16 +156,16 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2016, 5, 7, 20) # 8pm, 7th May 2016
-GATES_CLOSE = datetime.datetime(2016, 5, 7, 23) # 11pm, 7th May 2016
-END_TIME = datetime.datetime(2016, 5, 8, 4) # 4am, 8th May 2016
-THEME = 'Panopticon'
+START_TIME = datetime.datetime(2018, 5, 11, 20) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2018, 5, 12, 01) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2018, 5, 12, 01) # 1am, 12th May 2018
+THEME = 'OUSS Ball'
 
 COLLEGE = "/".join(HOST_COLLEGES)
-BALL_NAME = 'Keble Ball'
+BALL_NAME = 'Oxford Salsa Ball'
 TITLE = '{0} {1}'.format(BALL_NAME, START_TIME.year)
-THEME = 'Panopticon'
-DATE_FORMAT = '%d%m%Y'
+THEME = 'OUSS Ball'
+DATE_FORMAT = '%d.%m.%Y'
 
 EMAIL_SIGNOFF = 'The {0} Committee'.format(BALL_NAME)
 
@@ -185,6 +186,8 @@ WEBSITE_EMAIL_LINK = (
     '01VW2HusQat4KpnmQYJBSfhQ==&c=0pBadqH9ae41gTIaahTM78kkmPpv_-wELjktV6Zs-d0='
 )
 
-TREASURER_EMAIL = 'treasurer@kebleball.com'
-TICKETS_EMAIL = 'tickets@kebleball.com'
-WEBSITE_EMAIL = 'website@kebleball.com'
+TREASURER_EMAIL = 'treasurer@oussball.com'
+TICKETS_EMAIL = 'tickets@oussblall.com'
+WEBSITE_EMAIL = 'website@oussball.com'
+
+

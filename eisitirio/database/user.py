@@ -156,6 +156,17 @@ class User(DB.Model):
         )
     )
 
+    def has_unpaid_tickets(self):
+        if ticket.Ticket.query.filter_by(holder_id=self.object_id,paid=0).count()>0:
+            return True
+
+        return False
+
+    def has_held_ticket(self):
+        return False
+    def can_update_details(self):
+        return True
+
     def __init__(self, email, password, forenames, surname, phone, college,
                  affiliation, photo):
         self.email = email
@@ -181,6 +192,9 @@ class User(DB.Model):
     def __repr__(self):
         return '<User {0}: {1} {2}>'.format(
             self.object_id, self.forenames, self.surname)
+
+    def can_pay_by_battels(self):
+        return False
 
     @property
     def group_purchase_requests(self):

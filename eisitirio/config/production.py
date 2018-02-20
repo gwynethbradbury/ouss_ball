@@ -9,9 +9,9 @@ import base64
 DEBUG = False
 TESTING = False
 SQLALCHEMY_ECHO = False
-SQLALCHEMY_DATABASE_URI = (
-    'mysql://user:password@host/database'
-)
+# SQLALCHEMY_DATABASE_URI = (
+#     'mysql://user:password@host/database'
+# )
 ENVIRONMENT = 'PRODUCTION'
 SEND_EMAILS = True
 LOG_LEVEL = logging.WARNING
@@ -26,7 +26,7 @@ EWAY_API_PASSCODE = base64.b64encode(
     )
 )
 
-SMTP_HOST = 'smtp.sparkpostmail.com'
+SMTP_HOST = 'smtp.gmail.com'
 SMTP_PORT = 587
 SMTP_SSL = False
 SMTP_STARTTLS = True
