@@ -15,7 +15,7 @@ from eisitirio.helpers import login_manager
 from eisitirio.helpers import util
 from eisitirio.logic import affiliation_logic
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_USERS = flask.Blueprint('admin_users', __name__)
@@ -103,7 +103,7 @@ def impersonate_user(user_id):
             remember=False
         )
 
-        APP.log_manager.log_event(
+        App.log_manager.log_event(
             'Started impersonating user',
             user=user
         )

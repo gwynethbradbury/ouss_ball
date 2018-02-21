@@ -16,7 +16,7 @@ from eisitirio.database import models, db
 from eisitirio.helpers import postage_option
 
 LARGE_NUMBER = 999999
-APP = app.APP
+APP = flask.current_app#app.APP
 #DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 

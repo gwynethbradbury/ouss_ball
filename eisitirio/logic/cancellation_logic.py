@@ -13,7 +13,7 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP
+APP = flask.current_app#app.APP
 #DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
@@ -105,7 +105,7 @@ def cancel_tickets(tickets, quiet=False):
             DB.session.commit()
 
     if cancelled:
-        flask.current_app.log_manager.log_event(
+        APP.log_manager.log_event(
             'Cancelled tickets',
             tickets=cancelled,
             user=login.current_user

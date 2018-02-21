@@ -12,7 +12,7 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 API = flask.Blueprint('api', __name__)

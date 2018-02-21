@@ -16,7 +16,7 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 class SHA1CheckError(Exception):
@@ -179,7 +179,7 @@ def generate_payment_form(transaction):
 
     DB.session.commit()
 
-    flask.current_app.log_manager.log_event(
+    APP.log_manager.log_event(
         'Started Card Payment',
         tickets=transaction.tickets,
         user=login.current_user,

@@ -10,7 +10,7 @@
             <p class="small"><strong>Please note</strong>: This year, there will only be three collection times preceding the Ball, at 5-7pm on 4th-6th May 2017. If you are unable to attend these collection times, please select a postage option as you will be unable to enter the Ball without your ticket.</p>
         {% endif %}
         <div class="row">
-            <div class="columns">
+            <div class="form-group">
                 {% for postage_option in template_config['POSTAGE_OPTIONS'].itervalues() %}
                     {% if postage_option != template_config['NO_POSTAGE_OPTION'] or not hide_collection %}
                         <label for="postage_{{ postage_option.slug }}">
@@ -20,7 +20,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <div id="postage_address" class="columns"{% if not form or 'postage' not in form or not template_config['POSTAGE_OPTIONS'][form['postage']].needs_address %} style="display: none"{% endif %}>
+            <div id="postage_address" class="form-group"{% if not form or 'postage' not in form or not template_config['POSTAGE_OPTIONS'][form['postage']].needs_address %} style="display: none"{% endif %}>
                 <p>Send to <textarea placeholder="Address" name="address">{% if form and form['address'] and form['address'] %}{{ form['address'] }}{% endif %}</textarea></p>
             </div>
         </div>

@@ -8,8 +8,8 @@ import random
 
 from eisitirio import app
 from eisitirio.database import db
-
-APP = app.APP#DB = db.DB
+import flask
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 LOG = logging.getLogger(__name__)

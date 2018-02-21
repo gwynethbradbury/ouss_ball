@@ -17,7 +17,7 @@ from eisitirio.database import models
 from eisitirio.helpers import login_manager
 from eisitirio.helpers import util
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_VOUCHERS = flask.Blueprint('admin_vouchers', __name__)

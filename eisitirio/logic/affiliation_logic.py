@@ -10,7 +10,7 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 def verify_affiliation(user):
@@ -123,9 +123,9 @@ def get_unverified_users():
     """Get all the users who should be verified but aren't."""
     return models.User.query.filter(
         sqlalchemy.or_(
-            models.User.college.has(name=college)
+            models.User.affiliation.has(name=college)
             for college in APP.config['HOST_COLLEGES']
         )
     ).filter(
-        models.User.affiliation_verified == None # pylint: disable=singleton-comparison
+        models.User.affiliation_verified == 0  # pylint: disable=singleton-comparison
     ).all()

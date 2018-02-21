@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 from eisitirio import app
 from eisitirio.database import db
-
-APP = app.APP
+import flask
+APP = flask.current_app#app.APP
 # DB = db.DB
 
 from eisitirio.app import eisitiriodb as DB

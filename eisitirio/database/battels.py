@@ -7,8 +7,9 @@ from __future__ import division
 from eisitirio import app
 from eisitirio.database import db
 #DB = db.DB
+import flask
 from eisitirio.app import eisitiriodb as DB
-APP = app.APP
+APP = flask.current_app#app.APP
 
 class Battels(DB.Model):
     """Model for battels charges for current students."""

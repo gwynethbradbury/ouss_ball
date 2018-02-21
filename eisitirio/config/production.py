@@ -26,13 +26,14 @@ EWAY_API_PASSCODE = base64.b64encode(
     )
 )
 
-SMTP_HOST = 'smtp.gmail.com'
-SMTP_PORT = 587
-SMTP_SSL = False
-SMTP_STARTTLS = True
+
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = 465
+SMTP_SSL = True
+SMTP_STARTTLS = False
 SMTP_LOGIN = True
-SMTP_USER = 'SMTP_Injection'
-SMTP_PASSWORD = 'Sparkpost password'
+SMTP_USER = 'gwyneth.bradbury@gmail.com'
+SMTP_PASSWORD = 'autodidacticism169'
 
 AWS_ACCESS_KEY_ID = 'AWS Access Key ID'
 AWS_SECRET_ACCESS_KEY = 'AWS Secret Access Key'

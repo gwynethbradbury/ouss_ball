@@ -219,24 +219,24 @@ def register():
     )
 
 #todo: reinstate
-    # APP.email_manager.send_template(
-    #     flask.request.form['email'],
-    #     'Confirm your Email Address',
-    #     'email_confirm.email',
-    #     name=user.forenames,
-    #     confirmurl=flask.url_for(
-    #         'front.confirm_email',
-    #         user_id=user.object_id,
-    #         secret_key=user.secret_key,
-    #         _external=True
-    #     ),
-    #     destroyurl=flask.url_for(
-    #         'front.destroy_account',
-    #         user_id=user.object_id,
-    #         secret_key=user.secret_key,
-    #         _external=True
-    #     )
-    # )
+    APP.email_manager.send_template(
+        flask.request.form['email'],
+        'Confirm your Email Address',
+        'email_confirm.email',
+        name=user.forenames,
+        confirmurl=flask.url_for(
+            'front.confirm_email',
+            user_id=user.object_id,
+            secret_key=user.secret_key,
+            _external=True
+        ),
+        destroyurl=flask.url_for(
+            'front.destroy_account',
+            user_id=user.object_id,
+            secret_key=user.secret_key,
+            _external=True
+        )
+    )
 
     flask.flash('Your user account has been registered', 'success')
     flask.flash(

@@ -1,8 +1,8 @@
 <li>
     <h5>Choose Payment Method</h5>
+    <p class="small"><strong>Please note</strong>: Refunds of tickets purchased by card will only be offered in exceptional circumstances and may be subject to an administrative fee.</p>
     <div class="row">
-            <p class="small"><strong>Please note</strong>: Refunds of tickets purchased by card will only be offered in exceptional circumstances and may be subject to an administrative fee. Refunds of tickets purchased through Battels will only be offered until the end of Hilary term.
-        <div class="columns">
+        <div class="form-group">
             {% if current_user.can_pay_by_battels() %}
                 {% if template_config['CURRENT_TERM'] == 'MT' %}
                     {% if 'Battels-MT' in template_config['PAYMENT_METHODS'] %}

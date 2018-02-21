@@ -14,7 +14,7 @@ from eisitirio.helpers import login_manager
 from eisitirio.helpers import photos
 from eisitirio.helpers import util
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_PHOTOS = flask.Blueprint('admin_photos', __name__)

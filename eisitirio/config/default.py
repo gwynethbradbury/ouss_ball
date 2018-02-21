@@ -57,7 +57,7 @@ MAX_TICKETS = GENERAL_RELEASE_MAX_TICKETS#timed_config.Until(
 #     GENERAL_RELEASE_MAX_TICKETS
 # )
 CURRENT_TERM = 'TT'
-EMAIL_FROM = 'noreply@oussball.com'
+EMAIL_FROM = 'gwyneth.bradbury@gmail.com'
 SEND_EMAILS = True
 LIMITED_RELEASE = timed_config.Until(
     False,
@@ -72,7 +72,8 @@ EMAILS_BATCH = 100 # Number of emails to send in one batch
 STATISTICS_KEEP = datetime.timedelta(days=7)
 HOST_COLLEGES = [
     'OUSS Member',
-]
+    'OUSS Extended Comittee',
+]#this is a list of affiliations
 
 MAX_TICKET_CLAIMS = 2
 
@@ -80,23 +81,23 @@ MAX_TICKET_CLAIMS = 2
 
 REQUIRE_USER_PHOTO = False
 
-ENABLE_POSTAGE = True
+ENABLE_POSTAGE = False
 
-ENABLE_GROUP_PURCHASE = True
+ENABLE_GROUP_PURCHASE = False
 MAX_GROUP_MEMBERS = 4
 
-ENABLE_CANCELLATION = True
+ENABLE_CANCELLATION = False
 ENABLE_RESALE = False
-ENABLE_SEPARATE_POSTAGE = True
-ENABLE_CHANGING_DETAILS = False
+ENABLE_SEPARATE_POSTAGE = False
+ENABLE_CHANGING_DETAILS = True
 ENABLE_CHANGING_PHOTOS = False
 ENABLE_RECLAIMING_TICKETS = True
 
 PAYMENT_METHODS = [
     'Card',
-    'Battels-MT',
-    'Battels-MTHT',
-    'Battels-HT',
+    # 'Battels-MT',
+    # 'Battels-MTHT',
+    # 'Battels-HT',
 ]
 
 FEATURE_CONSTANTS = [
