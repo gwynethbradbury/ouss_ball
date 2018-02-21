@@ -8,7 +8,8 @@ from eisitirio.database import db
 from eisitirio.database import transaction
 #DB = db.DB
 from eisitirio.app import eisitiriodb as DB
-APP = app.APP
+import flask
+APP = flask.current_app#app.APP
 
 class BattelsTransaction(transaction.Transaction):
     """Model for representing a battels transaction."""

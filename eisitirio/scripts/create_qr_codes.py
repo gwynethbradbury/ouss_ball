@@ -13,8 +13,8 @@ from eisitirio.database import models
 # from eisitirio.logic.custom_logic import ticket_logic
 from eisitirio.helpers import util
 from time import sleep
-
-APP = app.APP#DB = db.DB
+import flask
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 LOG = logging.getLogger(__name__)
 

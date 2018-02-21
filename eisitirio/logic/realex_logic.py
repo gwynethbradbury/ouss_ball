@@ -16,7 +16,7 @@ from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import models
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 class SHA1CheckError(Exception):
@@ -211,7 +211,7 @@ def process_payment(request):
         )
         return None
 
-    transaction = models.Transaction.get_by_id(
+    transaction = models.Transaction.query.get_or_404(
         get_transaction_id(request.form['ORDER_ID'])
     )
 

@@ -9,7 +9,7 @@ NO_POSTAGE_OPTION = postage_option.PostageOption(
     'Collection',
     'collection',
     0,
-    'Collect your tickets from Keble at fixed times before the ball.',
+    'Collect your tickets from OUSS at fixed times before the ball.',
     False
 )
 

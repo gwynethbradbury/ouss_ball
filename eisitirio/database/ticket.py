@@ -11,8 +11,8 @@ from sqlalchemy.ext import hybrid
 from eisitirio import app
 from eisitirio.database import db
 from eisitirio.helpers import util
-
-APP = app.APP#DB = db.DB
+import flask
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 class Ticket(DB.Model):
@@ -116,6 +116,39 @@ class Ticket(DB.Model):
             self.owner.object_id
         )
 
+
+    def can_be_cancelled(self):
+        if datetime.datetime.utcnow()<datetime.datetime(2018,5,11) and not self.cancelled and not self.paid:
+            return True
+        return False
+
+    def can_be_resold(self):
+        return False
+
+    def can_be_claimed(self):
+        if self.status=='Awaiting ticket holder.':
+            return True
+        return False
+
+    def can_be_reclaimed(self):
+        if self.paid and datetime.datetime.utcnow()<datetime.datetime(2018,5,11) and not self.cancelled and self.holder_id==self.owner_id:
+            return True
+        return False
+
+    def has_holder(self):
+        if not self.holder_id == None:
+            return True
+        return False
+
+    def can_be_paid_for(self):
+        if self.paid==0:
+            return True
+        return False
+
+    @staticmethod
+    def get_by_claim_code(code):
+        return Ticket.query.filter_by(claim_code=code).first()
+
     @property
     def price_pounds(self):
         """Get the price of this ticket as a string of pounds and pence."""
@@ -163,8 +196,9 @@ class Ticket(DB.Model):
             return 'Collected as {0}.'.format(self.barcode)
         elif self.holder is None:
             return 'Awaiting ticket holder.'
-        elif not self.holder.photo.verified:
-            return 'Awaiting verification of holder photo.'
+        elif APP.config['REQUIRE_USER_PHOTO']:
+            if not self.holder.photo.verified:
+                return 'Awaiting verification of holder photo.'
         else:
             return 'Held by {0}.'.format(self.holder.full_name)
 

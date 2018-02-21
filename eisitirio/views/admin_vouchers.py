@@ -17,7 +17,7 @@ from eisitirio.database import models
 from eisitirio.helpers import login_manager
 from eisitirio.helpers import util
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_VOUCHERS = flask.Blueprint('admin_vouchers', __name__)
@@ -162,7 +162,7 @@ def vouchers(page=1):
 @login_manager.admin_required
 def delete_voucher(voucher_id):
     """Delete a discount voucher."""
-    voucher = models.Voucher.get_by_id(voucher_id)
+    voucher = models.Voucher.query.get_or_404(voucher_id)
 
     if voucher:
         DB.session.delete(voucher)

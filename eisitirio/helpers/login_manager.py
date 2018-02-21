@@ -24,7 +24,7 @@ def load_user(user_id):
     if flask.current_app.config['MAINTENANCE_MODE']:
         return LOGIN_MANAGER.anonymous_user
     else:
-        return models.User.get_by_id(user_id)
+        return models.User.query.get_or_404(user_id)
 
 LOGIN_MANAGER.login_view = 'front.home'
 LOGIN_MANAGER.session_protection = 'basic'

@@ -10,7 +10,7 @@ from eisitirio.database import db
 from eisitirio.database import models
 # from eisitirio.logic.custom_logic import ticket_logic
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 f1 = open("./output", "w+")
@@ -64,7 +64,7 @@ def refund_user(user):
 #def refund_user(user):
 #
 #    # Get the admin user
-#    admin_user = models.User.get_by_id(1);
+#    admin_user = models.User.query.get_or_404(1);
 #
 #    refunded_ticket = None
 #    for ticket in tickets:

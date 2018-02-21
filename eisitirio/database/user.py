@@ -139,7 +139,7 @@ class User(DB.Model):
 
     affiliation_verified = DB.Column(
         DB.Boolean,
-        default=None,
+        default=False,
         nullable=True
     )
 
@@ -155,6 +155,37 @@ class User(DB.Model):
             uselist=False
         )
     )
+
+    def has_tickets(self):
+        if ticket.Ticket.query.filter_by(holder_id=self.object_id).count()>0:
+            return True
+        return False
+
+    def has_unpaid_tickets(self):
+        if ticket.Ticket.query.filter_by(owner_id=self.object_id,paid=0).count()>0:
+            return True
+        return False
+
+    def has_paid_tickets(self):
+        if ticket.Ticket.query.filter_by(owner_id=self.object_id,paid=1).count()>0:
+            return True
+        return False
+
+    def can_claim_ticket(self):
+        return True
+
+#todo: check logic
+    def has_collected_tickets(self):
+        return False
+    def has_uncollected_tickets(self):
+        return False
+
+    def has_held_ticket(self):
+        if ticket.Ticket.query.filter_by(holder_id=self.object_id):
+            return True
+        return False
+    def can_update_details(self):
+        return True
 
     def __init__(self, email, password, forenames, surname, phone, college,
                  affiliation, photo):
@@ -172,7 +203,11 @@ class User(DB.Model):
         self.verified = False
         self.deleted = False
         self.role = 'User'
-        self.affiliation_verified = None
+        if affiliation.name=='None':
+            self.affiliation_verified = True
+        else:
+            self.affiliation_verified = False
+            #todo add logic for checking if they are on the member list
 
         self.battels = battels.Battels.query.filter(
             battels.Battels.email == email
@@ -181,6 +216,9 @@ class User(DB.Model):
     def __repr__(self):
         return '<User {0}: {1} {2}>'.format(
             self.object_id, self.forenames, self.surname)
+
+    def can_pay_by_battels(self):
+        return False
 
     @property
     def group_purchase_requests(self):

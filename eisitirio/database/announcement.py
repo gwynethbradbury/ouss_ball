@@ -8,8 +8,8 @@ import datetime
 from eisitirio import app
 from eisitirio.database import db
 from eisitirio.database import user
-
-APP = app.APP
+import flask
+APP = flask.current_app#app.APP
 #DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 USER_ANNOUNCE_LINK = DB.Table(

@@ -4,7 +4,9 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-    <section id="homepage" class="columns">
+{#    <section id="homepage" class="columns">#}
+                <div class="col col-sm-12 col-lg-12 col-md-12">
+
         <p>
             Welcome to the {{ template_config['BALL_NAME'] }} ticketing system. Through this system, you can
             purchase, manage, and trade tickets. If you have any problems while using
@@ -13,36 +15,31 @@
         <p>
             The {{ template_config['TITLE'] }} will take place on the night of {{ template_config['START_TIME'].strftime('%A %B') }} {{ template_config['START_TIME'].day }}{{ get_ord(template_config['START_TIME']) }}. Tickets are available in advance only, there will be no tickets for sale on the door. To purchase a ticket, please register or log in
         </p>
+                </div>
         <div class="row">
-            <section id="homepage-login" class="large-5 columns">
-                <a id="log-in-form"></a>
+                    <div class="col col-sm-12 col-lg-6 col-md-12">
+
+{#            <section id="homepage-login" class="large-5 columns">#}
+{#                <a id="log-in-form"></a>#}
                 <h2>Log In</h2>
                 <form action="{{ url_for('front.do_login') }}" method="post">
                     {% if request.args['next'] %}
                         <input type="hidden" name="next" value="{{ request.args['next'] }}" />
                     {% endif %}
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="login-email">Email Address</label>
                             <input type="email" name="email" id="login-email" />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="login-password">Password</label>
                             <input type="password" name="password" id="login-password" />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <input type="checkbox" value="yes" name="remember-me" id="login-remember" />
                             <label for="login-remember">Remember Me</label>
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns center">
+                    <div class="form-group">
                             <input type="submit" value="Log In" class="button expanded large" />
-                        </div>
                     </div>
                 </form>
                 <hr />
@@ -51,49 +48,39 @@
                     <li><a href="{{ url_for('front.password_reset') }}">Reset your password</a></li>
                     <li><a href="{{ url_for('front.email_confirm') }}">Confirm your email</a></li>
                 </ul>
-            </section>
-            <section id="homepage-register" class="large-7 columns">
+{#            </section>#}
+{#            <section id="homepage-register" class="large-7 columns">#}
+                    </div>
+                    <div class="col col-sm-12 col-lg-6 col-md-12">
+
                 <h2>Register</h2>
                 <p>If you are a {{ template_config['COLLEGE'] }} student, you must use your university email address in order to be able to pay by battels.</p>
                 <form action="{{ url_for('front.register') }}" enctype="multipart/form-data" method="post">
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-forenames">Forename(s)</label>
                             <input type="text" name="forenames" id="register-forenames"{% if form['forenames'] %} value="{{ form['forenames'] }}"{% endif %} />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-surname">Surname</label>
                             <input type="text" name="surname" id="register-surname"{% if form['surname'] %} value="{{ form['surname'] }}"{% endif %} />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-email">Email Address</label>
                             <input type="email" name="email" id="register-email"{% if form['email'] %} value="{{ form['email'] }}"{% endif %} />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-password">Password</label>
                             <input type="password" name="password" id="register-password" />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-confirm">Confirm Password</label>
                             <input type="password" name="confirm" id="register-confirm" />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-phone">Phone Number</label>
                             <input type="text" name="phone" id="register-phone"{% if form['phone'] %} value="{{ form['phone'] }}"{% endif %} />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-college">College</label>
                             <select name="college" id="register-college">
                                 {% if form['college'] %}
@@ -109,10 +96,8 @@
                                     {% endif %}
                                 {% endfor %}
                             </select>
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="register-affiliation">Affiliation</label>
                             <select name="affiliation" id="register-affiliation">
                                 {% if form['affiliation'] %}
@@ -128,11 +113,9 @@
                                     {% endif %}
                                 {% endfor %}
                             </select>
-                        </div>
                     </div>
                     {% if template_config['REQUIRE_USER_PHOTO'] %}
-                        <div class="row">
-                            <div class="large-12 columns">
+                        <div class="form-group">
                                 <label for="photo">Upload Photo</label>
                                 <div class="row upload_photo">
                                     <div class="large-9 columns">
@@ -140,24 +123,21 @@
                                         <p class="small">Please upload a passport style photograph of yourself.</p>
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     {% endif %}
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <label for="accept_terms">
                                 <input type="checkbox" name="accept_terms" value="yes" id="accept_terms" required />
                                 I have read and accept the <a href="{{ url_for('front.terms') }}" target="_blank">{{ template_config['TITLE'] }} Terms &amp; Conditions</a>
                             </label>
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="large-12 columns">
+                    <div class="form-group">
                             <input type="submit" value="Register" class="button expanded large" />
-                        </div>
                     </div>
                 </form>
-            </section>
+{#            </section>#}
+                    </div>
         </div>
-    </section>
+{#    </section>#}
 {% endblock %}

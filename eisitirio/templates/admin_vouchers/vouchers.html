@@ -7,93 +7,57 @@
     <section id="vouchers" class="columns">
         <h4>Create Voucher(s)</h4>
         <form action="{{ url_for('admin_vouchers.vouchers') }}" method="post">
-            <div class="row">
-                <div class="large-6 columns">
+            <div class="form-group">
                     <label for="voucher_prefix">Voucher Prefix</label>
                     <input type="text" name="voucher_prefix" id="voucher_prefix" {{ form_value(form,'voucher_prefix') }}/>
-                </div>
-                <div class="large-6 columns">
                     <label for="expires">Expires (leave blank for never)</label>
                     <input type="text" name="expires" id="expires" {{ form_value(form,'expires') }}/>
-                </div>
             </div>
-            <div class="row">
-                <div class="large-4 columns">
+            <div class="form-group">
                     <label for="num_vouchers">Number of Vouchers</label>
                     <input type="number" min="1" step="1" value="1" name="num_vouchers" id="num_vouchers" {{ form_value(form,'num_vouchers') }}/>
-                </div>
-                <div class="large-4 columns">
                     <label for="applies_to">Applies To</label>
                     <select id="applies_to" name="applies_to">
                         <option value="Ticket" {{ form_selected(form,'applies_to','Ticket') }}>Single Ticket</option>
                         <option value="Transaction" {{ form_selected(form,'applies_to','Transaction') }}>All Tickets in Transaction</option>
                     </select>
-                </div>
-                <div class="large-4 columns">
                     <label for="single_use">Single Use</label>
                     <select name="single_use" id="single_use">
                         <option value="yes" {{ form_selected(form,'single_use','yes') }}>Yes</option>
                         <option value="no" {{ form_selected(form,'single_use','no') }}>No</option>
                     </select>
-                </div>
             </div>
             <fieldset>
                 <legend>Discount Type</legend>
-                <div class="row">
-                    <div class="large-4 columns">
+                <div class="form-group">
                         <label for="fixed_price">
                             <input type="radio" name="voucher_type" id="fixed_price" value="Fixed Price" {{ form_checked(form,'voucher_type','Fixed Price') }}/>
                             Fixed Price
                         </label>
-                        <div class="row collapse">
-                            <div class="small-3 columns">
-                                <span class="prefix">&pound;</span>
-                            </div>
-                            <div class="small-4 columns">
-                                <input type="number" name="fixed_price_pounds" min="0" step="1" {{ form_value(form,'fixed_price_pounds','0') }}/>
-                            </div>
-                            <div class="small-1 columns">
-                                <span class="prefix postfix">.</span>
-                            </div>
-                            <div class="small-4 columns">
-                                <input type="number" name="fixed_price_pence" min="0" max="99" step="1" {{ form_value(form,'fixed_price_pence','0') }}/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="large-4 columns">
+                                <label for="fixed_price_pounds">
+                                £
+                                    <input type="number" name="fixed_price_pounds" min="0" step="1" {{ form_value(form,'fixed_price_pounds','0') }}/>.
+                                    <input type="number" name="fixed_price_pence" min="0" max="99" step="1" {{ form_value(form,'fixed_price_pence','0') }}/>
+                                </label>
+                    <br/>
                         <label for="fixed_discount">
                             <input type="radio" name="voucher_type" id="fixed_discount" value="Fixed Discount" {{ form_checked(form,'voucher_type','Fixed Discount') }}/>
                             Fixed Discount
                         </label>
-                        <div class="row collapse">
-                            <div class="small-3 columns">
-                                <span class="prefix">&pound;</span>
-                            </div>
-                            <div class="small-4 columns">
-                                <input type="number" name="fixed_discount_pounds" min="0" step="1" {{ form_value(form,'fixed_discount_pounds','0') }}/>
-                            </div>
-                            <div class="small-1 columns">
-                                <span class="prefix postfix">.</span>
-                            </div>
-                            <div class="small-4 columns">
+                        <label for="fixed_discount_pounds">
+                            £
+                                <input type="number" name="fixed_discount_pounds" min="0" step="1" {{ form_value(form,'fixed_discount_pounds','0') }}/>.
                                 <input type="number" name="fixed_discount_pence" min="0" max="99" step="1" {{ form_value(form,'fixed_discount_pence','0') }}/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="large-4 columns">
+                        </label>
+
+                    <br/>
                         <label for="percentage_discount">
                             <input type="radio" name="voucher_type" id="percentage_discount" value="Percentage Discount" {{ form_checked(form,'voucher_type','Percentage Discount') }}/>
                             Percentage Discount
                         </label>
-                        <div class="row collapse">
-                            <div class="small-9 columns">
-                                <input type="number" name="fixed_discount" min="0" max="100" step="1" {{ form_value(form,'fixed_discount','0') }}/>
-                            </div>
-                            <div class="small-3 columns">
-                                <span class="postfix">%</span>
-                            </div>
-                        </div>
-                    </div>
+                        <label for="percentage_discount_percent">
+                                <input type="number" name="percentage_discount_percent" min="0" max="100" step="1" {{ form_value(form,'fixed_discount','0') }}/> %
+                        </label>
                 </div>
             </fieldset>
             <input type="submit" value="Create Vouchers" class="large button expanded" />

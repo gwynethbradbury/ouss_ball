@@ -14,7 +14,7 @@ from eisitirio.helpers import login_manager
 from eisitirio.helpers import photos
 from eisitirio.helpers import util
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_PHOTOS = flask.Blueprint('admin_photos', __name__)
@@ -56,7 +56,7 @@ def verify_photos():
 @login_manager.admin_required
 def reject_photo(photo_id):
     """Reject a photo."""
-    photo = models.Photo.get_by_id(photo_id)
+    photo = models.Photo.query.get_or_404(photo_id)
 
     if not photo:
         flask.flash('No such photo', 'error')
@@ -81,7 +81,7 @@ def reject_photo(photo_id):
 @login_manager.admin_required
 def accept_photo(photo_id):
     """Mark a photo as verified."""
-    photo = models.Photo.get_by_id(photo_id)
+    photo = models.Photo.query.get_or_404(photo_id)
 
     if not photo:
         flask.flash('No such photo', 'error')
@@ -98,7 +98,7 @@ def accept_photo(photo_id):
 @login_manager.admin_required
 def rotate_photo(photo_id, degrees):
     """Rotate a photo."""
-    photo = models.Photo.get_by_id(photo_id)
+    photo = models.Photo.query.get_or_404(photo_id)
 
     if not photo:
         flask.flash('No such photo', 'error')

@@ -15,7 +15,7 @@ from eisitirio.helpers import login_manager
 from eisitirio.logic import cancellation_logic
 from eisitirio.scripts import create_qr_codes
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_TICKETS = flask.Blueprint('admin_tickets', __name__)
@@ -28,7 +28,7 @@ ADMIN_TICKETS = flask.Blueprint('admin_tickets', __name__)
 @login_manager.admin_required
 def view_ticket(ticket_id, events_page=1):
     """View a ticket object."""
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if ticket:
         events = ticket.events.paginate(
@@ -56,7 +56,7 @@ def note_ticket(ticket_id):
         return flask.redirect(flask.request.referrer or
                               flask.url_for('admin.admin_home'))
 
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if ticket:
         ticket.note = flask.request.form['notes']
@@ -91,7 +91,7 @@ def mark_ticket_paid(ticket_id):
     Generally used for tickets being paid for by cash/cheque, but also used if
     something goes wrong and the ticket isn't correctly marked as paid.
     """
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if ticket:
         ticket.paid = True
@@ -126,7 +126,7 @@ def refund_ticket(ticket_id):
     Marks a ticket as cancelled, and refunds the money to the owner via the
     original payment method (where possible).
     """
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if ticket:
         if not ticket.can_be_cancelled():
@@ -159,7 +159,7 @@ def refund_ticket(ticket_id):
 @login_manager.admin_required
 def cancel_ticket(ticket_id):
     """Cancel a ticket without refunding it."""
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if ticket:
         ticket.cancelled = True
@@ -195,7 +195,7 @@ def uncollect_ticket(ticket_id):
     prevent the wristband with the given barcode from being used to enter the
     ball.
     """
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     if ticket:
         ticket.barcode = None
@@ -271,7 +271,7 @@ def validate_ticket():
 @login.login_required
 @login_manager.admin_required
 def check_ticket(ticket_id, barcode):
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     valid = None
     message = None
@@ -344,7 +344,7 @@ def check_ticket_qr():
 @login.login_required
 @login_manager.admin_required
 def test_check_ticket(ticket_id, barcode):
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     valid = None
     message = None

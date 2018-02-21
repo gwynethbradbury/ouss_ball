@@ -15,7 +15,7 @@ from eisitirio.database import models
 from eisitirio.helpers import login_manager
 from eisitirio.helpers import unicode_csv
 
-APP = app.APP#DB = db.DB
+APP = flask.current_app#app.APP#DB = db.DB
 from eisitirio.app import eisitiriodb as DB
 
 ADMIN_POSTAGE = flask.Blueprint('admin_postage', __name__)
@@ -74,7 +74,7 @@ def postage_dashboard(postage_type=None, page=1):
 @login_manager.admin_required
 def mark_as_posted(postage_id):
     """Mark a postage entry as packed/posted."""
-    postage = models.Postage.get_by_id(postage_id)
+    postage = models.Postage.query.get_or_404(postage_id)
 
     if not postage:
         flask.flash('Could not load postage entry', 'error')

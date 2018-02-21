@@ -19,7 +19,7 @@ from newrelic import agent
 from eisitirio import app
 from eisitirio import system # pylint: disable=unused-import
 
-APP = app.APP
+APP = flask.current_app#app.APP
 
 agent.initialize(os.path.join(VENV_DIR, 'newrelic.ini'))
 

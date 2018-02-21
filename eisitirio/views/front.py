@@ -16,7 +16,8 @@ from eisitirio.helpers import photos
 from eisitirio.helpers import util
 from eisitirio.logic import affiliation_logic
 
-APP = app.APP#DB = db.DB
+# APP = app.APP#DB = db.DB
+APP = flask.current_app
 from eisitirio.app import eisitiriodb as DB
 
 FRONT = flask.Blueprint('front', __name__)
@@ -151,17 +152,17 @@ def register():
     ):
         flashes.append('Phone cannot be blank')
 
-    if (
-            'college' not in flask.request.form or
-            flask.request.form['college'] == '---'
-    ):
-        flashes.append('Please select a college')
-
-    if (
-            'affiliation' not in flask.request.form or
-            flask.request.form['affiliation'] == '---'
-    ):
-        flashes.append('Please select an affiliation')
+    # if (
+    #         'college' not in flask.request.form or
+    #         flask.request.form['college'] == '---'
+    # ):
+    #     flashes.append('Please select a college')
+    #
+    # if (
+    #         'affiliation' not in flask.request.form or
+    #         flask.request.form['affiliation'] == '---'
+    # ):
+    #     flashes.append('Please select an affiliation')
 
     if APP.config['REQUIRE_USER_PHOTO'] and (
             'photo' not in flask.request.files or
@@ -204,8 +205,8 @@ def register():
         flask.request.form['forenames'],
         flask.request.form['surname'],
         flask.request.form['phone'],
-        models.College.get_by_id(flask.request.form['college']),
-        models.Affiliation.get_by_id(flask.request.form['affiliation']),
+        models.College.query.get_or_404(1),#flask.request.form['college']),
+        models.Affiliation.query.get_or_404(1),#flask.request.form['affiliation']),
         photo
     )
 
@@ -217,6 +218,7 @@ def register():
         user=user
     )
 
+#todo: reinstate
     APP.email_manager.send_template(
         flask.request.form['email'],
         'Confirm your Email Address',
@@ -257,7 +259,7 @@ def confirm_email(user_id, secret_key):
     The user is sent a link to this view in an email. Visiting this view
     confirms the validity of their email address.
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user is not None and user.secret_key == secret_key:
         user.secret_key = None
@@ -447,7 +449,7 @@ def reset_password(user_id, secret_key):
     Upon clicking it, they are presented with a form to define a new password,
     which is saved when the form is submitted (to this view)
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user is None or user.secret_key != secret_key:
         if user is not None:
@@ -514,7 +516,7 @@ def destroy_account(user_id, secret_key):
     If a user is verified, it gets a little too complicated to destroy their
     account (what happens to any tickets they own?)
     """
-    user = models.User.get_by_id(user_id)
+    user = models.User.query.get_or_404(user_id)
 
     if user is not None and user.secret_key == secret_key:
         if not user.is_verified:
@@ -573,7 +575,7 @@ def logout():
             user=login.current_user
         )
 
-        actor = models.User.get_by_id(flask.session['actor_id'])
+        actor = models.User.query.get_or_404(flask.session['actor_id'])
 
         flask.session.pop('actor_id', None)
 

@@ -8,26 +8,18 @@ from eisitirio.helpers import ticket_type
 
 # The default ticket type must count towards the guest limit, as it is the
 # ticket type assigned to people on the waiting list.
-DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 9900, -1,
+DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 3000, -1,
                                              -1, True,
                                              True)#ticket_logic.can_buy_standard)
 
 TICKET_TYPES = [
-    ticket_type.TicketType("Keblite", "keblite", 8900, 1, -1, True,
-                           True),#ticket_logic.can_buy_keblite),
-    ticket_type.TicketType("Keble Graduand", "keble_graduand", 9400, 1, -1,
-                           True, True),#ticket_logic.can_buy_keble_graduand),
-    ticket_type.TicketType("Keble Staff", "keble_staff", 4900, -1, -1, True,
-                           True),  #ticket_logic.can_buy_keble_staff),
+    ticket_type.TicketType("OUSS Member", "member", 2500, 2, -1,
+                           True, True),
+    ticket_type.TicketType("OUSS Extended Comittee", "extended_comittee", 2000, 1, -1, True,
+                           True),
     DEFAULT_TICKET_TYPE,
-    ticket_type.TicketType("Committee", "committee", 0, -1, -1, False,
-                           lambda _, __=False: False),
-    ticket_type.TicketType("Committee Guest", "committee_guest", 0, -1, -1,
+    ticket_type.TicketType("Artist", "artist", 0, -1, -1,
                            True, lambda _, __=False: False),
-    ticket_type.TicketType("Entz", "entz", 0, -1, -1, False,
-                           lambda _, __=False: False),
-    ticket_type.TicketType("Employee", "employee", 0, -1, -1, False,
-                           lambda _, __=False: False),
 ]
 
 TICKET_TYPES_BY_SLUG = {

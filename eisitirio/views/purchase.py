@@ -18,8 +18,8 @@ from eisitirio.logic import realex_logic
 from eisitirio.logic import purchase_logic
 from eisitirio.logic import payment_logic
 # from eisitirio.logic.custom_logic import ticket_logic
-
-APP = app.APP#DB = db.DB
+# APP = app.APP#DB = db.DB
+APP = flask.current_app
 from eisitirio.app import eisitiriodb as DB
 
 PURCHASE = flask.Blueprint('purchase', __name__)
@@ -552,7 +552,7 @@ def buy_postage():
 @login.login_required
 def pay_admin_fee(admin_fee_id):
     """Allow the user to pay an admin fee."""
-    admin_fee = models.AdminFee.get_by_id(admin_fee_id)
+    admin_fee = models.AdminFee.query.get_or_404(admin_fee_id)
 
     if not admin_fee:
         flask.flash('Admin Fee not found', 'warning')
@@ -599,7 +599,7 @@ def pay_admin_fee(admin_fee_id):
 @login.login_required
 def payment_interstitial(transaction_id):
     form = realex_logic.generate_payment_form(
-        models.Transaction.get_by_id(transaction_id)
+        models.Transaction.query.get_or_404(transaction_id)
     )
     return flask.render_template('purchase/payment_interstitial.html', form=form)
 
@@ -621,7 +621,7 @@ def payment_processed():
 
 @PURCHASE.route('/purchase/verify-ticket/<int:ticket_id>')
 def api_verify_ticket(ticket_id):
-    ticket = models.Ticket.get_by_id(ticket_id)
+    ticket = models.Ticket.query.get_or_404(ticket_id)
 
     print ticket
 
