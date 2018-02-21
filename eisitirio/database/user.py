@@ -181,8 +181,8 @@ class User(DB.Model):
         return False
 
     def has_held_ticket(self):
-        if ticket.Ticket.query.filter_by(holder_id=self.object_id):
-            return True
+        # if ticket.Ticket.query.filter_by(holder_id=self.object_id):
+        #     return True
         return False
     def can_update_details(self):
         return True

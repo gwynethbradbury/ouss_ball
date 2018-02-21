@@ -27,7 +27,8 @@ APP.config['DATABASE_URL'] =iaas_uri
 
 SQLALCHEMY_BINDS={'eisitirio':iaas_uri}
 APP.config['SQLALCHEMY_BINDS'] =SQLALCHEMY_BINDS
-
+import os
+print os.path
 
 APP.config.from_pyfile('config/default.py')
 APP.config.from_pyfile('config/ticket_types.py')
@@ -57,5 +58,3 @@ eisitiriodb = SQLAlchemy(APP)
 # db = eisitiriodb
 
 # db.create_all()
-
-

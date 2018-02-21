@@ -15,8 +15,13 @@ import flask
 import jinja2
 
 # from eisitirio import app
-import app
-APP = app.APP
+import app, sys
+import dbconfig
+if dbconfig.debugowner=='quincy':
+    projecthome=u'/Users/Quincy/Documents/Code/Website/OUSS_tickets/ouss_ball/eisitirio'
+    if projecthome not in sys.path:
+        sys.path = [projecthome] + sys.path
+    APP = app.APP
 
 
 
