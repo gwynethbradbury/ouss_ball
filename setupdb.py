@@ -34,7 +34,6 @@ from eisitirio.database.voucher import Voucher
 from eisitirio.database.waiting import Waiting
 from eisitirio.database.roundup_donation import RoundupDonation
 
-
 db.create_all()
 
 
