@@ -32,8 +32,8 @@ SMTP_PORT = 465
 SMTP_SSL = True
 SMTP_STARTTLS = False
 SMTP_LOGIN = True
-SMTP_USER = 'gwyneth.bradbury@gmail.com'
-SMTP_PASSWORD = 'autodidacticism169'
+SMTP_USER = 'oxfordsalsaball2018@gmail.com'
+SMTP_PASSWORD = 'oussball2018'
 
 AWS_ACCESS_KEY_ID = 'AWS Access Key ID'
 AWS_SECRET_ACCESS_KEY = 'AWS Secret Access Key'
@@ -47,4 +47,4 @@ ANALYTICS_DOMAIN = 'auto'
 
 MAINTENANCE_FILE_PATH = '/var/www/eisitirio/production/.maintenance'
 
-EISITIRIO_URL = 'https://www.kebleball.com/tickets/'
+EISITIRIO_URL = 'https://www.oxfordsalsaball.co.uk/tickets/'

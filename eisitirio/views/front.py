@@ -206,7 +206,7 @@ def register():
         flask.request.form['surname'],
         flask.request.form['phone'],
         models.College.query.get_or_404(1),#flask.request.form['college']),
-        models.Affiliation.query.get_or_404(1),#flask.request.form['affiliation']),
+        models.Affiliation.query.get_or_404(flask.request.form['affiliation']),
         photo
     )
 

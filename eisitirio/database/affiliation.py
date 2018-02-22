@@ -26,11 +26,14 @@ class Affiliation(DB.Model):
 def get_static():
     """Get static instances of the Affiliation model."""
     return [
-        Affiliation('Student'),
-        Affiliation('Graduand'),
-        Affiliation('Graduate/Alumnus'),
-        Affiliation('Staff/Fellow'),
-        Affiliation('Foreign Exchange Student'),
-        Affiliation('Other'),
+        # Affiliation('Student'),
+        # Affiliation('Graduand'),
+        # Affiliation('Graduate/Alumnus'),
+        # Affiliation('Staff/Fellow'),
+        # Affiliation('Foreign Exchange Student'),
+        # Affiliation('Other'),
         Affiliation('None'),
+        Affiliation('OUSS Member'),
+        Affiliation('OUSS Comittee'),
+        Affiliation('Artist'),
     ]

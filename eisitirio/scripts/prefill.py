@@ -47,7 +47,7 @@ class PrefillCommand(script.Command):
                 photo = None
 
             admin_user = models.User(
-                'website@OUSSball.com',
+                'webmaster@oxfordsalsaball.co.uk',
                 'password',
                 'Admin',
                 'Anderson',

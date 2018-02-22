@@ -13,13 +13,13 @@ DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 3000, -1,
                                              True)#ticket_logic.can_buy_standard)
 
 TICKET_TYPES = [
-    ticket_type.TicketType("OUSS Member", "member", 2500, 2, -1,
+    ticket_type.TicketType("OUSS Member", "member", 2500, 1, -1,
                            True, True),
     ticket_type.TicketType("OUSS Extended Comittee", "extended_comittee", 2000, 1, -1, True,
                            True),
-    DEFAULT_TICKET_TYPE,
-    ticket_type.TicketType("Artist", "artist", 0, -1, -1,
+    ticket_type.TicketType("Artist", "artist", 0, 1, -1,
                            True, lambda _, __=False: False),
+    DEFAULT_TICKET_TYPE,
 ]
 
 TICKET_TYPES_BY_SLUG = {

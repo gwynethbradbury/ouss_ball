@@ -57,7 +57,7 @@ MAX_TICKETS = GENERAL_RELEASE_MAX_TICKETS#timed_config.Until(
 #     GENERAL_RELEASE_MAX_TICKETS
 # )
 CURRENT_TERM = 'TT'
-EMAIL_FROM = 'gwyneth.bradbury@gmail.com'
+EMAIL_FROM = 'noreply@oxfordsalsaball.co.uk'
 SEND_EMAILS = True
 LIMITED_RELEASE = timed_config.Until(
     False,
@@ -72,7 +72,6 @@ EMAILS_BATCH = 100 # Number of emails to send in one batch
 STATISTICS_KEEP = datetime.timedelta(days=7)
 HOST_COLLEGES = [
     'OUSS Member',
-    'OUSS Extended Comittee',
 ]#this is a list of affiliations
 
 MAX_TICKET_CLAIMS = 2
@@ -80,6 +79,7 @@ MAX_TICKET_CLAIMS = 2
 # Features
 
 REQUIRE_USER_PHOTO = False
+REQUIRE_USER_DIETARY_REQS = False
 
 ENABLE_POSTAGE = False
 
@@ -89,7 +89,7 @@ MAX_GROUP_MEMBERS = 4
 ENABLE_CANCELLATION = False
 ENABLE_RESALE = False
 ENABLE_SEPARATE_POSTAGE = False
-ENABLE_CHANGING_DETAILS = True
+ENABLE_CHANGING_DETAILS = False
 ENABLE_CHANGING_PHOTOS = False
 ENABLE_RECLAIMING_TICKETS = True
 
@@ -102,6 +102,7 @@ PAYMENT_METHODS = [
 
 FEATURE_CONSTANTS = [
     'REQUIRE_USER_PHOTO',
+    'REQUIRE_USER_DIETARY_REQS',
     'ENABLE_POSTAGE',
     'PAYMENT_METHODS',
     'ENABLE_GROUP_PURCHASE',
@@ -175,20 +176,17 @@ EMAIL_SIGNOFF = 'The {0} Committee'.format(BALL_NAME)
 EISITIRIO_URL = ''
 
 TREASURER_EMAIL_LINK = (
-    'http://www.google.com/recaptcha/mailhide/d?k='
-    '01sJMU6xpqAr0zE0F_G0V-QQ==&c=GfM4SPA4UnE8hXdp0WlLsjlXnqI2V5U-U8lhp9CgS3E='
+    'mailto:treasurer@oxfordsalsaball.co.uk'
 )
 TICKETS_EMAIL_LINK = (
-    'http://www.google.com/recaptcha/mailhide/d?k='
-    '01sJMU6xpqAr0zE0F_G0V-QQ==&c=rbxZ3WcBT6IGaGvfDZTkxG7CR0UVVGm0Uc353dDfBx0='
+    'mailto:tickets@oxfordsalsaball.co.uk'
 )
 WEBSITE_EMAIL_LINK = (
-    'http://www.google.com/recaptcha/mailhide/d?k='
-    '01VW2HusQat4KpnmQYJBSfhQ==&c=0pBadqH9ae41gTIaahTM78kkmPpv_-wELjktV6Zs-d0='
+    'mailto:webmaster@oxfordsalsaball.co.uk'
 )
 
-TREASURER_EMAIL = 'treasurer@oussball.com'
-TICKETS_EMAIL = 'tickets@oussblall.com'
-WEBSITE_EMAIL = 'website@oussball.com'
+TREASURER_EMAIL = 'treasurer@oxfordsalsaball.co.uk'
+TICKETS_EMAIL = 'tickets@oxfordsalsaball.co.uk'
+WEBSITE_EMAIL = 'webmaster@oxfordsalsaball.co.uk'
 
 

@@ -83,19 +83,19 @@ def maybe_verify_affiliation(user):
     verify it manually
     """
     if (
-            user.affiliation_verified is None and
+            user.affiliation_verified is 0 and
             not APP.config['TICKETS_ON_SALE']
     ):
         if (
-                user.college.name not in APP.config['HOST_COLLEGES'] or
+                # user.college.name not in APP.config['HOST_COLLEGES'] or
                 user.affiliation.name in [
-                    'Other',
+                    # 'Other',
                     'None',
-                    'Graduate/Alumnus'
-                ] or
-                (
-                    user.battels is not None
-                )
+                    # 'Graduate/Alumnus'
+                ] #or
+                # (
+                #     user.battels is not None
+                # )
         ):
             user.affiliation_verified = True
             DB.session.commit()

@@ -18,7 +18,7 @@ from eisitirio.database import db
 from eisitirio.scripts import cron
 from eisitirio.scripts import fix_graduand_postage
 from eisitirio.scripts import prefill
-from eisitirio.scripts import run_bpython
+# from eisitirio.scripts import run_bpython
 from eisitirio.scripts import update_battels
 from eisitirio.scripts import create_qr_codes
 
@@ -59,7 +59,7 @@ MANAGER = script.Manager(get_app, with_default_commands=False)
 MANAGER.add_option('config', default=None,
                    help="Configuration file to load before running commands")
 
-MANAGER.add_command('bpython', run_bpython.BpythonCommand)
+# MANAGER.add_command('bpython', run_bpython.BpythonCommand)
 MANAGER.add_command('cron', cron.CronCommand)
 MANAGER.add_command('fix_graduand_postage',
                     fix_graduand_postage.FixGraduandPostageCommand)

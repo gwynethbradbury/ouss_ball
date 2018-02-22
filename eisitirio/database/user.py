@@ -184,8 +184,10 @@ class User(DB.Model):
         # if ticket.Ticket.query.filter_by(holder_id=self.object_id):
         #     return True
         return False
+
     def can_update_details(self):
-        return True
+        return APP.config['ENABLE_CHANGING_DETAILS']
+
 
     def __init__(self, email, password, forenames, surname, phone, college,
                  affiliation, photo):

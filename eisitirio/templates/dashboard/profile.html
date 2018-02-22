@@ -4,43 +4,40 @@
 {% block title %}Update your Details{% endblock %}
 
 {% block content %}
-    <section id="profile" class="columns">
+{#    <div class="row">#}
+        <div class="col col-lg-12 col-sm-12">
         <form action="{{ url_for('dashboard.update_profile') }}" method="post">
-            <fieldset>
                 <legend>Update your details.</legend>
                 {% if not current_user.can_update_details() %}
                     <div class="message-box info">
                         <p>You cannot currently update your details. Please contact <a href="{{ template_config['TICKETS_EMAIL_LINK'] }}">the ticketing officer</a> for assistance.</p>
                     </div>
                 {% endif %}
-                <div class="row">
-                    <div class="large-4 columns">
+                    <div class="form-group">
                         <label for="forenames">Forename(s)</label>
                         <input type="text" name="forenames" id="forenames" value="{{ current_user.forenames }}"{% if not current_user.can_update_details() %} disabled="disabled"{% endif %} />
-                    </div>
-                    <div class="large-4 columns">
+{#                    </div>#}
+{#                    <div class="form-group">#}
                         <label for="surname">Surname</label>
                         <input type="text" name="surname" id="surname" value="{{ current_user.surname }}"{% if not current_user.can_update_details() %} disabled="disabled"{% endif %} />
-                    </div>
-                    <div class="large-4 columns">
+{#                    </div>#}
+{#                    <div class="form-group">#}
                         <label for="phone">Phone Number</label>
                         <input type="text" name="phone" id="phone" value="{{ current_user.phone }}"{% if not current_user.can_update_details() %} disabled="disabled"{% endif %} />
                     </div>
-                </div>
-                <div class="row">
-                    <div class="large-6 columns">
-                        <label for="college">College</label>
-                        <select name="college" id="college"{% if not current_user.can_update_details() %} disabled="disabled"{% endif %}>
-                            {% for college in colleges %}
-                                {% if current_user.college_id == college.object_id %}
-                                    <option value="{{ college.object_id }}" selected="selected">{{ college.name }}</option>
-                                {% else %}
-                                    <option value="{{ college.object_id }}">{{ college.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="large-6 columns">
+                    <div class="form-group">
+{#                        <label for="college">College</label>#}
+{#                        <select name="college" id="college"{% if not current_user.can_update_details() %} disabled="disabled"{% endif %}>#}
+{#                            {% for college in colleges %}#}
+{#                                {% if current_user.college_id == college.object_id %}#}
+{#                                    <option value="{{ college.object_id }}" selected="selected">{{ college.name }}</option>#}
+{#                                {% else %}#}
+{#                                    <option value="{{ college.object_id }}">{{ college.name }}</option>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
                         <label for="affiliation">Affiliation</label>
                         <select name="affiliation" id="affiliation"{% if not current_user.can_update_details() %} disabled="disabled"{% endif %}>
                             {% for affiliation in affiliations %}
@@ -52,77 +49,84 @@
                             {% endfor %}
                         </select>
                     </div>
-                </div>
                 {% if current_user.can_update_details() %}
-                    <input type="submit" value="Update your details" class="button small" />
+                    <button type="submit" value="Update your details" class="btn-sm" >Update your details</button>
                 {% endif %}
-            </fieldset>
         </form>
-        <form action="{{ url_for('dashboard.update_dietary_requirements') }}" method="post">
-            <fieldset>
-                <legend>Dietary Requirements</legend>
-                <div class="row">
-                    <div class="large-4 columns">
-                        <label for="pescetarian">
-                            <input type="checkbox" name="pescetarian" id="pescetarian" value="Yes" {% if current_user.dietary_requirements.pescetarian %} checked="checked"{% endif %} />
-                            Pescetarian
-                        </label>
+    </div>
+{#    </div>#}
+{#    <div class="row">#}
+        <div class="col col-lg-12 col-sm-12">
+
+
+        {% if template_config['REQUIRE_USER_DIETARY_REQS'] %}
+            <form action="{{ url_for('dashboard.update_dietary_requirements') }}" method="post">
+                    <legend>Dietary Requirements</legend>
+                    <div class="row">
+                        <div class="large-4 columns">
+                            <label for="pescetarian">
+                                <input type="checkbox" name="pescetarian" id="pescetarian" value="Yes" {% if current_user.dietary_requirements.pescetarian %} checked="checked"{% endif %} />
+                                Pescetarian
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="vegetarian">
+                                <input type="checkbox" name="vegetarian" id="vegetarian" value="Yes" {% if current_user.dietary_requirements.vegetarian %} checked="checked"{% endif %} />
+                                Vegetarian
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="vegan">
+                                <input type="checkbox" name="vegan" id="vegan" value="Yes" {% if current_user.dietary_requirements.vegan %} checked="checked"{% endif %} />
+                                Vegan
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="gluten_free">
+                                <input type="checkbox" name="gluten_free" id="gluten_free" value="Yes" {% if current_user.dietary_requirements.gluten_free %} checked="checked"{% endif %} />
+                                Gluten free
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="nut_free">
+                                <input type="checkbox" name="nut_free" id="nut_free" value="Yes" {% if current_user.dietary_requirements.nut_free %} checked="checked"{% endif %} />
+                                Nut free
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="dairy_free">
+                                <input type="checkbox" name="dairy_free" id="dairy_free" value="Yes" {% if current_user.dietary_requirements.dairy_free %} checked="checked"{% endif %} />
+                                Dairy free
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="egg_free">
+                                <input type="checkbox" name="egg_free" id="egg_free" value="Yes" {% if current_user.dietary_requirements.egg_free %} checked="checked"{% endif %} />
+                                Egg free
+                            </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label for="seafood_free">
+                                <input type="checkbox" name="seafood_free" id="seafood_free" value="Yes" {% if current_user.dietary_requirements.seafood_free %} checked="checked"{% endif %} />
+                                Seafood free
+                            </label>
+                        </div>
                     </div>
-                    <div class="large-4 columns">
-                        <label for="vegetarian">
-                            <input type="checkbox" name="vegetarian" id="vegetarian" value="Yes" {% if current_user.dietary_requirements.vegetarian %} checked="checked"{% endif %} />
-                            Vegetarian
-                        </label>
+                    <div class="row">
+                        <div class="columns">
+                            <label for="other">Other Requirement(s)</label>
+                            <input type="text" name="other" id="other" length="200" {% if current_user.dietary_requirements.other != None %} value="{{ current_user.dietary_requirements.other }}"{% endif %} />
+                        </div>
                     </div>
-                    <div class="large-4 columns">
-                        <label for="vegan">
-                            <input type="checkbox" name="vegan" id="vegan" value="Yes" {% if current_user.dietary_requirements.vegan %} checked="checked"{% endif %} />
-                            Vegan
-                        </label>
-                    </div>
-                    <div class="large-4 columns">
-                        <label for="gluten_free">
-                            <input type="checkbox" name="gluten_free" id="gluten_free" value="Yes" {% if current_user.dietary_requirements.gluten_free %} checked="checked"{% endif %} />
-                            Gluten free
-                        </label>
-                    </div>
-                    <div class="large-4 columns">
-                        <label for="nut_free">
-                            <input type="checkbox" name="nut_free" id="nut_free" value="Yes" {% if current_user.dietary_requirements.nut_free %} checked="checked"{% endif %} />
-                            Nut free
-                        </label>
-                    </div>
-                    <div class="large-4 columns">
-                        <label for="dairy_free">
-                            <input type="checkbox" name="dairy_free" id="dairy_free" value="Yes" {% if current_user.dietary_requirements.dairy_free %} checked="checked"{% endif %} />
-                            Dairy free
-                        </label>
-                    </div>
-                    <div class="large-4 columns">
-                        <label for="egg_free">
-                            <input type="checkbox" name="egg_free" id="egg_free" value="Yes" {% if current_user.dietary_requirements.egg_free %} checked="checked"{% endif %} />
-                            Egg free
-                        </label>
-                    </div>
-                    <div class="large-4 columns">
-                        <label for="seafood_free">
-                            <input type="checkbox" name="seafood_free" id="seafood_free" value="Yes" {% if current_user.dietary_requirements.seafood_free %} checked="checked"{% endif %} />
-                            Seafood free
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="columns">
-                        <label for="other">Other Requirement(s)</label>
-                        <input type="text" name="other" id="other" length="200" {% if current_user.dietary_requirements.other != None %} value="{{ current_user.dietary_requirements.other }}"{% endif %} />
-                    </div>
-                </div>
-                <input type="submit" value="Update your dietary requirements" class="button small" />
-            </fieldset>
-        </form>
+                    <input type="submit" value="Update your dietary requirements" class="button small" />
+            </form>
+        </div>
+{#            </div>#}
+{#        <div class="row">#}
+            <div class="col">
+        {% endif %}
         {% if template_config['REQUIRE_USER_PHOTO'] %}
             <form action="{{ url_for('dashboard.update_photo') }}" enctype="multipart/form-data" method="post">
-                <fieldset>
                     <legend>Update your photo.</legend>
                     {% if not current_user.can_update_photo() %}
                         <div class="message-box info">
@@ -153,45 +157,47 @@
                     {% if current_user.can_update_photo() %}
                         <input type="submit" value="Update your photo" class="button small" />
                     {% endif %}
-                </fieldset>
             </form>
+        </div>
+{#            </div>#}
+{#        <div class="row">#}
+            <div class="col">
         {% endif %}
+<br/>
         <form action="{{ url_for('dashboard.update_email') }}" method="post">
-            <fieldset>
                 <legend>Update your email address.</legend>
-                <div class="row">
-                    <div class="columns">
+                    <div class="form-grou">
                         <label for="email">Email Address</label>
                         <input type="email" name="email" id="email" value="{{ current_user.email }}" />
                     </div>
                     {% if current_user.new_email != None %}
-                        <div class="large-12 columns">
+                        <div>
                             <div class="message-box info">Awaiting verification of new email address {{ current_user.new_email }}</div>
                         </div>
                     {% endif %}
-                </div>
-                <input type="submit" value="Update your email address" class="button small" />
-            </fieldset>
+                <button type="submit" value="Update your email address" class="btn-sm" >Update your email address</button>
         </form>
+{#    </div>#}
+    </div>
+{#    <div class="row">#}
+        <div class="col col-lg-12 col-sm-12">
+    <br/>
         <form action="{{ url_for('dashboard.update_password') }}" method="post">
-            <fieldset>
                 <legend>Change your Password</legend>
-                <div class="row">
-                    <div class="large-4 columns">
+                    <div class="form-group">
                         <label for="oldpassword">Old Password</label>
                         <input type="password" name="oldpassword" id="oldpassword" />
                     </div>
-                    <div class="large-4 columns">
+                    <div class="form-group">
                         <label for="password">New Password</label>
                         <input type="password" name="password" id="password" />
                     </div>
-                    <div class="large-4 columns">
+                    <div class="form-group">
                         <label for="confirm">Confirm New Password</label>
                         <input type="password" name="confirm" id="confirm" />
                     </div>
-                </div>
-                <input type="submit" value="Change your password" class="button small" />
-            </fieldset>
+                <button type="submit" value="Change your password" class="btn-sm" >Change your password</button>
         </form>
-    </section>
+    </div>
+{#    </div>#}
 {% endblock %}
