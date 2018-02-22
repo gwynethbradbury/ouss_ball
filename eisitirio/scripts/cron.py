@@ -184,8 +184,8 @@ def generate_statistics():
 
 def draw_graphs():
     """Generate graphs for all statistics groups."""
-    if not os.path.exists(APP.config['GRAPH_STORAGE_FOLDER']):
-        os.makedirs(APP.config['GRAPH_STORAGE_FOLDER'])
+    if not os.path.exists('eisitirio/'+APP.config['GRAPH_STORAGE_FOLDER']):
+        os.makedirs('eisitirio/'+APP.config['GRAPH_STORAGE_FOLDER'])
 
     for group in static.STATISTIC_GROUPS:
         statistic_plots.create_plot(group)

@@ -189,5 +189,5 @@ TREASURER_EMAIL = 'treasurer@oxfordsalsaball.co.uk'
 TICKETS_EMAIL = 'tickets@oxfordsalsaball.co.uk'
 WEBSITE_EMAIL = 'webmaster@oxfordsalsaball.co.uk'
 
-GRAPH_STORAGE_FOLDER='graphs'
+GRAPH_STORAGE_FOLDER='static/admin/graphs'
 
