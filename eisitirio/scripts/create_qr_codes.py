@@ -77,7 +77,8 @@ def generate_ticket_qr(ticket):
     the ticket 'object_id'. This way, people can't go and make their own ticket
     QR codes.
     """
-    qrcode_img = pyqrcode.create('{0},{1}'.format(ticket.object_id,
+    qrcode_img = pyqrcode.create('{0}admin/ticket/validate-ticket/{1}/{2}'.format(app.APP.config['EISITIRIO_URL'],
+                                                      ticket.object_id,
                                                   ticket.barcode))
     buffer = io.BytesIO()
     qrcode_img.png(buffer, scale=20)

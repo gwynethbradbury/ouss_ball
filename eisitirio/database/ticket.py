@@ -145,6 +145,11 @@ class Ticket(DB.Model):
             return True
         return False
 
+    def can_be_collected(self):
+        if self.paid:
+            return True
+        return False
+
     @staticmethod
     def get_by_claim_code(code):
         return Ticket.query.filter_by(claim_code=code).first()
