@@ -77,7 +77,7 @@ APP.register_blueprint(all_views.FRONT)
 APP.register_blueprint(all_views.GROUP_PURCHASE)
 APP.register_blueprint(all_views.PURCHASE)
 
-@APP.route('/')
+@APP.route('/old')
 def router():
     """Redirect the user to the appropriate homepage."""
     if not login.current_user.is_anonymous:

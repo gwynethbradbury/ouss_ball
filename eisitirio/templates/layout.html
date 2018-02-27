@@ -3,12 +3,15 @@
     <head>
         <title>{% block title %}{% endblock %} - {{ template_config['TITLE'] }}</title>
         <meta name="description" content="{{ template_config['TITLE'] }} - Buy Tickets">
-        <meta name="author" content="Samuel Littley, Timothy Zakian and Jack Arthur">
+        <meta name="author" content="OUSS">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 {#        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />#}
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{#        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap4/bootstrap.css') }}">
+
+
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -27,55 +30,79 @@
             </script>
         {% endif %}
         {% block extra_head %}{% endblock %}
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='font-icon.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='animate.min.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
     </head>
     <body>
 
 
+    <header id="header">
 
+        <nav class="navbar navbar-expand-lg  navbar-dark " >
+          <span class="logo"><a class="navbar-brand" href="{{ url_for('front.index') }}">OUSB<b>2018</b></a></span>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="{{ url_for('dashboard.dashboard_home') }}">Home</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
 
+
+                <ul class="navbar-nav navbar-right ">
+                    {% include 'blocks/index-navigation.html' %}
                     {% if not current_user.is_anonymous %}
-                        {% include 'blocks/dashboard-navigation.html' %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                                <div class="dropdown-menu">
+                                    {% include 'blocks/dashboard-navigation.html' %}
+
+    {#                            <div class="dropdown-divider">#}
+
+                                </div>
+                        </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('front.home') }}#log-in-form">Log in</a></li>
                     {% endif %}
                 </ul>
 
-                <ul class="navbar-nav navbar-right">
-
-                    <li class="nav-item ">
-                      {% if current_user.is_anonymous %}
-                      <p style="color: white;">You are not currently logged in. <a href="{{ url_for('front.home') }}#log-in-form">Log in.</a></p>
-                      {% else %}
-                      <p style="color: white;">You are currently logged in as {{ current_user.full_name }}. <a href="{{ url_for('front.logout') }}">Log out.</a></p>
-                      {% endif %}
-                    </li>
-                </ul>
+{#                <ul class="navbar-nav navbar-right">#}
+{##}
+{#                    <li class="nav-item ">#}
+{#                      {% if current_user.is_anonymous %}#}
+{#                      <p style="color: white;">You are not currently logged in. <a href="{{ url_for('front.home') }}#log-in-form">Log in.</a></p>#}
+{#                      {% else %}#}
+{#                      <p style="color: white;">You are currently logged in as {{ current_user.full_name }}. <a href="{{ url_for('front.logout') }}">Log out.</a></p>#}
+{#                      {% endif %}#}
+{#                    </li>#}
+{#                </ul>#}
             </div>
         </nav>
+    </header>
 
-    {% if not current_user.is_anonymous %}{% if current_user.is_admin %}
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+{#    {% if not current_user.is_anonymous %}{% if current_user.is_admin %}#}
+{##}
+{#        <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
 {#          <a class="navbar-brand" href="{{ url_for('dashboard.dashboard_home') }}">Home</a>#}
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
-
-                  {% include 'blocks/admin-navigation.html' %}
-
-                </ul>
-            </div>
-        </nav>
-    {% endif %}{% endif %}
+{#          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
+{#            <span class="navbar-toggler-icon"></span>#}
+{#          </button>#}
+{#            <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#                <ul class="navbar-nav mr-auto">#}
+{##}
+{##}
+{#                  {% include 'blocks/admin-navigation.html' %}#}
+{##}
+{#                </ul>#}
+{#            </div>#}
+{#        </nav>#}
+{#    {% endif %}{% endif %}#}
 
 
 
@@ -98,29 +125,34 @@
         </div>
 
 
-    <div class="jumbotron jumbotron-fluid" style="min-height:150px;
-            background-color: transparent;
-            background-image: url({{ url_for('static', filename='images/salsa_ball_bg.jpg') }});
+    <div class="jumbotron jumbotron-fluid"
+         style="
+{#                 min-height:150px;#}
+{#            background-color: transparent;#}
+                 background-image: linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)
+    ),url({{ url_for('static', filename='images/banner.jpg') }});
             background-repeat: no-repeat;
-            background-size: 120% auto;
-            background-position: center;
-            background-position-y: 35%;
+{#            background-size: 120% auto;#}
+{#            background-position: center;#}
+{#            background-position-y: 35%;#}
             ">
-        <div class="container" style="min-height:150px;
-{#                background-color: transparent;#}
-                background-image: url({{ url_for('static', filename='images/salsa_ball_text_wide.png') }});
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat;
-                justify-content: center;
-                align-items: center;
-                display: flex;
-                flex-direction: column;
-                mix-blend-mode: difference;
-">
-{#            <h1 style="font-size: xx-large">{{ template_config['TITLE'] }}</h1>#}
-{#            <h1 class="headline">{{ template_config['THEME'] }}</h1>#}
-{#            <h3>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</h3>#}
+        <div class="container">
+            <div class="col-md-10 jumbotron-text">
+    {#                    style="#}
+    {#                            min-height:150px;#}
+    {#                justify-content: center;#}
+    {#                align-items: center;#}
+    {#                display: flex;#}
+    {#                flex-direction: column;#}
+    {#                mix-blend-mode: difference;#}
+    {#">#}
+                <h1 >{{ template_config['TITLE'] }}</h1>
+                <p>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</p>
+                <p>{{ template_config['THEME'] }}</p>
+                <div class="countdown styled"></div>
+            </div>
         </div>
     </div>
 
@@ -158,6 +190,9 @@
 
         <script src="{{ url_for('static', filename='js/vendor/jquery-3.1.1.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/vendor/foundation.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.countdown.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/global.js') }}"></script>
+
 
 	<script src="{{ url_for('static', filename='js/footer.js') }}"></script>
         {% include 'scripts/sms_verify.html' %}

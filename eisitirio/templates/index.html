@@ -1,0 +1,103 @@
+<!-- front/home.html -->
+{% extends 'layout.html' %}
+
+{% block title %}<span id="details">Welcome to {{ template_config['THEME'] }}</span>{% endblock %}
+
+{% block content %}
+    <div class="col col-sm-12 col-lg-12 col-md-12" >
+
+        <p>Oxford University Salsa Society is proud to present: The Oxford Salsa Ball 2018<br><br>Featuring special guest artists, workshops in all levels (beginners too!) and styles,  a live salsa band, and stunning performances – including our very own Salsa Team debut show!
+        The event will be spread across two rooms – one dedicated to the most classic Latin rythms of Salsa, Mambo and Chachacha, the other to Bachata, Kizomba and all things Sensual.</p>
+
+        <p>
+        <b>7.45pm:</b> Doors open<br>
+        <b>8.00pm–9.00pm:</b> Workshops in Salsa and Bachata<br>
+        <b>9.00pm-1.30am:</b> Party to the best Latin rythms<br>
+        <b>10.00pm:</b> Live Music Set<br>
+        <b>11.30pm:</b> Live Shows<br>
+        <b>1.30am –- late:</b> After-Party  in a secret location!
+        </p>
+        <p>
+        VENUE:<br>
+        Oxford Town Hall<br>
+        St Aldate's, Oxford OX1 1BX<br>
+        5 minutes walk from Gloucester Green Bus Station<br>
+        10 minutes walk from Oxford Railway Station<br>
+        </p>
+        <a href="https://www.facebook.com/groups/oxfordsalsasociety/" class="btn btn-large">Facebook</a>
+        <a href="#map" class="btn btn-large">Map to venue</a>
+
+    </div>
+
+
+
+    <div class="col col-sm-12 col-lg-12 col-md-12">
+        <div class="section-header">
+            <h2 class="wow fadeInDown animated" id="artist">Artists</h2>
+            <p class="wow fadeInDown animated">We're bringing you some incredible artists
+              from the UK and abroad! Let us introduce them to you:<br></p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 artists text-center">
+                <img class="icon" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"></img>
+                <div class="artists-content">
+                    <h5>Ran Kan Kan</h5>
+                    <b>Oxford's salsa band</b>
+                    <p>Band info</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 artists text-center">
+                <img class="icon" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"></img>
+                <div class="artists-content">
+                    <h5>OU Salsa Team</h5>
+                    <b>Oxford Uni student team</b>
+                    <p>team info</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 artists text-center">
+                <img class="icon" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"></img>
+                <div class="artists-content">
+                    <h5>Artist xyz</h5>
+                    <b>subtitle</b>
+                    <p>Dancer info</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 artists text-center">
+                <img class="icon" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"></img>
+                <div class="artists-content">
+                    <h5>Artist xyz</h5>
+                    <b>subtitle</b>
+                    <p>Dancer info</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 artists text-center">
+                <img class="icon" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"></img>
+                <div class="artists-content">
+                    <h5>Artist xyz</h5>
+                    <b>subtitle</b>
+                    <p>Dancer info</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 artists text-center">
+                <img class="icon" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"></img>
+                <div class="artists-content">
+                    <h5>DJs</h5>
+                    <b>subtitle</b>
+                    <p>DJ info</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col col-sm-12 col-lg-12 col-md-12">
+
+
+    </div>
+    </div>
+{% endblock %}

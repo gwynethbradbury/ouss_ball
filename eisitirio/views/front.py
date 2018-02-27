@@ -35,6 +35,16 @@ def home():
         form={}
     )
 
+@FRONT.route('/')
+def index():
+    """Display the homepage.
+
+    Contains forms for registering and logging in.
+    """
+    return flask.render_template(
+        'index.html'
+    )
+
 @FRONT.route('/login', methods=['GET', 'POST'])
 def do_login():
     """Process a login."""
