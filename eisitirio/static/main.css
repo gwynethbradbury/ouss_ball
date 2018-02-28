@@ -359,10 +359,10 @@ ul li {
 -------------------------------------------------------------------------------*/
 
 .banner {
-	background-image: linear-gradient(
-		rgba(0, 0, 0, 0.4),
-		rgba(0, 0, 0, 0.4)
-	  ),url(../images/banner.jpg);
+	/*background-image: linear-gradient(*/
+		/*rgba(0, 0, 0, 0.4),*/
+		/*rgba(0, 0, 0, 0.4)*/
+	  /*),url(../images/banner.jpg);*/
 	background-position: center top;
 	background-repeat: no-repeat;
 	opacity: 0.9;
@@ -686,7 +686,7 @@ color: #fff;
 }
 .flex-control-nav {
 	margin-top: 2%;
-	bottom: none!important;
+	bottom: 0!important;
 	position: relative!important;
 	right: 0;
 	text-align: center;
