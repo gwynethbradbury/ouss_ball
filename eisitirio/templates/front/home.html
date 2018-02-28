@@ -8,12 +8,15 @@
                 <div class="col col-sm-12 col-lg-12 col-md-12">
 
         <p>
-            Welcome to the {{ template_config['BALL_NAME'] }} ticketing system. Through this system, you can
-            purchase, manage, and trade tickets. If you have any problems while using
+            Welcome to the {{ template_config['BALL_NAME'] }} ticketing page.
+{#            From here, you can#}
+{#            purchase, manage, and trade tickets.#}
+            If you have any problems while using
             the system, please contact <a href="{{ template_config['TICKETS_EMAIL_LINK'] }}">the ticketing officer</a>.
         </p>
         <p>
-            The {{ template_config['TITLE'] }} will take place on the night of {{ template_config['START_TIME'].strftime('%A %B') }} {{ template_config['START_TIME'].day }}{{ get_ord(template_config['START_TIME']) }}. Tickets are available in advance only, there will be no tickets for sale on the door. To purchase a ticket, please register or log in
+            The {{ template_config['TITLE'] }} will take place on the night of {{ template_config['START_TIME'].strftime('%A %B') }} {{ template_config['START_TIME'].day }}{{ get_ord(template_config['START_TIME']) }}.
+            Limited tickets will be available on the door on a first come first served basis. To purchase a ticket, please register or log in.
         </p>
                 </div>
         <div class="row">
@@ -42,7 +45,7 @@
                             <input type="submit" value="Log In" class="button expanded large" />
                     </div>
                 </form>
-                <hr />
+                <br />
                 <h4>Can't log in?</h4>
                 <ul id="login-help">
                     <li><a href="{{ url_for('front.password_reset') }}">Reset your password</a></li>

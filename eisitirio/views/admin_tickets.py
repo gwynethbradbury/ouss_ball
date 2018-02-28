@@ -290,24 +290,24 @@ def check_ticket(ticket_id, barcode):
             ticket.holder.full_name.encode('utf-8'),
             ticket.owner.full_name.encode('utf-8')
         )
-        photo = ticket.holder.photo.thumb_url
+        photo = ''#ticket.holder.photo.thumb_url
     elif not ticket.holder:
         valid = False
         message = (
             'Ticket has not been claimed. Owner is {0}'
             ).format(ticket.owner.full_name.encode('utf-8'))
-        photo = ticket.owner.photo.thumb_url
+        photo = ''#ticket.owner.photo.thumb_url
     elif not ticket.barcode or (ticket.barcode and ticket.barcode != barcode):
         valid = False
         message = 'Found ticket, barcode doesnt match {0}'.format(barcode)
-        photo = ticket.holder.photo.thumb_url
+        photo = ''#ticket.holder.photo.thumb_url
     else:
         ticket.entered = True
         DB.session.commit()
 
         valid = True
         message = 'Permit entry for {0}'.format(ticket.holder.full_name.encode('utf-8'))
-        photo = ticket.holder.photo.thumb_url
+        photo = ''#ticket.holder.photo.thumb_url
 
     return flask.jsonify(ticketvalid=valid, message=message, photourl=photo)
 

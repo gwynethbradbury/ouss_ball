@@ -7,7 +7,8 @@ import flask_login as login
 # from flask.ext import login
 import flask
 
-from eisitirio import app
+# from eisitirio import app
+app=flask.current_app
 from eisitirio.database import db
 from eisitirio.database import models
 from eisitirio.logic import realex_logic
@@ -35,7 +36,7 @@ def get_transaction(payment_method, tickets=None, postage_option=None,
 
 def create_postage(transaction, tickets, postage_option, address):
     """Create a postage object and corresponding transaction item."""
-    if postage_option and postage_option is not app.APP.config['NO_POSTAGE_OPTION']:
+    if postage_option and postage_option is not app.config['NO_POSTAGE_OPTION']:
         postage = models.Postage(
             login.current_user,
             postage_option,
@@ -52,7 +53,7 @@ def complete_payment(transaction, payment_term):
     if transaction.payment_method == 'Free':
         transaction.mark_as_paid()
 
-        app.APP.log_manager.log_event(
+        app.log_manager.log_event(
             'Performed Free Transaction',
             user=login.current_user,
             transaction=transaction

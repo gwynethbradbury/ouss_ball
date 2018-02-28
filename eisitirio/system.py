@@ -219,7 +219,7 @@ def context_processor():
 
 def main():
     app.eisitiriodb.create_all()
-    APP.run(debug=True,port=5000)
+    APP.run(debug=True,port=5001)
 
 
 if __name__ == '__main__':
