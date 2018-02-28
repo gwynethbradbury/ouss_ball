@@ -1,10 +1,10 @@
 <!-- front/home.html -->
 {% extends 'layout.html' %}
 
-{% block title %}<span id="details">Welcome to {{ template_config['THEME'] }}</span>{% endblock %}
+{% block title %}Welcome to {{ template_config['THEME'] }}{% endblock %}
 
 {% block content %}
-    <div class="col col-sm-12 col-lg-12 col-md-12" >
+    <div class="col col-sm-12 col-lg-12 col-md-12" id="details">
 
         <p>Oxford University Salsa Society is proud to present: The Oxford Salsa Ball 2018<br><br>Featuring special guest artists, workshops in all levels (beginners too!) and styles,  a live salsa band, and stunning performances – including our very own Salsa Team debut show!
         The event will be spread across two rooms – one dedicated to the most classic Latin rythms of Salsa, Mambo and Chachacha, the other to Bachata, Kizomba and all things Sensual.</p>
@@ -96,7 +96,7 @@
 
 <!-- Ticket section -->
         <div class="section-header" style="padding: 100px 0;">
-            <h2 class="wow fadeInDown animated">Tickets</h2>
+            <h2 class="wow fadeInDown animated" id="tickets">Tickets</h2>
             <p class="wow fadeInDown animated">Tickets are £{{ template_config['STANDARD_PRICE'] }} for OU Salsa Society members and £{{ template_config['MEMBER_PRICE'] }} for non-members.
             You can become a member at any of our events (non-students too).<br>
             <a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">Contact us for group tickets of >8 people.</a>  <br><br>
@@ -108,7 +108,7 @@
 
 <!-- gallery section -->
         <div class="section-header" style="padding: 100px 0;">
-            <h2 class="wow fadeInDown animated">Gallery</h2>
+            <h2 class="wow fadeInDown animated" id="gallery">Gallery</h2>
             <p class="wow fadeInDown animated">Oxford Salsa Ball has been around
                 for many years, so here are some memories from last years.</p>
 
@@ -141,7 +141,7 @@
 
 <!-- our team section -->
         <div class="section-header" style="padding: 100px 0;">
-            <h2 class="wow fadeInDown animated">Your Ball Committee</h2>
+            <h2 class="wow fadeInDown animated" id="teams">Your Ball Committee</h2>
             <p class="wow fadeInDown animated">It's our pleasure to deliver the Oxford Salsa Ball to you this year.</p>
         </div>
         <div class="card-group">
@@ -160,7 +160,7 @@
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename='images/team-2.jpg') }}" alt=""
+                <img src="{{ url_for('static', filename='images/IMG-2413.JPG') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
                     <h4>Gwyneth Anne</h4>
@@ -190,6 +190,28 @@
 <!-- our team section -->
 
 
+<!--- Map section -->
+        <div class="section-header" style="padding: 100px 0">
+            <h2 class="wow fadeInDown animated" id="map">Find us</h2>
+
+            <p  class="wow fadeInDown animated">
+            The ball will be held in the beautiful Oxford Town Hall.<br> <br>
+            Address:<br>
+            Oxford Town Hall<br>
+            St. Aldate's<br>
+            Oxford<br>
+            OX1 1BX
+            </p>
+
+            </div>
+            <div id="map-row" class="row">
+{#                <div class="col-xs-12">#}
+                    <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                            src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=51.751531, -1.257303&amp;q=St.%20Aldate's%2C%20Oxford%2C%20OX1%201BX+(Oxford%20Town%20hall)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
+{#                </div>#}
+            </div>
+        </div>
+<!--- Map section -->
 
 
 

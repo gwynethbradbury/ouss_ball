@@ -59,12 +59,15 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
-                                <div class="dropdown-menu">
-                                    {% include 'blocks/dashboard-navigation.html' %}
+                            <div class="dropdown-menu">
+                                {% include 'blocks/dashboard-navigation.html' %}
 
-    {#                            <div class="dropdown-divider">#}
+                                {% if current_user.is_admin %}
+                                    <div class="dropdown-divider"></div>
+                                    {% include 'blocks/admin-navigation.html' %}
+                                {% endif %}
 
-                                </div>
+                            </div>
                         </div>
                         </li>
                     {% else %}
@@ -110,28 +113,9 @@
 
 
     <div class="jumbotron jumbotron-fluid"
-         style="
-{#                 min-height:150px;#}
-{#            background-color: transparent;#}
-                 background-image: linear-gradient(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.4)
-    ),url({{ url_for('static', filename='images/banner.jpg') }});
-            background-repeat: no-repeat;
-{#            background-size: 120% auto;#}
-{#            background-position: center;#}
-{#            background-position-y: 35%;#}
-            ">
+         style="background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url({{ url_for('static', filename='images/banner.jpg') }}); background-repeat: no-repeat;">
         <div class="container">
             <div class="col-md-10 jumbotron-text">
-    {#                    style="#}
-    {#                            min-height:150px;#}
-    {#                justify-content: center;#}
-    {#                align-items: center;#}
-    {#                display: flex;#}
-    {#                flex-direction: column;#}
-    {#                mix-blend-mode: difference;#}
-    {#">#}
                 <h1 >{{ template_config['TITLE'] }}</h1>
                 <p>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</p>
                 <p>{{ template_config['THEME'] }}</p>
@@ -141,7 +125,7 @@
     </div>
 
 
-<div class="container">
+    <div class="container">
         <div class="container">
             {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}
@@ -179,6 +163,29 @@
 {#                </section>#}
 {#            </div>#}
         </div>
+    </div>
+
+
+
+<div  style="padding: 100px 0;"></div>
+<!-- Testimonials section -->
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <h1>"A night to remember!"</h1>
+{#                    <p>...</p>#}
+                </div>
+                <div class="carousel-item">
+                    <h1>"The best way to be introduced to salsa!"</h1>
+                </div>
+                <div class="carousel-item">
+                    <h1>"A night you absolutely can't miss!"</h1>
+                </div>
+            </div>
+        </div>
+<!-- Testimonials section -->
+
+    <div class="container" style="padding: 100px 0;">
         <div class="row">
             <div class="col col-sm-12 col-lg-12 col-md-12">
                 <footer class="row" style="padding-top: 5rem;">
@@ -188,12 +195,12 @@
                 </footer>
             </div>
         </div>
-        </div>
+    </div>
 
-        <script src="{{ url_for('static', filename='js/vendor/jquery-3.1.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/vendor/foundation.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.countdown.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/global.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/foundation.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.countdown.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/global.js') }}"></script>
 
 
 	<script src="{{ url_for('static', filename='js/footer.js') }}"></script>
