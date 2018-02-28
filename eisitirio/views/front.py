@@ -35,14 +35,27 @@ def home():
         form={}
     )
 
+import os
+from flask import url_for
+def get_img_urls():
+    img_urls = []
+
+    names = os.listdir(os.path.join(APP.root_path, 'static/images/gallery'))
+
+
+    return names
+
 @FRONT.route('/')
 def index():
     """Display the homepage.
 
     Contains forms for registering and logging in.
     """
+    names = get_img_urls()
+
     return flask.render_template(
-        'index.html'
+        'index.html',
+        gallery_images = names
     )
 
 @FRONT.route('/login', methods=['GET', 'POST'])
