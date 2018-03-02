@@ -40,7 +40,10 @@ from flask import url_for
 def get_img_urls():
     img_urls = []
 
-    names = os.listdir(os.path.join(APP.root_path, 'static/images/gallery'))
+    names = os.listdir(os.path.join(APP.root_path, 'static/images/gallery/'))
+    for n in names:
+        if n.startswith('.'):
+            names.remove(n)
 
 
     return names
