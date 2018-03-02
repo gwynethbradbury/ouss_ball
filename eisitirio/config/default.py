@@ -155,18 +155,21 @@ TEMPLATE_CONFIG_KEYS = [
     'GENERAL_RELEASE_MAX_TICKETS',
     'TICKET_EXPIRY_TIME',
     'MAX_TICKET_CLAIMS',
+    'STANDARD_PRICE',
+    'MEMBER_PRICE',
+    'ARTIST_PRICE',
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
 START_TIME = datetime.datetime(2018, 5, 11, 20) # 8pm, 11th May 2018
 GATES_CLOSE = datetime.datetime(2018, 5, 12, 01) # 1am, 12th May 2018
 END_TIME = datetime.datetime(2018, 5, 12, 01) # 1am, 12th May 2018
-THEME = 'OUSS Ball'
+THEME = "Oxford's Biggest Salsa Event"
 
 COLLEGE = "/".join(HOST_COLLEGES)
 BALL_NAME = 'Oxford Salsa Ball'
-TITLE = '{0} {1}'.format(BALL_NAME, START_TIME.year)
-THEME = 'OUSS Ball'
+# TITLE = '{0} {1}'.format(BALL_NAME, START_TIME.year)
+TITLE = '{0}'.format(BALL_NAME)
 DATE_FORMAT = '%d.%m.%Y'
 
 EMAIL_SIGNOFF = 'The {0} Committee'.format(BALL_NAME)
@@ -191,3 +194,7 @@ WEBSITE_EMAIL = 'webmaster@oxfordsalsaball.co.uk'
 
 GRAPH_STORAGE_FOLDER='static/admin/graphs'
 
+# TICKETS:
+STANDARD_PRICE = '30.00'
+MEMBER_PRICE = '25.00'
+ARTIST_PRICE = 0
