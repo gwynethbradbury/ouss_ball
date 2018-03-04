@@ -175,7 +175,7 @@ class EmailManager(object):
         return self.send_message(message)
 
 
-    def send_image_html(self, recipient, subject, template, image_bytes, **kwargs):
+    def send_image_html(self, recipient, subject, template, image_bytes, ticket, **kwargs):
         """Send an email based on an html template and allow embedded images.
         Args:
             recipient: (str) the email address of the recipient
@@ -192,7 +192,7 @@ class EmailManager(object):
         message = MIMEMultipart('related')
         # Get the template
         template = self.get_template(template)
-        msg_content = template.render(**kwargs)
+        msg_content = template.render(ticket=ticket, **kwargs)
         message.attach(MIMEText((msg_content), 'html'))
 
         image = MIMEImage(image_bytes)
