@@ -41,8 +41,8 @@ def generate_barcodes(send_only_new):
         tickets = models.Ticket.query.filter(
             # We have not sent them an email yet (it has not been "claimed")
             models.Ticket.barcode == None,
-            # Ticket has a holder
-            models.Ticket.holder_id != None,
+            # # Ticket has a holder
+            # models.Ticket.holder_id != None,
             # The ticket is paid for.
             models.Ticket.paid,
             # The ticket has not been cancelled.
@@ -50,8 +50,8 @@ def generate_barcodes(send_only_new):
         ).all()
     else:
         tickets = models.Ticket.query.filter(
-            # Ticket has a holder
-            models.Ticket.holder_id != None,
+            # # Ticket has a holder
+            # models.Ticket.holder_id != None,
             # The ticket is paid for.
             models.Ticket.paid,
             # The ticket has not been cancelled.
@@ -84,16 +84,14 @@ def generate_ticket_qr(ticket):
     qrcode_img.png(buffer, scale=20)
     return buffer.getvalue()
 
-def send_claim_code(user):
-    """Send qr code to user that holds ticket"""
-    if not user.held_ticket:
-        LOG.info("Not generating for user {0} since they don't hold a ticket".format(user.full_name.encode('utf-8')))
-        return False
-    elif user.held_ticket.barcode is None:
+def send_claim_code(user,ticket):
+    """Send qr code to user that paid for ticket"""
+
+    if ticket.barcode is None:
         LOG.error("User {0} has a held ticket, but unable to send it to them since there is no barcode for ticket {1}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id))
         return False
     else:
-        qr_code = generate_ticket_qr(user.held_ticket)
+        qr_code = generate_ticket_qr(ticket)
         if qr_code is None:
             LOG.error("User {0} has a held ticket, but QR generation failed for {1}".format(
                 user.full_name.encode('utf-8'), user.held_ticket.object_id ))
@@ -104,10 +102,35 @@ def send_claim_code(user):
                 'Your Ball Entrance Ticket',
                 'ball_ticket.email',
                 qr_code,
-                user=user
+                user=user,
+                ticket=ticket
             )
             LOG.info("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id, user.held_ticket.barcode))
         return True
+# def send_claim_code(user):
+#     """Send qr code to user that holds ticket"""
+#     if not user.held_ticket:
+#         LOG.info("Not generating for user {0} since they don't hold a ticket".format(user.full_name.encode('utf-8')))
+#         return False
+#     elif user.held_ticket.barcode is None:
+#         LOG.error("User {0} has a held ticket, but unable to send it to them since there is no barcode for ticket {1}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id))
+#         return False
+#     else:
+#         qr_code = generate_ticket_qr(user.held_ticket)
+#         if qr_code is None:
+#             LOG.error("User {0} has a held ticket, but QR generation failed for {1}".format(
+#                 user.full_name.encode('utf-8'), user.held_ticket.object_id ))
+#             return False
+#         else:
+#             APP.email_manager.send_image_html(
+#                 user.email,
+#                 'Your Ball Entrance Ticket',
+#                 'ball_ticket.email',
+#                 qr_code,
+#                 user=user
+#             )
+#             LOG.info("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id, user.held_ticket.barcode))
+#         return True
 
 def send_chunk(tickets):
     successes = 0
@@ -115,10 +138,11 @@ def send_chunk(tickets):
 
     for ticket in tickets:
         try:
-            if send_claim_code(ticket.holder):
+            if send_claim_code(user=ticket.owner,ticket=ticket):
+            # if send_claim_code(ticket.holder):
                 successes = successes + 1
                 print '[Sent: {0}]'.format(ticket.object_id)
-                LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.holder.full_name.encode('utf-8')))
+                LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.holder_name.encode('utf-8')))
             else:
                 ticket.barcode = None
                 DB.session.commit()
@@ -130,7 +154,8 @@ def send_chunk(tickets):
             ticket.barcode = None
             DB.session.commit()
             failures = failures + 1
-            LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder.full_name.encode('utf-8')))
+            # LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder.full_name.encode('utf-8')))
+            LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder_name.encode('utf-8')))
         sleep(0.5)
 
     print "All done sending claim codes. Total #codes that we should have sent: {0}".format(len(tickets))

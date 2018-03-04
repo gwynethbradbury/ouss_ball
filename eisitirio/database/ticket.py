@@ -95,6 +95,11 @@ class Ticket(DB.Model):
         ),
         foreign_keys=[holder_id]
     )
+    holder_name = DB.Column(
+        DB.String(60),
+        nullable=True,
+        default="Unassigned"
+    )
 
     def __init__(self, owner, ticket_type, price):
         self.owner = owner
@@ -131,8 +136,8 @@ class Ticket(DB.Model):
         return False
 
     def can_be_reclaimed(self):
-        if self.paid and datetime.datetime.utcnow()<datetime.datetime(2018,5,11) and not self.cancelled and self.holder_id==self.owner_id:
-            return True
+        # if self.paid and datetime.datetime.utcnow()<datetime.datetime(2018,5,11) and not self.cancelled and self.holder_id==self.owner_id:
+        #     return True
         return False
 
     def has_holder(self):
@@ -149,6 +154,11 @@ class Ticket(DB.Model):
         if self.paid:
             return True
         return False
+
+    def is_assigned(self):
+        if self.holder_name=='Unassigned':
+            return False
+        return True
 
     @staticmethod
     def get_by_claim_code(code):
@@ -199,13 +209,16 @@ class Ticket(DB.Model):
             return 'Ticket Sent to {0}.'.format(self.holder.full_name)
         elif self.collected:
             return 'Collected as {0}.'.format(self.barcode)
-        elif self.holder is None:
+        # elif self.holder is None:
+        #     return 'Awaiting ticket holder.'
+        elif self.holder_name == 'Unassigned':
             return 'Awaiting ticket holder.'
         elif APP.config['REQUIRE_USER_PHOTO']:
             if not self.holder.photo.verified:
                 return 'Awaiting verification of holder photo.'
         else:
-            return 'Held by {0}.'.format(self.holder.full_name)
+            # return 'Held by {0}.'.format(self.holder.full_name)
+            return 'Assigned to {0}.'.format(self.holder_name)
 
     @price.setter
     def price(self, value):

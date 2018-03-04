@@ -287,16 +287,17 @@ def check_ticket(ticket_id, barcode):
             'Ticket has already been used for '
             'entry. Check ID against {0} (owned by {1})'
         ).format(
-            ticket.holder.full_name.encode('utf-8'),
+            # ticket.holder.full_name.encode('utf-8'),
+            ticket.holder_name.encode('utf-8'),
             ticket.owner.full_name.encode('utf-8')
         )
         photo = ''#ticket.holder.photo.thumb_url
-    elif not ticket.holder:
-        valid = False
-        message = (
-            'Ticket has not been claimed. Owner is {0}'
-            ).format(ticket.owner.full_name.encode('utf-8'))
-        photo = ''#ticket.owner.photo.thumb_url
+    # elif not ticket.holder:
+    #     valid = False
+    #     message = (
+    #         'Ticket has not been claimed. Owner is {0}'
+    #         ).format(ticket.owner.full_name.encode('utf-8'))
+    #     photo = ''#ticket.owner.photo.thumb_url
     elif not ticket.barcode or (ticket.barcode and ticket.barcode != barcode):
         valid = False
         message = 'Found ticket, barcode doesnt match {0}'.format(barcode)
@@ -306,9 +307,15 @@ def check_ticket(ticket_id, barcode):
         DB.session.commit()
 
         valid = True
-        message = 'Permit entry for {0}'.format(ticket.holder.full_name.encode('utf-8'))
+        # message = 'Permit entry for {0}'.format(ticket.holder.full_name.encode('utf-8'))
+        message = 'Permit entry for {0}'.format(ticket.holder_name.encode('utf-8'))
         photo = ''#ticket.holder.photo.thumb_url
 
+    if not message:
+        if ticket.holder_name=='Unassigned':
+            return "Permit entry. Holder must be accompanied by {}".format(ticket.owner.full_name)
+        else:
+            return "Permit entry for {} (paid by {})".format(ticket.holder_name,ticket.owner.full_name)
     return flask.jsonify(ticketvalid=valid, message=message, photourl=photo)
 
 

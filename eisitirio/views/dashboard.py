@@ -431,6 +431,61 @@ def display_announcement(announcement_id):
             announcement=announcement
         )
 
+@DASHBOARD.route('/dashboard/ticket/assign', methods=['GET', 'POST'])
+@login.login_required
+def assign_ticket():
+    """Allow a user to asign a ticket for entry."""
+    if flask.request.method != 'POST':
+        return flask.redirect(flask.request.referrer or
+                              flask.url_for('dashboard.dashboard_home'))
+
+    # if not login.current_user.can_claim_ticket():
+    #     flask.flash('You are not eligible to claim a ticket.', 'error')
+    #     return flask.redirect(flask.request.referrer or
+    #                           flask.url_for('dashboard.dashboard_home'))
+
+    if (
+                    'claim_code' not in flask.request.form or
+                    flask.request.form['claim_code'] == ''
+    ):
+        flask.flash('Invalid claim code.', 'error')
+        return flask.redirect(flask.request.referrer or
+                              flask.url_for('dashboard.dashboard_home'))
+
+    ticket = models.Ticket.get_by_claim_code(flask.request.form['claim_code'])
+
+    if not ticket:
+        flask.flash('No ticket with given claim code.', 'error')
+    elif not ticket.can_be_claimed():
+        flask.flash(
+            flask.Markup(
+                (
+                    'That ticket can not be claimed. Please contact '
+                    '<a href="{0}">the ticketing officer</a> for assistance.'
+                ).format(
+                    APP.config['TICKETS_EMAIL_LINK']
+                )
+            ),
+            'error'
+        )
+    else:
+        ticket.holder = login.current_user
+        ticket.holder_name = flask.request.form['new_holder_name']
+        ticket.claims_made += 1
+
+        APP.log_manager.log_event(
+            'Assigned ticket',
+            user=login.current_user,
+            tickets=[ticket]
+        )
+
+        DB.session.commit()
+
+        flask.flash('Ticket claimed.', 'success')
+
+    return flask.redirect(flask.request.referrer or
+                          flask.url_for('dashboard.dashboard_home'))
+
 @DASHBOARD.route('/dashboard/ticket/claim', methods=['GET', 'POST'])
 @login.login_required
 def claim_ticket():

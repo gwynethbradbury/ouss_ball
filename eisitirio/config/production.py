@@ -47,4 +47,4 @@ ANALYTICS_DOMAIN = 'auto'
 
 MAINTENANCE_FILE_PATH = '/var/www/eisitirio/production/.maintenance'
 
-EISITIRIO_URL = 'https://www.oxfordsalsaball.co.uk/tickets/'
+EISITIRIO_URL = 'https://www.oxfordsalsaball.co.uk/'

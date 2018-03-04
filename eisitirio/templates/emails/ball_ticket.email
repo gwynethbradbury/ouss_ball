@@ -1,5 +1,8 @@
-Dear {{ user.forenames }},
-
+<p>Dear {{ user.forenames }},
+<hr/>
+<p>Ticket id: {{ ticket.object_id }}
+<p>Ticket assigned to: {{ ticket.holder_id }}
+<hr/>
 <p>Here is your ticket for entering OUSS Ball 2018. This email or a printout of it
 containing the QR code below must be shown at the door in order to gain admittance
 on the night of the ball.</p>
