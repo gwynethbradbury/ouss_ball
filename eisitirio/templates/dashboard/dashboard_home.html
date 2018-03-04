@@ -49,8 +49,9 @@
                     <tr>
                         <th>Ticket Number</th>
                         <th>Ticket Status</th>
-                        <th>Ticket Claim Code</th>
-                        <th>Actions</th>
+                        <!--<th>Ticket Claim Code</th>-->
+                        <!--<th>Actions</th>-->
+                        <th>Assign Ticket</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,14 +62,14 @@
                               , Upgraded
                               {% endif %}</td>
                             <td>{{ ticket.status }}</td>
-                            <td>
-                                {% if not ticket.cancelled %}
-                                    {% if ticket.holder == None %}
-                                        {{ ticket.claim_code }}
-                                    {% else %}
-                                        Ticket has been claimed by {{ ticket.holder.full_name }}.
-                                    {% endif %}
-                                {% endif %}
+{#                            <td>#}
+{#                                {% if not ticket.cancelled %}#}
+{#                                    {% if ticket.holder == None %}#}
+{#                                        {{ ticket.claim_code }}#}
+{#                                    {% else %}#}
+{#                                        Ticket has been claimed by {{ ticket.holder.full_name }}.#}
+{#                                    {% endif %}#}
+{#                                {% endif %} </td>#}
                             <td>
                                 {% if not ticket.cancelled %}
                                     {% if not ticket.paid %}
@@ -80,10 +81,19 @@
                                     {% if ticket.can_be_resold() %}
                                         <a href="{{ url_for('purchase.resell') }}" class="button tiny">Resell</a>
                                     {% endif %}
-                                    {% if ticket.can_be_claimed() %}
-                                        <form action="{{ url_for('dashboard.claim_ticket') }}" method="post">
+{#                                   {% if ticket.can_be_claimed() %}#}
+{#                                        <form action="{{ url_for('dashboard.claim_ticket') }}" method="post">#}
+{#                                            <input type="hidden" name="claim_code" value="{{ ticket.claim_code }}" />#}
+{#                                            <input type="submit" value="Claim" class="button tiny" />#}
+{#                                        </form>#}
+{#                                    {% endif %}#}
+                                    {% if ticket.is_assigned() %}
+                                        {{ ticket.holder_name }}
+                                    {% else %}
+                                        <form action="{{ url_for('dashboard.assign_ticket') }}" method="post">
                                             <input type="hidden" name="claim_code" value="{{ ticket.claim_code }}" />
-                                            <input type="submit" value="Claim" class="button tiny" />
+                                            <input type="text" name="new_holder_name" placeholder="{{ ticket.holder_name }}" required/>
+                                            <input type="submit" value="Assign" class="button tiny" />
                                         </form>
                                     {% endif %}
                                     {% if ticket.can_be_reclaimed() %}

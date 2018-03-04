@@ -157,6 +157,24 @@ class EmailManager(object):
 
         return self.jinjaenv.get_template(template)
 
+    def send_ticket_list(self, recipient, subject, template, tickets, **kwargs):
+        # Set up the MIME stuff so that we can send the images
+        message = MIMEMultipart('related')
+        # Get the template
+        template = self.get_template(template)
+        msg_content = template.render(tickets=tickets,**kwargs)
+
+        message.attach(MIMEText((msg_content), 'html'))
+
+
+        message['From'] = self.app.config['EMAIL_FROM']
+        message['To'] = recipient
+        message['Subject'] = '[{0}] {1}'.format(self.app.config['BALL_NAME'],
+                                                subject)
+
+        return self.send_message(message)
+
+
     def send_image_html(self, recipient, subject, template, image_bytes, **kwargs):
         """Send an email based on an html template and allow embedded images.
         Args:
