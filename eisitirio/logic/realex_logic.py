@@ -88,7 +88,14 @@ class RealexForm(object):
         self.fields['timestamp'] = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         uid = "%i" % (transaction.user_id)
         self.fields['order_id'] = "%i-%s-%s" % (transaction.object_id, self.fields['timestamp'], uid)
+
+        # self.fields['message'] = APP.config['REALEX_MESSAGE']
+        self.fields['pasref'] = transaction.eway_transaction.eway_id
+        # self.fields['authcode'] = APP.config['REALEX_AUTHCODE']
+        self.fields['result'] = transaction.status #APP.config['REALEX_RESULT']
+
         # hash fields
+        # TIMESTAMP, MERCHANT_ID, ORDER_ID, RESULT, MESSAGE, PASREF, AUTHCODE
         self.sha1hash = hashlib.sha1(".".join([self.fields['timestamp'],
                                                APP.config['REALEX_MERCHANT_ID'],
                                                self.fields['order_id'],
@@ -98,6 +105,7 @@ class RealexForm(object):
         self.fields['sha1hash'] = hashlib.sha1(".".join([
             self.sha1hash.hexdigest(), APP.config['REALEX_SECRET']])).hexdigest()
         self.fields['auto_settle_flag'] = 1
+
 
         # setting additional values that will be returned to you
         for k, v in kw.items():
@@ -145,8 +153,16 @@ class RealexForm(object):
         :raises PostDictKeyError: for any missing key that is required in the
                                   post response from realex
         """
-        required_in_post = ["TIMESTAMP", "MERCHANT_ID", "ORDER_ID", "RESULT",
-                            "MESSAGE", "PASREF", "AUTHCODE", "SHA1HASH"]
+        # required_in_post = ["TIMESTAMP", "MERCHANT_ID", "ORDER_ID", "RESULT",
+        #                     "MESSAGE", "PASREF", "AUTHCODE", "SHA1HASH"]
+        required_in_post = ["TIMESTAMP", "MERCHANT_ID", "ORDER_ID", "AMOUNT",
+                            "CURRENCY", "SHA1HASH"]
+
+        # self.sha1hash = hashlib.sha1(".".join([self.fields['timestamp'],
+        #                                        APP.config['REALEX_MERCHANT_ID'],
+        #                                        self.fields['order_id'],
+        #                                        self.fields['amount'],
+        #                                        self.fields['currency']]))
 
         for item in required_in_post:
             if item not in self.data.keys():
