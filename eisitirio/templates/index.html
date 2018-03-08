@@ -149,11 +149,30 @@
         <h2 class="wow fadeInDown animated" id="tickets">Tickets</h2>
     </div>
     <div class="col col-sm-12 col-lg-12 col-md-12">
+        <p><a href="{{ url_for('purchase.purchase_home', _anchor='purchase') }}" class="btn btn-large">Buy tickets</a>
+        </p>
+
         <p class="wow fadeInDown animated">
-            Tickets are £{{ template_config['MEMBER_PRICE'] }} for OU Salsa Society members and £{{ template_config['STANDARD_PRICE'] }} for non-members.
-            You can become a member at any of our events (non-students too).<br>
-            <a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">Contact us for group tickets of >8 people.</a>
-            <br><br>
+            On the door, tickets will be £{{ template_config['OTD_MEMBER'] }} for members
+            and £{{ template_config['OTD_STANDARD'] }} for non-members.
+        </p>
+        <p class="wow fadeInDown animated">
+            We have a limited number of <b>early bird tickets</b> available at £{{ template_config['EARLY_MEMBER'] }} for OUSS members
+            and £{{ template_config['EARLY_STANDARD'] }} for non-members.
+        </p>
+        <p class="wow fadeInDown animated">
+            Once these run out, tickets are £{{ template_config['MEMBER_PRICE'] }} for OU Salsa Society members
+            and £{{ template_config['STANDARD_PRICE'] }} for non-members.
+        </p>
+        <p class="wow fadeInDown animated">
+            You can become a member at any of our events (non-students too).
+        </p>
+        <p class="wow fadeInDown animated">
+            There is a discount for groups of 10 or more! These will be a flat rate of £{{ template_config['GROUP_TICKET_PRICE'] }}.
+        </p>
+        <p class="wow fadeInDown animated"><a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">Contact us if you have any questions.</a>
+        </p>
+        <p class="wow fadeInDown animated">
             Purchase and manage your tickets through our ticketing system here:
         </p>
         <a href="{{ url_for('purchase.purchase_home', _anchor='purchase') }}" class="btn btn-large">Buy tickets</a>
@@ -208,7 +227,7 @@
         <p class="wow fadeInDown animated">It's our pleasure to deliver the Oxford Salsa Ball to you this year.</p>
     </div>
     <div class="card-group">
-            <div class="card">
+            <div class="card" style="max-width:200px">
                 <img src="{{ url_for('static', filename='images/silvia.jpg') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
@@ -222,7 +241,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="max-width:200px">
                 <img src="{{ url_for('static', filename='images/IMG-2413.JPG') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
@@ -236,7 +255,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="max-width:200px">
                 <img src="{{ url_for('static', filename='images/quincy.jpg') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
@@ -274,7 +293,8 @@
         <div id="map-row" >
 {#                <div class="col-xs-12">#}
                 <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=51.751531, -1.257303&amp;q=St.%20Aldate's%2C%20Oxford%2C%20OX1%201BX+(Oxford%20Town%20hall)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
+                        src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=51.7506586,-1.2545639&amp;q=Oxford%20Town%20Hall%2C%20Oxford%2C%20OX1%201BX+(Oxford%20Town%20hall)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed">
+                </iframe>
 {#                </div>#}
         </div>
     </div>
