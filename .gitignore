@@ -1,5 +1,6 @@
 *.pyc
 config/*
+eisitirio/config/*
 .watsonrc
 *.sass-cache*
 *cron_timestamp*
