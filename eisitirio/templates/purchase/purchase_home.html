@@ -11,7 +11,7 @@
                   <div class="col-sm-12 col-lg-6">
                   <li>
                       <h5>Choose Number of Tickets</h5>
-                      <table id="ticket_type_table">
+                      <table id=>
                           <thead>
                               <th>Ticket type</th>
                               <th>Price</th>
@@ -28,6 +28,8 @@
                               <td>Total:</td>
                               <td id="total_value">&pound;0.00</td>
                               <td id="total_tickets">0</td>
+                          </tr>
+                          <tr id="group_discount_message" style="display: none;"></tr>
                       </table>
                   </li>
                 </div>
@@ -72,6 +74,8 @@
 
         var num_ticket_inputs = $(".num_ticket_input")
 
+        var group_discount_message = $("#group_discount_message");
+
         num_ticket_inputs.on("change", function () {
             var guest_tickets_ordered = 0;
             var total_tickets_ordered = 0;
@@ -93,8 +97,19 @@
 
                 total_tickets_ordered = total_tickets_ordered + ordered;
 
-                total_value = total_value + ordered * ticket_type.price;
+{#                TODO: CHECK THAT THIS APPLIES TO THE TOTAL#}
+                var p = ticket_type.price;
+                group_discount_message.hide(0);
+                if (ticket_type.slug.includes('tandard') && ordered>9){
+                    p = 1800;
+                    var msg="group rate (10+) £18"
+
+                    group_discount_message.html(msg);
+                    group_discount_message.show(0);
+                }
+                total_value = total_value + ordered * p;
             });
+
 
             var price_str = total_value + "";
             while (price_str.length < 3) price_str = "0" + price_str;

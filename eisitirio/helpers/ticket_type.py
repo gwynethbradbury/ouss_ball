@@ -39,7 +39,7 @@ class TicketType(_TicketType):
 
     # @property
     def can_buy(self,user):
-        if self.name == 'Standard':
+        if u'tandard' in self.name:
             return True
         if user.affiliation_verified:
             if user.affiliation.name==self.name:
