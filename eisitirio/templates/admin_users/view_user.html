@@ -96,7 +96,7 @@
               </form>
             <h4>User's Tickets</h4>
             {% if user.tickets.count() > 0 %}
-                <table id="tickets_table">
+                <table class="table" id="tickets_table">
                     <thead>
                         <tr>
                             <th>Ticket Number</th>
@@ -121,7 +121,7 @@
             {% endif %}
             <h4>User's Waiting</h4>
             {% if user.waiting.count() > 0 %}
-                <table id="waiting_table">
+                <table class="table" id="waiting_table">
                     <thead>
                         <tr>
                             <th>Waiting for</th>
@@ -144,7 +144,7 @@
             {% endif %}
             <h4>User's Transactions</h4>
             {% if user.transactions.count() > 0 %}
-                <table id="transaction_table">
+                <table class="table" id="transaction_table">
                     <thead>
                         <tr>
                             <th>Transaction ID</th>
@@ -170,7 +170,7 @@
             <a id="self_actions"></a>
             <h4>User's Events (performed by user)</h4>
             {% if self_actions.items %}
-                <table id="self_actions_table">
+                <table class="table" id="self_actions_table">
                     <thead>
                         <tr>
                             <th>Log ID</th>
@@ -202,7 +202,7 @@
             <a id="events"></a>
             <h4>User's Events (performed by others)</h4>
             {% if events.items %}
-                <table id="events_table">
+                <table class="table" id="events_table">
                     <thead>
                         <tr>
                             <th>Log ID</th>
@@ -242,7 +242,7 @@
             <a id="other_actions"></a>
             <h4>User's Actions (performed on others)</h4>
             {% if other_actions.items %}
-                <table id="other_actions_table">
+                <table class="table" id="other_actions_table">
                     <thead>
                         <tr>
                             <th>Log ID</th>
@@ -275,7 +275,7 @@
             {% endif %}
             <h4>User's Admin Fees</h4>
             {% if user.admin_fees_charged.count() %}
-                <table id="admin_fees_table">
+                <table class="table" id="admin_fees_table">
                     <thead>
                         <tr>
                             <th>Fee ID</th>

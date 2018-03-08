@@ -11,27 +11,29 @@
                   <div class="col-sm-12 col-lg-6">
                   <li>
                       <h5>Choose Number of Tickets</h5>
-                      <table id=>
-                          <thead>
-                              <th>Ticket type</th>
-                              <th>Price</th>
-                              <th>Number</th>
-                          </thead>
-                          {% for ticket_type, limit in ticket_info.ticket_types %}
-                              <tr>
-                                  <td>{{ ticket_type.name }}</td>
-                                  <td>&pound;{{ ticket_type.price_pounds }}</td>
-                                  <td><input type="number" name="num_tickets_{{ ticket_type.slug }}" id="num_tickets_{{ ticket_type.slug }}" class="num_ticket_input" min="0" max="{{ limit }}" value="{{ num_tickets[ticket_type.slug] }}" /></td>
-                              </tr>
-                          {% endfor %}
-                          <tr>
-                              <td>Total:</td>
-                              <td id="total_value">&pound;0.00</td>
-                              <td id="total_tickets">0</td>
-                          </tr>
-                          <tr id="group_discount_message" style="display: none;"></tr>
-                      </table>
                   </li>
+
+                  <table class="table">
+                      <thead>
+                          <th>Ticket type</th>
+                          <th>Price</th>
+                          <th>Number</th>
+                      </thead>
+                      {% for ticket_type, limit in ticket_info.ticket_types %}
+                          <tr>
+                              <td>{{ ticket_type.name }}</td>
+                              <td>&pound;{{ ticket_type.price_pounds }}</td>
+                              <td><input type="number" name="num_tickets_{{ ticket_type.slug }}" id="num_tickets_{{ ticket_type.slug }}" class="num_ticket_input" min="0" max="{{ limit }}" value="{{ num_tickets[ticket_type.slug] }}" /></td>
+                          </tr>
+                      {% endfor %}
+                      <tr>
+                          <td>Total:</td>
+                          <td id="total_value">&pound;0.00</td>
+                          <td id="total_tickets">0</td>
+                      </tr>
+                      <tr id="group_discount_message" style="display: none;"></tr>
+                  </table>
+
                 </div>
                 <div class="col-sm-12 col-lg-6">
                   <li>

@@ -11,7 +11,7 @@
         <p>Tickets must be paid for and have a name set before they can be marked as collected.</p>
         {% if user.has_collectable_tickets() %}
             <h3>Tickets owned by {{ user.full_name }}</h3>
-            <table id="tickets_table">
+            <table class="table" id="tickets_table">
                 <thead>
                     <tr>
                         <th>Ticket Number</th>
@@ -37,7 +37,7 @@
         {% if user.held_ticket and user.held_ticket.can_be_collected() %}
             {% if user.held_ticket.owner != user %}
                 <h3>Ticket held by {{ user.full_name }}</h3>
-                <table id="tickets_table">
+                <table class="table" id="tickets_table">
                     <thead>
                         <tr>
                             <th>Ticket Number</th>

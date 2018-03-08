@@ -11,7 +11,7 @@
         <p><strong>{{ template_config['BALL_NAME'] }} accepts no liability for any disputes resulting from the use of this facility.</strong></p>
         <h3>Your Tickets</h3>
         <form action="{{ url_for('purchase.resell') }}" method="post">
-            <table id="tickets_table">
+            <table class="table" id="tickets_table">
                 <thead>
                     <tr>
                         <th>Select</th>

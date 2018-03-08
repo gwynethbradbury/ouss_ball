@@ -8,7 +8,7 @@
         <h3>Your ticket</h3>
         {% if current_user.has_held_ticket() %}
             <p>You will use the following ticket for entry into the ball.</p>
-            <table id="tickets_table">
+            <table class="table" id="tickets_table">
                 <thead>
                     <tr>
                         <th>Ticket Number</th>
@@ -44,7 +44,7 @@
 
         <h3>Tickets You Own</h3>
         {% if current_user.tickets.count() > 0 %}
-            <table id="tickets_table">
+            <table class="table" id="tickets_table">
                 <thead>
                     <tr>
                         <th>Ticket Number</th>
@@ -112,7 +112,7 @@
         <h3>Waiting List Entries</h3>
         {% if current_user.is_waiting %}
             <div id="waiting_message_wrapper"></div>
-            <table id="waiting_table">
+            <table class="table" id="waiting_table">
                 <thead>
                     <tr>
                         <th>Waiting for</th>
