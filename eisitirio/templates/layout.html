@@ -179,7 +179,9 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/global.js') }}"></script>
 
 
-	<script src="{{ url_for('static', filename='js/footer.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/footer.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+
         {% include 'scripts/sms_verify.html' %}
         {% block javascripts %}{% endblock %}
     </body>
