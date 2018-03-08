@@ -16,3 +16,5 @@ eisitirio/logic/custom_logic
 eisitirio/custom_static
 *cron*.txt
 dbconfig.py
+payment.py
+
