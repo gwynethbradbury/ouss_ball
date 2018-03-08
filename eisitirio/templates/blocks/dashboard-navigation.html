@@ -3,17 +3,17 @@
 {#<li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.dashboard_home') }}">Home</a>#}
 <a class="dropdown-item" href="{{ url_for('dashboard.profile') }}">Update your Details</a>
 <a class="dropdown-item" href="{{ url_for('purchase.purchase_home') }}">Buy Tickets</a>
-{% if current_user.tickets.count() > 0 %}
+<!-- {% if current_user.tickets.count() > 0 %}
 <a class="dropdown-item" href="{{ url_for('purchase.upgrade_ticket') }}">Upgrade Tickets</a>
-{% endif %}
+{% endif %} -->
 {% if current_user.has_unpaid_tickets() %}
     <a class="dropdown-item" href="{{ url_for('purchase.complete_payment') }}">Complete Ticket Payment</a>
 {% endif %}
-{% if template_config['ENABLE_POSTAGE'] %}
+<!-- {% if template_config['ENABLE_POSTAGE'] %}
     <a class="dropdown-item" href="{{ url_for('purchase.buy_postage') }}">Buy Postage</a>
 {% endif %}
 {% if template_config['ENABLE_GROUP_PURCHASE'] %}
     <a class="dropdown-item" href="{{ url_for('group_purchase.dashboard') }}">Group Purchase</a>
-{% endif %}
+{% endif %} -->
 <a class="dropdown-item" href="{{ url_for('front.terms') }}">T &amp Cs</a>
 <a class="dropdown-item" href="{{ url_for('front.faqs') }}">FAQs</a>
