@@ -2,6 +2,9 @@
 
 {#<li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.dashboard_home') }}">Home</a>#}
 <a class="dropdown-item" href="{{ url_for('dashboard.profile') }}">Update your Details</a>
+{% if current_user.has_tickets() %}
+    <a class="dropdown-item" href="{{ url_for('dashboard.dashboard_home') }}">My Tickets</a>
+{% endif %}
 <a class="dropdown-item" href="{{ url_for('purchase.purchase_home') }}">Buy Tickets</a>
 {#{% if current_user.tickets.count() > 0 %}#}
 {#<a class="dropdown-item" href="{{ url_for('purchase.upgrade_ticket') }}">Upgrade Tickets</a>#}
