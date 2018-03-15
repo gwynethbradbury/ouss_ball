@@ -131,7 +131,7 @@ class Ticket(DB.Model):
         return False
 
     def can_be_claimed(self):
-        if self.status=='Awaiting ticket holder.':
+        if self.holder_name == 'Unassigned':
             return True
         return False
 
