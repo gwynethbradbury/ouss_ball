@@ -33,6 +33,8 @@ def get_transaction(payment_method, tickets=None, postage_option=None,
         return models.BattelsTransaction(login.current_user)
     elif payment_method == 'Card':
         return models.CardTransaction(login.current_user)
+    elif payment_method == 'PayPal':
+        return models.PayPalTransaction(login.current_user)
 
 def create_postage(transaction, tickets, postage_option, address):
     """Create a postage object and corresponding transaction item."""
@@ -66,6 +68,8 @@ def complete_payment(transaction, payment_term):
         flask.flash('Battels payment completed.', 'success')
     elif transaction.payment_method == 'Card':
             return flask.redirect(flask.url_for('purchase.payment_interstitial', transaction_id=transaction.object_id))
+    elif transaction.payment_method == 'PayPal':
+            return flask.redirect(flask.url_for('purchase.payment_paypal', transaction_id=transaction.object_id))
 
     return flask.redirect(flask.url_for('dashboard.dashboard_home'))
 

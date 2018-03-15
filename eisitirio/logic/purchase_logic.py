@@ -297,6 +297,9 @@ def check_payment_method(flashes):
                 flashes.append(
                     'You have selected an invalid battels payment term'
                 )
+    elif("PayPal"==flask.request.form['payment_method']):
+        payment_method="PayPal"
+        payment_term=None
     else:
         payment_method = 'Card'
         payment_term = None

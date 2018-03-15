@@ -20,6 +20,7 @@ class Transaction(DB.Model):
         DB.Enum(
             'Battels',
             'Card',
+            'PayPal',
             'Free',
             'Dummy'
         ),

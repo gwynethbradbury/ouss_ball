@@ -95,6 +95,7 @@ ENABLE_RECLAIMING_TICKETS = True
 
 PAYMENT_METHODS = [
     'Card',
+    'PayPal',
     # 'Battels-MT',
     # 'Battels-MTHT',
     # 'Battels-HT',

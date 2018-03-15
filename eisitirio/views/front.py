@@ -465,6 +465,53 @@ def password_reset():
         return flask.redirect(flask.url_for('front.home'))
     else:
         return flask.render_template('front/password_reset.html')
+def member_password_create(user):
+    """
+    as above, but jsut sends the reset password email
+    """
+
+    if not user:
+        APP.log_manager.log_event(
+            'Attempted password reset for {0}'.format(
+                flask.request.form['email']
+            )
+        )
+
+        APP.email_manager.send_template(
+            flask.request.form['email'],
+            'Attempted Account Access',
+            'password_reset_fail.email'
+        )
+    else:
+        user.secret_key = util.generate_key(64)
+        user.secret_key_expiry = (
+            datetime.datetime.utcnow() +
+            datetime.timedelta(minutes=4320)
+        )#expires in 3 days
+
+        DB.session.add(user)
+        DB.session.commit()
+
+        # APP.log_manager.log_event(
+        #     'Started password creation',
+        #     user=user
+        # )
+
+        APP.email_manager.send_template(
+            user.email,
+            'Confirm Password Reset',
+            'create_user_password.email',
+            name=user.forenames,
+            confirmurl=flask.url_for(
+                'front.reset_password',
+                user_id=user.object_id,
+                secret_key=user.secret_key,
+                _external=True
+            )
+        )
+
+
+    return True
 
 @FRONT.route('/resetpassword/<int:user_id>/<secret_key>',
              methods=['GET', 'POST'])

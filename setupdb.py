@@ -12,6 +12,7 @@ from eisitirio.database.announcement import Announcement
 from eisitirio.database.battels import Battels
 from eisitirio.database.battels_transaction import BattelsTransaction
 from eisitirio.database.card_transaction import CardTransaction
+from eisitirio.database.paypal_transaction import PayPalTransaction
 from eisitirio.database.college import College
 from eisitirio.database.dietary_requirements import DietaryRequirements
 from eisitirio.database.eway_transaction import EwayTransaction

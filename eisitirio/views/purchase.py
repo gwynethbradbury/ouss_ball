@@ -15,6 +15,7 @@ from eisitirio.helpers import validators
 from eisitirio.helpers import login_manager
 from eisitirio.logic import cancellation_logic
 from eisitirio.logic import realex_logic
+from eisitirio.logic import paypal_logic
 from eisitirio.logic import purchase_logic
 from eisitirio.logic import payment_logic
 # from eisitirio.logic.custom_logic import ticket_logic
@@ -602,6 +603,126 @@ def payment_interstitial(transaction_id):
         models.Transaction.query.get_or_404(transaction_id)
     )
     return flask.render_template('purchase/payment_interstitial.html', form=form)
+
+
+
+from paypal import PayPalConfig
+from paypal import PayPalInterface
+
+config = PayPalConfig(API_USERNAME = "gwyneth.bradbury-facilitator_api1.googlemail.com",
+                      API_PASSWORD = "MNY5ZNLPBSVF6AGR",
+                      API_SIGNATURE = "AObrtuJ.GeNIX5J3wwmJl32Q91m0AwVKY5pT.EOX9LTamRSsdYC41LWd",
+                      DEBUG_LEVEL=0)
+
+interface = PayPalInterface(config=config)
+
+from flask import url_for
+
+@PURCHASE.route('/purchase/payment-paypal/<int:transaction_id>', methods=['GET'])
+@login.login_required
+# @PURCHASE.route("/")
+def payment_paypal(transaction_id):
+    return """
+        <a href="%s">
+            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_xpressCheckout.gif">
+        </a>
+        """ % url_for('purchase.paypal_redirect',transaction_id=transaction_id)
+
+# @PURCHASE.route('/purchase/payment-paypal/<int:transaction_id>', methods=['GET'])
+# @login.login_required
+# def payment_paypal(transaction_id):
+#     form = paypal_logic.generate_payment_form(
+#         models.Transaction.query.get_or_404(transaction_id)
+#     )
+#     return flask.render_template('purchase/payment_paypal.html', form=form)
+
+
+
+
+
+
+@PURCHASE.route("/paypal/redirect")
+@login.login_required
+def paypal_redirect():
+    kw = {
+        'amt': '10.00',
+        'currencycode': 'USD',
+        'returnurl': url_for('purchase.paypal_confirm', _external=True),#'http://oxfordsalsaball.co.uk/purchase/payment-processed',#
+        'cancelurl': url_for('purchase.paypal_cancel', _external=True),#'http://oxfordsalsaball.co.uk/purchase/payment-processed',#
+        'paymentaction': 'Sale'
+    }
+
+    setexp_response = interface.set_express_checkout(**kw)
+    return flask.redirect(interface.generate_express_checkout_redirect_url(setexp_response.token))
+
+@PURCHASE.route("/paypal/confirm")
+@login.login_required
+def paypal_confirm():
+    getexp_response = interface.get_express_checkout_details(token=request.args.get('token', ''))
+
+    if getexp_response['ACK'] == 'Success':
+        return """
+            Everything looks good! <br />
+            <a href="%s">Click here to complete the payment.</a>
+        """ % url_for('paypal_do', token=getexp_response['TOKEN'])
+    else:
+        return """
+            Oh noes! PayPal returned an error code. <br />
+            <pre>
+                %s
+            </pre>
+            Click <a href="%s">here</a> to try again.
+        """ % (getexp_response['ACK'], url_for('index'))
+
+
+@PURCHASE.route("/paypal/do/<string:token>")
+@login.login_required
+def paypal_do(token):
+    getexp_response = interface.get_express_checkout_details(token=token)
+    kw = {
+        'amt': getexp_response['AMT'],
+        'paymentaction': 'Sale',
+        'payerid': getexp_response['PAYERID'],
+        'token': token,
+        'currencycode': getexp_response['CURRENCYCODE']
+    }
+    interface.do_express_checkout_payment(**kw)
+
+    return flask.redirect(url_for('purchase.paypal_status', token=kw['token']))
+
+@PURCHASE.route("/paypal/status/<string:token>")
+@login.login_required
+def paypal_status(token):
+    checkout_response = interface.get_express_checkout_details(token=token)
+
+    if checkout_response['CHECKOUTSTATUS'] == 'PaymentActionCompleted':
+        # Here you would update a database record.
+        return """
+            Awesome! Thank you for your %s %s purchase.
+        """ % (checkout_response['AMT'], checkout_response['CURRENCYCODE'])
+    else:
+        return """
+            Oh no! PayPal doesn't acknowledge the transaction. Here's the status:
+            <pre>
+                %s
+            </pre>
+        """ % checkout_response['CHECKOUTSTATUS']
+
+@PURCHASE.route("/paypal/cancel")
+@login.login_required
+def paypal_cancel():
+    return flask.redirect(url_for('purchase.payment_paypal'))
+
+# if __name__ == '__main__':
+#     app.run(host='127.0.0.1', port=8338, debug=True)
+
+
+
+
+
+
+
+
 
 @PURCHASE.route('/purchase/payment-processed', methods=['GET','POST'])
 def payment_processed():

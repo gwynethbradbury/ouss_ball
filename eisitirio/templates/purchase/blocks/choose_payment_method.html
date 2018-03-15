@@ -32,6 +32,13 @@
                     Credit/Debit Card
                 </label>
             {% endif %}
+        <br/>
+            {% if 'PayPal' in template_config['PAYMENT_METHODS'] %}
+                <label for="payment_method-PayPal">
+                    <input type="radio" name="payment_method" value="PayPal" id="payment_method-PayPal" required="required" {% if form and form['payment_method'] and form['payment_method'] == 'PayPal' %}checked="checked" {% endif %}/>
+                    PayPal
+                </label>
+            {% endif %}
         </div>
     </div>
 </li>

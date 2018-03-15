@@ -42,7 +42,7 @@ class TicketType(_TicketType):
         if u'tandard' in self.name:
             return True
         if user.affiliation_verified:
-            if user.affiliation.name==self.name:
+            if user.affiliation.name in self.name:
                 return True
         return False
 
