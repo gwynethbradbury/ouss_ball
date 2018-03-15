@@ -609,10 +609,11 @@ def payment_interstitial(transaction_id):
 from paypal import PayPalConfig
 from paypal import PayPalInterface
 
-config = PayPalConfig(API_USERNAME = "gwyneth.bradbury-facilitator_api1.googlemail.com",
-                      API_PASSWORD = "MNY5ZNLPBSVF6AGR",
-                      API_SIGNATURE = "AObrtuJ.GeNIX5J3wwmJl32Q91m0AwVKY5pT.EOX9LTamRSsdYC41LWd",
+config = PayPalConfig(API_USERNAME="gwyneth.bradbury_api1.googlemail.com",
+                      API_PASSWORD="SFE8ECYRR8VPWPAT",
+                      API_SIGNATURE="A5Q8Xsj7f-LN-LLYpJahUp1iNoCcAkbCIbqIxpx9steOH36jxT2EBCLS",
                       DEBUG_LEVEL=0)
+
 
 interface = PayPalInterface(config=config)
 
