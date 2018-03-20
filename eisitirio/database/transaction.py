@@ -76,6 +76,12 @@ class Transaction(DB.Model):
 
         return value_str[:-2] + '.' + value_str[-2:]
 
+    def value_pounds_surcharge(self,surcharge=0):
+        """Get the total value of the transaction."""
+        value_str = "{0:03d}".format(self.value+surcharge)
+
+        return value_str[:-2] + '.' + value_str[-2:]
+
     @property
     def tickets(self):
         """Get the tickets paid for in this transaction.

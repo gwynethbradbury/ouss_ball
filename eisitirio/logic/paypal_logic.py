@@ -94,9 +94,15 @@ class PayPalForm(object):
                                                self.fields['order_id'],
                                                self.fields['amount'],
                                                self.fields['currency']]))
+        self.sha1hash2 = hashlib.sha1(".".join([
+            str(transaction.object_id),
+                                               self.fields['amount'],
+                                               self.fields['currency']]))
         # sign fields hash with secret and create new hash
         self.fields['sha1hash'] = hashlib.sha1(".".join([
             self.sha1hash.hexdigest(), APP.config['PAYPAL_SECRET']])).hexdigest()
+        self.sha1hash2 = hashlib.sha1(".".join([
+            self.sha1hash2.hexdigest(), APP.config['PAYPAL_SECRET']])).hexdigest()
         self.fields['auto_settle_flag'] = 1
 
         # setting additional values that will be returned to you
@@ -109,12 +115,12 @@ class PayPalForm(object):
         form_attr = self.form_attr or dict()
         form_init = {"action": APP.config['PAYPAL_ENDPOINT_URL'], "method": "POST"}
         form_attr.update(form_init)
-        form_str = "<form %s >\n" % (" ".join(["%s='%s'" % (k, v)
+        form_str = "<form name=\"theForm\"' %s >\n" % (" ".join(["%s='%s'" % (k, v)
                                                for k, v in form_attr.items()]))
         form_str = "%s %s \n" \
-                   "<input type='submit' value='Proceed to secure server' class='button large expanded'/>" \
                    "</form>" % (form_str, self.as_fields())
-        return (self.fields['order_id'], form_str)
+                   # "<input type='submit' value='Proceed to secure server' class='button large expanded'/>" \
+        return (self.fields['order_id'], form_str,self.sha1hash2)
 
     def as_fields(self):
         """Renders only the fields without the enclosing form tag."""
@@ -170,7 +176,7 @@ class PayPalForm(object):
 def generate_payment_form(transaction):
     form = PayPalForm(transaction=transaction)
 
-    (order_id, form_str) = form.as_form()
+    (order_id, form_str, hash) = form.as_form()
 
     # transaction.eway_transaction = models.EwayTransaction(
     #     order_id,
@@ -186,33 +192,33 @@ def generate_payment_form(transaction):
         transaction=transaction
     )
 
-    return form_str
+    return form_str, hash, form.fields['amount']
 
 def get_transaction_id(str):
     return int(str.split('-')[0])
 
-def process_payment(request):
+def process_payment(request,order_id,hash,paypal_id):
 
     APP.log_manager.log_event('Received callback from PAYPAL')
 
-    if 'ORDER_ID' not in request.form:
-        flask.flash(
-            (
-                'There was a problem with our payment provider, '
-                'please contact <a href="{0}">the treasurer</a> '
-                'to confirm that payment has not been taken before trying again'
-            ).format(
-                APP.config['TREASURER_EMAIL_LINK'],
-            ),
-            'warning'
-        )
-        APP.log_manager.log_event(
-            'Error processing payment: ORDER_ID not in POST request.'
-        )
-        return None
+    # if 'ORDER_ID' not in request.form:
+    #     flask.flash(
+    #         (
+    #             'There was a problem with our payment provider, '
+    #             'please contact <a href="{0}">the treasurer</a> '
+    #             'to confirm that payment has not been taken before trying again'
+    #         ).format(
+    #             APP.config['TREASURER_EMAIL_LINK'],
+    #         ),
+    #         'warning'
+    #     )
+    #     APP.log_manager.log_event(
+    #         'Error processing payment: ORDER_ID not in POST request.'
+    #     )
+    #     return None
 
     transaction = models.Transaction.query.get_or_404(
-        get_transaction_id(request.form['ORDER_ID'])
+        order_id
     )
 
     if transaction is None:
@@ -237,12 +243,19 @@ def process_payment(request):
 
         return None
 
-    form = RealexForm(transaction=transaction, data=request.form)
+    # todo
+    form = PayPalForm(transaction=transaction)
 
-    # Path 1: SHA1HASH check does not match
-    try:
-        form.is_valid()
-    except SHA1CheckError as exc:
+    if hash==form.sha1hash2:
+        print('success')
+    else:
+    #     print("fail")
+    #
+    #
+    # # Path 1: SHA1HASH check does not match
+    # try:
+    #     form.is_valid()
+    # except SHA1CheckError as exc:
         APP.log_manager.log_event(
             'Suspicious Response from PAYPAL: SHA1HASH does not match.',
             transaction=transaction
@@ -260,17 +273,19 @@ def process_payment(request):
         )
         return None
 
-    paypal_transaction = transaction.eway_transaction
+    paypal_transaction = models.PayPalTransaction(transaction.user)# transaction.eway_transaction
     paypal_transaction.completed = datetime.datetime.utcnow()
     # Stored result codes are only of length two
-    paypal_transaction.result_code = request.form['RESULT'][:2]
-    paypal_transaction.charged = int(request.form['AMOUNT'])
-    paypal_transaction.eway_id = request.form['PASREF']
+    paypal_transaction.result_code = 0#request.form['RESULT'][:2]
+    paypal_transaction.charged = transaction.value#int(request.form['AMOUNT'])
+    paypal_transaction.paypal_id = paypal_id#request.form['PASREF']
+    paypal_transaction.order_id = transaction.object_id
 
     DB.session.commit()
 
     # Good payment
-    if paypal_transaction.status[0]:
+    # todo
+    if True:#paypal_transaction.status[0]:
 
         transaction.mark_as_paid()
 

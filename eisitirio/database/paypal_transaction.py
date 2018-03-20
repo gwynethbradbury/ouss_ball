@@ -23,6 +23,41 @@ class PayPalTransaction(transaction.Transaction):
         primary_key=True
     )
 
+    # This holds the order_id
+    access_code = DB.Column(
+        DB.Unicode(200),
+        nullable=True
+    )
+    charged = DB.Column(
+        DB.Integer(),
+        nullable=False,
+        default=0
+    )
+
+    completed = DB.Column(
+        DB.DateTime(),
+        nullable=True
+    )
+    result_code = DB.Column(
+        DB.Unicode(2),
+        nullable=True
+    )
+    # This holds the PASREF field for realex
+    paypal_id = DB.Column(
+        DB.String(50),
+        nullable=True
+    )
+    refunded = DB.Column(
+        DB.Integer(),
+        nullable=False,
+        default=0
+    )
+
+    order_id = DB.Column(
+        DB.Integer(),
+        nullable=True
+    )
+
     # eway_transaction_id = DB.Column(
     #     DB.Integer(),
     #     DB.ForeignKey('eway_transaction.object_id'),

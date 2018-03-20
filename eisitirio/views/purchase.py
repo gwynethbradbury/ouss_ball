@@ -609,7 +609,7 @@ def payment_interstitial(transaction_id):
 
 import braintree
 
-gateway = braintree.BraintreeGateway(access_token='access_token$production$s3qwk78ch4p5y2dk$077701e4a7f520fac68f2898f803a308')
+gateway = braintree.BraintreeGateway(access_token='access_token$sandbox$z8yxpx29x7tqntyb$efc5ea183c041f87ec0f678b35baa11d')
 @PURCHASE.route("/purchase/client_token", methods=["GET"])
 def client_token():
     return gateway.client_token.generate()
@@ -676,8 +676,14 @@ from flask import url_for
 @login.login_required
 # @PURCHASE.route("/")
 def payment_paypal(transaction_id):
+    t = models.Transaction.query.get_or_404(transaction_id)
+    form, hash, amount = paypal_logic.generate_payment_form(
+        t
+    )
 
-    return flask.render_template('purchase/payment_paypal.html',transaction_id=transaction_id)
+    return flask.render_template('purchase/payment_paypal.html',
+                                 amount = t.value_pounds_surcharge( app.APP.config['PAYPAL_SURCHARGE']),
+                                 transaction_id=transaction_id, hash=hash, surcharge=app.APP.config['PAYPAL_SURCHARGE'])
 
     return """
         <a href="%s">
@@ -796,6 +802,22 @@ def payment_processed():
     else:
         return flask.render_template('purchase/payment_processed.html')
         # return flask.redirect(flask.url_for('dashboard.dashboard_home'))
+
+
+@PURCHASE.route('/purchase/paypal-processed/<int:transaction_id>/<string:hash>', methods=['GET','POST'])
+def _paypal_processed(transaction_id,hash,paypal_id):
+    pass
+@PURCHASE.route('/purchase/paypal-processed/<int:transaction_id>/<string:hash>/<string:paypal_id>', methods=['GET','POST'])
+def paypal_processed(transaction_id,hash,paypal_id):
+    """Callback from realex. Data received in a POST request, see the
+    Realex website for details on how the data is structured. This records
+    the end result of the transaction in the database (using
+    'process_payment') and then redirects the user to their dashboard.
+    Errors and warnings are recorded using flask.flash inside of
+    process_payment."""
+    response = paypal_logic.process_payment(flask.request,transaction_id,hash,paypal_id=paypal_id)
+    return flask.render_template('purchase/payment_processed.html')
+    # return flask.redirect(flask.url_for('dashboard.dashboard_home'))
 
 @PURCHASE.route('/purchase/verify-ticket/<int:ticket_id>')
 def api_verify_ticket(ticket_id):

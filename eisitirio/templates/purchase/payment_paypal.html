@@ -30,7 +30,8 @@
 {% block content %}
 <p>
   Please note that once tickets have been payed for, cancellations and refunds
-  will only be made in exceptional circumstances and may be charged an administration fee.
+    will only be made in exceptional circumstances and may be charged an administration fee.</p>
+<p>An additional charge of {{ surcharge }}p will be added to your order to cover PayPal fees
 </p>
 <div class="div small-12 columns" style="margin-left: auto; margin-right: auto; float: none !important;">
   {{ form|safe}}
@@ -92,8 +93,8 @@
     paypal.Button.render({
         env: 'sandbox', // Or 'production',
         client: {
-            sandbox:    'AeqYg1hgXndHe5NQ7CYTMhUSi2Dwk-A81oG-Vr-p8Tov4D9lOAUOvXl7T4kjQ9z8QlbW-Go6J_kAFD3s',
-            production: 'AfQpxapu4d0GMAJD15yQoWJEskUGiooJgppKv3N8V9dWXm54wKuhfnsOs6aFsgHihjnR19DaxvIm4Lw1'
+            sandbox:    'AQm9BedkwS2ZvB1K6CLFZK3zDeEgpS0lzVP63TKLMsnf4RrJw1b1JCrIgv3GqCWmZdhjVSenMJElmAI_',
+            production: 'ATVJfDnIgPmfkmCQG5E1ao45DOoBpdGyHetcvojKE0yVzI8nUAvqb5p47B3yGn2tFMWtte8C2A2vTqSW'
         },
 
         commit: true, // Show a 'Pay Now' button
@@ -111,10 +112,10 @@
                 payment: {
                     transactions: [
                         {
-                            amount: { total: '1.00', currency: 'GBP' }
+                            amount: { total: '{{ amount }}', currency: 'GBP' }
                         }
                     ],
-                    note_to_payer: "Contact us for any questions on your order.",
+                    note_to_payer: "An additional charge of {{ surcharge }}p has been added to your order to cover PayPal fees.",
                     redirect_urls: {
                       return_url: "{{ url_for('purchase.payment_processed') }}",
                       cancel_url: "{{ url_for('purchase.paypal_cancel',transaction_id=transaction_id) }}"
@@ -131,7 +132,27 @@
 
                 // The payment is complete!
                 // You can now show a confirmation message to the customer
+            window.location = "{{ url_for('purchase._paypal_processed',transaction_id=transaction_id,hash=hash) }}/"+payment.transactions[0].related_resources[0].sale.id;
             });
+
+{#          // Get the payment details#}
+{##}
+{#            return actions.payment.get().then(function(paymentDetails) {#}
+{##}
+{#                // Show a confirmation using the details from paymentDetails#}
+{#                // Then listen for a click on your confirm button#}
+{##}
+{#                document.querySelector('#confirm-button')#}
+{#                    .addEventListener('click', function() {#}
+{##}
+{#                    // Execute the payment#}
+{##}
+{#                    return actions.payment.execute().then(function() {#}
+{#                        // Show a success page to the buyer#}
+{#                        return actions.redirect()#}
+{#                    });#}
+{#                });#}
+{#            });#}
       },
 
       onCancel: function(data, actions) {
