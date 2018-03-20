@@ -606,6 +606,59 @@ def payment_interstitial(transaction_id):
 
 
 
+
+import braintree
+
+gateway = braintree.BraintreeGateway(access_token='access_token$production$s3qwk78ch4p5y2dk$077701e4a7f520fac68f2898f803a308')
+@PURCHASE.route("/purchase/client_token", methods=["GET"])
+def client_token():
+    return gateway.client_token.generate()
+
+@PURCHASE.route("/checkout", methods=["POST"])
+def create_purchase():
+    nonce = flask.request.form["payment_method_nonce"]
+    # Use payment method nonce here...
+
+
+
+    result = gateway.transaction.sale({
+        "amount" : flask.request.form["amount"],
+        "merchant_account_id": "USD",
+        "payment_method_nonce" : flask.request.form["payment_method_nonce"],
+        "order_id" : "Mapped to PayPal Invoice Number",
+        "descriptor": {
+          "name": "Descriptor displayed in customer CC statements. 22 char max"
+        },
+        "shipping": {
+          "first_name": "OU",
+          "last_name": "SS",
+          "company": "OUSS",
+          "street_address": "Oxford",
+          "extended_address": "Oxford",
+          "locality": "Oxford",
+          "region": "OX",
+          "postal_code": "OX1 2EA",
+          "country_code_alpha2": "UK"
+        },
+        "options" : {
+          "paypal" : {
+            "custom_field" : "PayPal custom field",
+            "description" : "Description for PayPal email receipt"
+          },
+        }
+    })
+    if result.is_success:
+        "Success ID: ".format(result.transaction.id)
+    else:
+        format(result.message)
+
+
+
+
+
+
+
+
 from paypal import PayPalConfig
 from paypal import PayPalInterface
 
@@ -623,6 +676,9 @@ from flask import url_for
 @login.login_required
 # @PURCHASE.route("/")
 def payment_paypal(transaction_id):
+
+    return flask.render_template('purchase/payment_paypal.html',transaction_id=transaction_id)
+
     return """
         <a href="%s">
             <img src="https://www.paypalobjects.com/en_US/i/btn/btn_xpressCheckout.gif">
@@ -648,8 +704,8 @@ def paypal_redirect():
     kw = {
         'amt': '10.00',
         'currencycode': 'USD',
-        'returnurl': url_for('purchase.paypal_confirm', _external=True),#'http://oxfordsalsaball.co.uk/purchase/payment-processed',#
-        'cancelurl': url_for('purchase.paypal_cancel', _external=True),#'http://oxfordsalsaball.co.uk/purchase/payment-processed',#
+        'returnurl': url_for('purchase.paypal_confirm', _external=True),#'www.oxfordsalsaball.co.uk/purchase/payment-processed',#
+        'cancelurl': url_for('purchase.paypal_cancel', _external=True),#'www.oxfordsalsaball.co.uk/purchase/payment-processed',#
         'paymentaction': 'Sale'
     }
 

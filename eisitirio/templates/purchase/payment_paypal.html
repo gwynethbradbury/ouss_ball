@@ -3,8 +3,24 @@
 
 
 {% block additional_scripts %}
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{#  <meta http-equiv="X-UA-Compatible" content="IE=edge" />#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#  <script src="https://www.paypalobjects.com/api/checkout.js"></script>#}
+{##}
+{##}
+{#    <!-- Load the required components. -->#}
+{#<script src="https://js.braintreegateway.com/web/3.25.0/js/client.min.js"></script>#}
+{#<script src="https://js.braintreegateway.com/web/3.25.0/js/paypal-checkout.min.js"></script>#}
+{##}
+{#<script>#}
+{#paypal.Button.render({#}
+{#  braintree: braintree,#}
+{#  // Other configuration#}
+{#{, '#id-of-element-where-paypal-button-will-render');#}
+{#</script>#}
+
+
+
   <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 {% endblock %}
 
@@ -20,44 +36,98 @@
   {{ form|safe}}
 
 
+    <div id="paypal-button"></div>
 
 
 
-<div id="paypal-button"></div>
 
-    </div>
 
-  <script>
+
+</div>
+
+{#  <script>#}
+{#    // Be sure to have PayPal's checkout.js library and the Braintree client and PayPal checkout scripts loaded on your page.#}
+{#// <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>#}
+{#// <script src="https://js.braintreegateway.com/web/3.25.0/js/client.min.js"></script>#}
+{#// <script src="https://js.braintreegateway.com/web/3.25.0/js/paypal-checkout.min.js"></script>#}
+{##}
+{#paypal.Button.render({#}
+{#  braintree: braintree,#}
+{#  client: {#}
+{#    production: 'CLIENT_TOKEN_FROM_SERVER',#}
+{#    sandbox: '{{ url_for('purchase.client_token' }}'#}
+{#  },#}
+{#  env: 'production', // Or 'sandbox'#}
+{#  commit: true, // This will add the transaction amount to the PayPal button#}
+{##}
+{#  payment: function (data, actions) {#}
+{#    return actions.braintree.create({#}
+{#      flow: 'checkout', // Required#}
+{#      amount: 10.00, // Required#}
+{#      currency: 'GBP', // Required#}
+{#      enableShippingAddress: true,#}
+{#      shippingAddressEditable: false,#}
+{#      shippingAddressOverride: {#}
+{#        recipientName: 'OUSS',#}
+{#        line1: 'Oxford.',#}
+{#        line2: 'Oxford',#}
+{#        city: 'Oxford',#}
+{#        countryCode: 'UK',#}
+{#        postalCode: 'OX1 2EA',#}
+{#        state: 'OX',#}
+{#        phone: '123.456.7890'#}
+{#      }#}
+{#    });#}
+{#  },#}
+{##}
+{#  onAuthorize: function (payload) {#}
+{#    // Submit `payload.nonce` to your server.#}
+{#  },#}
+{# }, '#paypal-button');#}
+{#  </script>#}
+
+
+
+    <script>
     paypal.Button.render({
-      env: 'production', // Or 'sandbox',
+        env: 'sandbox', // Or 'production',
+        client: {
+            sandbox:    'AeqYg1hgXndHe5NQ7CYTMhUSi2Dwk-A81oG-Vr-p8Tov4D9lOAUOvXl7T4kjQ9z8QlbW-Go6J_kAFD3s',
+            production: 'AfQpxapu4d0GMAJD15yQoWJEskUGiooJgppKv3N8V9dWXm54wKuhfnsOs6aFsgHihjnR19DaxvIm4Lw1'
+        },
 
-      commit: true, // Show a 'Pay Now' button
+        commit: true, // Show a 'Pay Now' button
 
-      style: {
-        color: 'gold',
-        size: 'small'
-
-
-      },
+        style: {
+            color: 'gold',
+            size: 'small'
+        },
 
       payment: function(data, actions) {
         /*
          * Set up the payment here
          */
-        return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
-            return data.id;
-        });
+        return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '1.00', currency: 'GBP' }
+                        }
+                    ],
+                    note_to_payer: "Contact us for any questions on your order.",
+                    redirect_urls: {
+                      return_url: "{{ url_for('purchase.payment_processed') }}",
+                      cancel_url: "{{ url_for('purchase.paypal_cancel',transaction_id=transaction_id) }}"
+                    }
+                }
+            });
       },
 
       onAuthorize: function(data, actions) {
         /*
          * Execute the payment here
          */
-
-            return paypal.request.post(EXECUTE_PAYMENT_URL, {
-                paymentID: data.paymentID,
-                payerID:   data.payerID
-            }).then(function() {
+        return actions.payment.execute().then(function(payment) {
 
                 // The payment is complete!
                 // You can now show a confirmation message to the customer
