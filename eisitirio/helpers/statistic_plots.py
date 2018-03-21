@@ -71,7 +71,7 @@ def create_plot(group):
         plots[statistic.statistic]['current_value'] = statistic.value
 
     render_plot(
-        os.path.join(
+        os.path.join('eisitirio/',
             app.APP.config['GRAPH_STORAGE_FOLDER'],
             '{0}.png'.format(group)
         ),
