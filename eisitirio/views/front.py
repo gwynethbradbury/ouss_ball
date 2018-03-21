@@ -502,12 +502,7 @@ def member_password_create(user):
             'Confirm Password Reset',
             'create_user_password.email',
             name=user.forenames,
-            confirmurl=flask.url_for(
-                'front.reset_password',
-                user_id=user.object_id,
-                secret_key=user.secret_key,
-                _external=True
-            )
+            confirmurl="{}resetpassword/{}/{}".format(app.APP.config['EISITIRIO_URL'],user.object_id,user.secret_key)
         )
 
 
