@@ -1,7 +1,7 @@
 <!-- purchase/purchase_home.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Buy Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Buy Tickets</div>{% endblock %}
 
 {% block content %}
       <section id="purchase" class="columns">
@@ -63,6 +63,13 @@
   {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 2500);
+        });
+
+    </script>
     <script type="text/javascript">
         String.prototype.toInt = function(){
             return parseInt(this, 10);

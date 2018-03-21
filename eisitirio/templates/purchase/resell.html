@@ -1,7 +1,7 @@
 <!-- purchase/resell.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Resell Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Resell Tickets</div>{% endblock %}
 
 {% block content %}
     <section id="resell" class="columns">
@@ -82,6 +82,15 @@
 
         resell_to.on("change", function() {
             resale_message.hide(0);
+        });
+    </script>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 2500);
         });
     </script>
 {% endblock %}
