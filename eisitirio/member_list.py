@@ -1,6 +1,15 @@
-member_list = [
-    ['gwyneth.bradbury@gmail.com',1]
-]
+import dbconfig
+if dbconfig.dbhost=='localhost':
+    beta_member_list = [
+        ['gwyneth.bradbury@gmail.com',1]
+    ]
+else:
+    beta_member_list = [
+        ['gwyneth.bradbury@gmail.com',1],
+        ["quincy.vandenberg@physics.ox.ac.uk",1],
+        ["mlaw@jsl.co.nz",1],
+        ["silvia.butti@lincoln.ox.ac.uk",1]
+    ]
 
 real_member_list = [
     ["josef.hazi@queens.ox.ac.uk",1],
@@ -13,7 +22,6 @@ real_member_list = [
     ["alice.scharmeli@wadham.ox.ac.uk",1],
     ["eleanorjaneuk@yahoo.co.uk",1],
     ["philip.torr@eng.ox.ac.uk",1],
-    ["silvia.butti@lincoln.ox.ac.uk",1],
     #
     ["4dianasaleh@gmail.com",-1],
     ["lindleybushnell@live.co.uk",-1],

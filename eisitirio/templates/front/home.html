@@ -76,11 +76,12 @@
                         <label for="register-confirm">Confirm Password</label>
                         <input type="password" name="confirm" id="register-confirm" />
                 </div>
-                <div class="form-group">
+                <div class="form-group collapse" style="visibility: hidden;">
                         <label for="register-phone">Phone Number</label>
-                        <input type="text" name="phone" id="register-phone"{% if form['phone'] %} value="{{ form['phone'] }}"{% endif %} />
+                        <input type="text" name="phone" id="register-phone" value="07000000000" />
+{#                        <input type="text" name="phone" id="register-phone"{% if form['phone'] %} value="{{ form['phone'] }}"{% endif %} />#}
                 </div>
-                <div class="form-group">
+                <div class="form-group collapse" style="visibility: hidden">
                         <label for="register-college">College</label>
                         <select name="college" id="register-college">
                             {% if form['college'] %}

@@ -1,0 +1,11 @@
+Dear {{ transaction.user.forenames }},
+
+A payment has been made by {{ transaction.user.full_name }}.
+
+You will shortly receive a QR coded ticket to show on the door for the event. If this is not sent to you within the next 24 hours, please contact:
+{{ template_config['TICKETS_EMAIL'] }}.
+
+
+Best Wishes,
+
+{{ template_config['EMAIL_SIGNOFF'] }}

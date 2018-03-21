@@ -30,7 +30,7 @@ def home():
     """
     return flask.render_template(
         'front/home.html',
-        colleges=models.College.query.all(),
+        # colleges=models.College.query.all(),
         affiliations=models.Affiliation.query.all(),
         form={}
     )

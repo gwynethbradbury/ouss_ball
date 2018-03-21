@@ -296,6 +296,14 @@ def process_payment(request,order_id,hash,paypal_id):
             transaction=transaction,
             in_app=True
         )
+
+        APP.email_manager.send_template(
+            transaction.user.email,
+            'Paypal payment confirmed',
+            'payment_confirmation.email',
+            transaction=transaction
+        )
+
         return paypal_transaction
     else: # Invalid paypal payment
         APP.log_manager.log_event(

@@ -71,6 +71,9 @@
                                         {% include 'blocks/admin-navigation.html' %}
                                     {% endif %}
 
+                                    <a class="dropdown-item" href="{{ url_for('front.logout') }}">Log out</a>
+
+
                                 </div>
                             </li>
                         {% else %}

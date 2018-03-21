@@ -94,7 +94,7 @@ ENABLE_CHANGING_PHOTOS = False
 ENABLE_RECLAIMING_TICKETS = True
 
 PAYMENT_METHODS = [
-    'Card',
+    # 'Card',
     'PayPal',
     # 'Battels-MT',
     # 'Battels-MTHT',
