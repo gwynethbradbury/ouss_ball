@@ -91,7 +91,7 @@
 
     <script>
     paypal.Button.render({
-        env: 'sandbox', // Or 'production',
+        env: {% if isServer %}'production'{% else %}'sandbox'{% endif %},
         client: {
             sandbox:    'AQm9BedkwS2ZvB1K6CLFZK3zDeEgpS0lzVP63TKLMsnf4RrJw1b1JCrIgv3GqCWmZdhjVSenMJElmAI_',
             production: 'ATVJfDnIgPmfkmCQG5E1ao45DOoBpdGyHetcvojKE0yVzI8nUAvqb5p47B3yGn2tFMWtte8C2A2vTqSW'

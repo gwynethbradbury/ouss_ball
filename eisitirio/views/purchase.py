@@ -23,6 +23,8 @@ from eisitirio.logic import payment_logic
 APP = flask.current_app
 from eisitirio.app import eisitiriodb as DB
 
+from eisitirio import dbconfig
+
 PURCHASE = flask.Blueprint('purchase', __name__)
 
 @PURCHASE.route('/purchase', methods=['GET', 'POST'])
@@ -680,16 +682,20 @@ def payment_paypal(transaction_id):
     form, hash, amount = paypal_logic.generate_payment_form(
         t
     )
+    isServer = True
+    if dbconfig.dbhost=='localhost':
+        isServer=False
 
     return flask.render_template('purchase/payment_paypal.html',
                                  amount = t.value_pounds_surcharge( app.APP.config['PAYPAL_SURCHARGE']),
-                                 transaction_id=transaction_id, hash=hash, surcharge=app.APP.config['PAYPAL_SURCHARGE'])
+                                 transaction_id=transaction_id, hash=hash, surcharge=app.APP.config['PAYPAL_SURCHARGE'],
+                                 isServer = isServer)
 
-    return """
-        <a href="%s">
-            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_xpressCheckout.gif">
-        </a>
-        """ % url_for('purchase.paypal_redirect',transaction_id=transaction_id)
+    # return """
+    #     <a href="%s">
+    #         <img src="https://www.paypalobjects.com/en_US/i/btn/btn_xpressCheckout.gif">
+    #     </a>
+    #     """ % url_for('purchase.paypal_redirect',transaction_id=transaction_id)
 
 # @PURCHASE.route('/purchase/payment-paypal/<int:transaction_id>', methods=['GET'])
 # @login.login_required
