@@ -2,7 +2,7 @@
 
 {% extends 'layout.html' %}
 
-{% block title %}Upgrade Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Upgrade Tickets</div>{% endblock %}
 
 {% block content %}
     <section id="cancel" class="columns">
@@ -32,4 +32,13 @@
             <input type="submit" value="Upgrade Tickets" class="button" />
         </form>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 1500);
+        });
+    </script>
 {% endblock %}

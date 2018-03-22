@@ -1,7 +1,7 @@
 <!-- purchase/purchase_home.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Buy Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Buy Tickets</div>{% endblock %}
 
 {% block content %}
       <section id="purchase" class="columns">
@@ -173,4 +173,11 @@
         });
     </script>
     {% include 'purchase/blocks/script_show_postage_address.html' %}
+    <!-- Smooth scroll -->
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 1500);
+        });
+    </script>
 {% endblock %}

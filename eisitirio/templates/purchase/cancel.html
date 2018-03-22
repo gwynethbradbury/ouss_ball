@@ -1,7 +1,7 @@
 <!-- purchase/cancel.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Cancel Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Cancel Tickets</div>{% endblock %}
 
 {% block content %}
     <section id="cancel" class="columns">
@@ -46,4 +46,13 @@
             <input type="submit" value="Cancel Tickets" class="button small" />
         </form>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 1500);
+        });
+    </script>
 {% endblock %}

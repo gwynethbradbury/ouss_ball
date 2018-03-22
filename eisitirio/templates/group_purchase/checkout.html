@@ -1,7 +1,7 @@
 <!-- group_purchase/checkout.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Group Purchase - Checkout{% endblock %}
+{% block title %}<div class="scrollDestination">Group Purchase - Checkout</div>{% endblock %}
 
 {% block content %}
     <section id="group_purchase_checkout" class="columns">
@@ -42,4 +42,14 @@
             <input type="submit" value="Buy Tickets" class="button tiny" />
         </form>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 1500);
+        });
+    </script>
+    <!-- {% include 'purchase/blocks/smooth_scroll.html' %} -->
 {% endblock %}
