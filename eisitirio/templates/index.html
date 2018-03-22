@@ -7,14 +7,14 @@
     <div class="col col-sm-12 col-lg-12 col-md-12" id="details">
 
         <p>Oxford University Salsa Society is proud to present: The Oxford Salsa Ball 2018<br><br>Featuring special guest artists, workshops in all levels (beginners too!) and styles,  a live salsa band, and stunning performances – including our very own Salsa Team!
-        The event will be spread across two rooms – one dedicated to the most classic Latin rythms of Salsa, Mambo and Chachacha, the other to Bachata, Kizomba and all things Sensual.</p>
+        The event will be spread across two rooms – one dedicated to the most classic Latin rythms of Salsa, Mambo and Chachacha, the other to Bachata, Kizomba and all things Sensual. There is a cash bar onsite with craft beers and cocktails to spice up the night.</p>
 
         <p>
         <b>7.45pm:</b> Doors open<br>
-        <b>8.00pm–9.00pm:</b> Workshops in Salsa and Bachata<br>
+        <b>8.00pm–9.00pm:</b> Workshops in Salsa (3 levels) and Bachata (2 levels)<br>
         <b>9.00pm-1.30am:</b> Party to the best Latin rythms<br>
-        <b>10.00pm:</b> Live Music Set<br>
-        <b>11.30pm:</b> Live Shows<br>
+        <b>10.00pm:</b> Live Shows<br>
+        <b>10.45pm:</b> Live Music Set<br>
         <b>1.30am –- late:</b> After-Party  in a secret location!
         </p>
         <p>
@@ -24,8 +24,9 @@
         5 minutes walk from Gloucester Green Bus Station<br>
         10 minutes walk from Oxford Railway Station<br>
         </p>
-        <a href="https://www.facebook.com/events/437149370054759/" class="btn btn-large">Facebook</a>
-        <a href="#map" class="btn btn-large">Map to venue</a>
+        <a href="https://www.facebook.com/events/437149370054759/" class="btn btn-large" target="_blank">Facebook</a>
+        <button type="button" class="btn btn-large" id="mapLink">Map to venue</button>
+        <!-- <a href="#map" class="btn btn-large" id="mapLink">Map to venue</a> -->
 
     </div>
 
@@ -210,8 +211,8 @@
         </div>
 
 
-        <a href="https://www.facebook.com/media/set/?set=a.1044323125701770.1073741903.412485195552236&type=1&l=9946d390a9" class="btn btn-large">More pictures</a>
-        <a href="https://www.facebook.com/media/set/?set=oa.10153796419533732&type=3" class="btn btn-large">2016 Photos</a>
+        <a href="https://www.facebook.com/media/set/?set=a.1044323125701770.1073741903.412485195552236&type=1&l=9946d390a9" class="btn btn-large" target="_blank">More pictures</a>
+        <a href="https://www.facebook.com/media/set/?set=oa.10153796419533732&type=3" class="btn btn-large" target="_blank">2016 Photos</a>
 
 
     </div>
@@ -297,7 +298,10 @@
                 </iframe>
 {#                </div>#}
         </div>
+
     </div>
+    <button type="button" class="btn btn-large" id="toTop">Back to top</button>
+
 <!--- Map section -->
 
 
@@ -310,4 +314,22 @@
 {##}
 {##}
 {#    </div>#}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+      $("#mapLink").click(function(){
+        console.log("Event fired!");
+        $("html, body").animate({
+          scrollTop: $("#map-row").offset().top}, 1500);
+        });
+    </script>
+    <script type="text/javascript">
+      $("#toTop").click(function(){
+        $("html, body").animate({
+          scrollTop: $("#details").offset().top}, 1000);
+        });
+    </script>
+
+
 {% endblock %}
