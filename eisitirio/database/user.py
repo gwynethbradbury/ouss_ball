@@ -157,7 +157,7 @@ class User(DB.Model):
     )
 
     def has_tickets(self):
-        if ticket.Ticket.query.filter_by(holder_id=self.object_id).count()>0:
+        if ticket.Ticket.query.filter_by(owner_id=self.object_id).count()>0:
             return True
         return False
 

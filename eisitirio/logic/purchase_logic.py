@@ -257,6 +257,7 @@ def create_tickets(user, ticket_info, num_tickets):
         for _ in xrange(num_tickets[ticket_type.slug])
     ]
 
+
     return tickets
 
 def check_payment_method(flashes):

@@ -5,52 +5,61 @@
 
 {% block content %}
     <section id="dashboard" class="columns">
-        <h3>Your ticket</h3>
-        {% if current_user.has_held_ticket() %}
-            <p>You will use the following ticket for entry into the ball.</p>
-            <table id="tickets_table">
-                <thead>
-                    <tr>
-                        <th>Ticket Number</th>
-                        <th>Ticket Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="ticket-{{ current_user.held_ticket.object_id }}">
-                        <td>#{{ '%05d' % current_user.held_ticket.object_id }}</td>
-                        <td>{{ current_user.held_ticket.status }}</td>
-                        <td>
-                            {% if current_user.held_ticket.can_be_reclaimed() %}
-                                <a href="{{ url_for('dashboard.relinquish_ticket') }}" class="button">Relinquish</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        {% else %}
-            <p>You do not have a ticket for entering the ball. If you have been given a claim code by somebody who has bought a ticket on your behalf, enter it below to claim the ticket and attach it to your account.</p>
-            <p>Please note that once you have claimed a ticket, you will not be able to change your personal details or photo. Please ensure that your details and photo are correct before claiming a ticket.</p>
-            <form action="{{ url_for('dashboard.claim_ticket') }}" method="post">
-                <input type="text" name="claim_code" placeholder="Ticket Claim Code (xxxxx-xxxxx-xxxxx)" style="text-align: center" pattern="\d{5}-\d{5}-\d{5}" />
-                <input type="submit" value="Claim Ticket" class="button" />
-            </form>
+        <h3>Your tickets</h3>
+{#        {% if current_user.has_held_ticket() %}#}
+{#            <p>You will use the following ticket for entry into the ball.</p>#}
+{#            <table class="table" id="tickets_table">#}
+{#                <thead>#}
+{#                    <tr>#}
+{#                        <th>Ticket Number</th>#}
+{#                        <th>Ticket Status</th>#}
+{#                        <th>Actions</th>#}
+{#                    </tr>#}
+{#                </thead>#}
+{#                <tbody>#}
+{#                    <tr id="ticket-{{ current_user.held_ticket.object_id }}">#}
+{#                        <td>#{{ '%05d' % current_user.held_ticket.object_id }}</td>#}
+{#                        <td>{{ current_user.held_ticket.status }}</td>#}
+{#                        <td>#}
+{#                            {% if current_user.held_ticket.can_be_reclaimed() %}#}
+{#                                <a href="{{ url_for('dashboard.relinquish_ticket') }}" class="button">Relinquish</a>#}
+{#                            {% endif %}#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                </tbody>#}
+{#            </table>#}
+{#        {% else %}#}
+{#            <p>You do not have a ticket for entering the ball. If you have been given a claim code by somebody who has bought a ticket on your behalf, enter it below to claim the ticket and attach it to your account.</p>#}
+{#            <p>Please note that once you have claimed a ticket, you will not be able to change your personal details or photo. Please ensure that your details and photo are correct before claiming a ticket.</p>#}
+{#            <form action="{{ url_for('dashboard.claim_ticket') }}" method="post">#}
+{#                <input type="text" name="claim_code" placeholder="Ticket Claim Code (xxxxx-xxxxx-xxxxx)" style="text-align: center" pattern="\d{5}-\d{5}-\d{5}" />#}
+{#                <input type="submit" value="Claim Ticket" class="button" />#}
+{#            </form>#}
+{#        {% endif %}#}
+
+{#        {% if (current_user.held_ticket != None) and (current_user.held_ticket.barcode != None) and (barcode is defined) %}#}
+{#          <h3>Your Entry Ticket</h3>#}
+{#            <img src="data:image/png;base64, {{ barcode }}" value="Your Ticket" />#}
+{#        {% endif %}#}
+
+        {% if current_user.has_unpaid_tickets() %}
+        <p>You currently hold tickets which have not been paid for. Please follow ths links below. Failure to pay before the ticket system closes will mean you will pay the full door price.</p>
         {% endif %}
 
-        {% if (current_user.held_ticket != None) and (current_user.held_ticket.barcode != None) and (barcode is defined) %}
-          <h3>Your Entry Ticket</h3>
-            <img src="data:image/png;base64, {{ barcode }}" value="Your Ticket" />
+        {% if current_user.has_paid_tickets() %}
+        <p>You {% if current_user.has_unpaid_tickets() %}also {% endif %}have paid for tickets, these are shown below.</p>
         {% endif %}
 
-        <h3>Tickets You Own</h3>
+        <h4>Tickets You Own</h4>
         {% if current_user.tickets.count() > 0 %}
-            <table id="tickets_table">
+            <table class="table" id="tickets_table">
                 <thead>
                     <tr>
                         <th>Ticket Number</th>
                         <th>Ticket Status</th>
-                        <th>Ticket Claim Code</th>
-                        <th>Actions</th>
+                        <!--<th>Ticket Claim Code</th>-->
+                        <!--<th>Actions</th>-->
+                        <th>Assign Ticket</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,14 +70,14 @@
                               , Upgraded
                               {% endif %}</td>
                             <td>{{ ticket.status }}</td>
-                            <td>
-                                {% if not ticket.cancelled %}
-                                    {% if ticket.holder == None %}
-                                        {{ ticket.claim_code }}
-                                    {% else %}
-                                        Ticket has been claimed by {{ ticket.holder.full_name }}.
-                                    {% endif %}
-                                {% endif %}
+{#                            <td>#}
+{#                                {% if not ticket.cancelled %}#}
+{#                                    {% if ticket.holder == None %}#}
+{#                                        {{ ticket.claim_code }}#}
+{#                                    {% else %}#}
+{#                                        Ticket has been claimed by {{ ticket.holder.full_name }}.#}
+{#                                    {% endif %}#}
+{#                                {% endif %} </td>#}
                             <td>
                                 {% if not ticket.cancelled %}
                                     {% if not ticket.paid %}
@@ -80,10 +89,19 @@
                                     {% if ticket.can_be_resold() %}
                                         <a href="{{ url_for('purchase.resell') }}" class="button tiny">Resell</a>
                                     {% endif %}
-                                    {% if ticket.can_be_claimed() %}
-                                        <form action="{{ url_for('dashboard.claim_ticket') }}" method="post">
+{#                                   {% if ticket.can_be_claimed() %}#}
+{#                                        <form action="{{ url_for('dashboard.claim_ticket') }}" method="post">#}
+{#                                            <input type="hidden" name="claim_code" value="{{ ticket.claim_code }}" />#}
+{#                                            <input type="submit" value="Claim" class="button tiny" />#}
+{#                                        </form>#}
+{#                                    {% endif %}#}
+                                    {% if ticket.is_assigned() %}
+                                        {{ ticket.holder_name }}
+                                    {% else %}
+                                        <form action="{{ url_for('dashboard.assign_ticket') }}" method="post">
                                             <input type="hidden" name="claim_code" value="{{ ticket.claim_code }}" />
-                                            <input type="submit" value="Claim" class="button tiny" />
+                                            <input type="text" name="new_holder_name" placeholder="{{ ticket.holder_name }}" required/>
+                                            <input type="submit" value="Assign" class="button tiny" />
                                         </form>
                                     {% endif %}
                                     {% if ticket.can_be_reclaimed() %}
@@ -102,7 +120,7 @@
         <h3>Waiting List Entries</h3>
         {% if current_user.is_waiting %}
             <div id="waiting_message_wrapper"></div>
-            <table id="waiting_table">
+            <table class="table" id="waiting_table">
                 <thead>
                     <tr>
                         <th>Waiting for</th>

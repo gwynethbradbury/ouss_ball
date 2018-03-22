@@ -1,0 +1,24 @@
+***FULL TICKET LIST***
+
+
+<table>
+    <tr>
+        <td>Ticket ID</td>
+        <td>Paid for by</td>
+        <td>Holder</td>
+        <td>Paid?</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    {% for t in tickets %}
+        <tr>
+            <td>{{ t.object_id }}</td>
+            <td>{{ t.owner.full_name }}</td>
+            <td>{{ t.holder_name }}</td>
+            <td>{{ t.paid }}</td>
+        </tr>
+    {% endfor %}
+
+</table>

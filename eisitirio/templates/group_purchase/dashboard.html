@@ -51,7 +51,7 @@
                     {% endfor %}
                 </ul>
                 <h2>Tickets Requested</h2>
-                <table>
+                <table class="table">
                     <thead>
                         <th>Ticket type</th>
                         <th>Price per ticket</th>
@@ -82,7 +82,7 @@
             {% endif %}
             <h2>Update your ticket request:</h2>
             <form action="{{ url_for('group_purchase.update_request') }}" id="purchase_form" method="post">
-                <table id="ticket_type_table">
+                <table class="table" id="ticket_type_table">
                     <thead>
                         <th>Ticket type</th>
                         <th>Price</th>

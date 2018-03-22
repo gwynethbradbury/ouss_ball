@@ -21,6 +21,7 @@ from eisitirio.scripts import prefill
 # from eisitirio.scripts import run_bpython
 from eisitirio.scripts import update_battels
 from eisitirio.scripts import create_qr_codes
+from eisitirio.scripts import send_full_list
 
 EISITIRIO_DIR = os.path.realpath(__file__).replace('command.py',
                                                    'eisitirio')
@@ -68,6 +69,7 @@ MANAGER.add_command('prefill', prefill.PrefillCommand)
 MANAGER.add_command('run', script.Server)
 MANAGER.add_command('update_battels', update_battels.UpdateBattelsCommand)
 MANAGER.add_command('send_qr_tickets', create_qr_codes.CreateQRCodes)
+MANAGER.add_command('send_list_of_tickets_to_webmaster',send_full_list.SendList())
 
 if __name__ == '__main__':
     MANAGER.run()
