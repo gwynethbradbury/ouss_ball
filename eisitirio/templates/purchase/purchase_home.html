@@ -102,9 +102,9 @@
 {#                TODO: CHECK THAT THIS APPLIES TO THE TOTAL#}
                 var p = ticket_type.price;
                 group_discount_message.hide(0);
-                if (ticket_type.slug.includes('tandard') && ordered>9){
+                if (ticket_type.slug.includes('tandard') && ordered>={{ template_config['GROUP_SIZE'] }}){
                     p = 1800;
-                    var msg="group rate (10+) £18"
+                    var msg="group rate ({{ template_config['GROUP_SIZE'] }}+) £{{ template_config['GROUP_TICKET_PRICE'] }}"
 
                     group_discount_message.html(msg);
                     group_discount_message.show(0);
