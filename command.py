@@ -71,7 +71,7 @@ MANAGER.add_command('run', script.Server)
 MANAGER.add_command('update_battels', update_battels.UpdateBattelsCommand)
 MANAGER.add_command('send_qr_tickets', create_qr_codes.CreateQRCodes)
 MANAGER.add_command('send_list_of_tickets_to_webmaster',send_full_list.SendList())
-# MANAGER.add_command('create_member_accounts',create_member_accounts.CreateMemberAccountsCommand())
+MANAGER.add_command('create_member_accounts',create_member_accounts.CreateMemberAccountsCommand())
 MANAGER.add_command('create_beta_member_accounts',create_member_accounts.CreateBetaMemberAccountsCommand())
 
 if __name__ == '__main__':
