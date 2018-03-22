@@ -1,7 +1,7 @@
 <!-- group_purchase/dashboard.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Group Purchase{% endblock %}
+{% block title %}<div class="scrollDestination">Group Purchase</div>{% endblock %}
 
 {% block content %}
     <section id="group_purchase_dashboard" class="columns">
@@ -160,4 +160,11 @@
             });
         </script>
     {% endif %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 1500);
+        });
+    </script>
+        <!-- {% include '../purchase/blocks/smooth_scroll.html' %} -->
 {% endblock %}

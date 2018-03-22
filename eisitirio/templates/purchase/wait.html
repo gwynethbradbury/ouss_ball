@@ -1,7 +1,7 @@
 <!-- purchase/wait.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Join Waiting List{% endblock %}
+{% block title %}<div class="scrollDestination">Join Waiting List</div>{% endblock %}
 
 {% block content %}
     <section id="wait" class="columns">
@@ -39,6 +39,13 @@
     <script type="text/javascript">
         $("#num_tickets").on("change",  function (event) {
             $('#num_tickets_display').html($(this).val());
+        });
+    </script>
+    <!-- Smooth scroll -->
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("html, body").animate({
+          scrollTop: $(".scrollDestination").offset().top}, 1500);
         });
     </script>
 {% endblock %}
