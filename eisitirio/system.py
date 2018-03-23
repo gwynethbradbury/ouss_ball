@@ -158,7 +158,7 @@ def context_processor():
     def get_ord(date):
         """Get the appropriate ordinal for a date."""
         daymod = date.day % 10
-        if daymod == 1 and not(date.day==11):
+        if daymod == 1 and not(date.dat==11):
             return 'st'
         elif daymod == 2:
             return 'nd'

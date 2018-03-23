@@ -1,7 +1,5 @@
 <p>Dear {{ user.forenames }},
 <hr/>
-<p>***We apologise if you have received multiple copies of this email, please use the most recent one.***
-<hr/>
 <p>Ticket id: {{ ticket.object_id }}
 <p>Ticket paid for by: {{ ticket.owner.forenames }} {{ ticket.owner.surname }}
 <p>Ticket assigned to: {{ ticket.holder_name }}
