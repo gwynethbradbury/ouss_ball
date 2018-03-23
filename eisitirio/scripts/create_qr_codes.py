@@ -88,14 +88,20 @@ def send_claim_code(user,ticket):
     """Send qr code to user that paid for ticket"""
 
     if ticket.barcode is None:
-        LOG.error("User {0} has a held ticket, but unable to send it to them since there is no barcode for ticket {1}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id))
+        try:
+            LOG.error("User {0} has a held ticket, but unable to send it to them since there is no barcode for ticket {1}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id))
+        except Exception as e:
+            pass
         return False
     else:
         qr_code = generate_ticket_qr(ticket)
         if qr_code is None:
-            LOG.error("User {0} has a held ticket, but QR generation failed for {1}".format(
-                user.full_name.encode('utf-8'), "-" ))
-                # user.full_name.encode('utf-8'), user.held_ticket.object_id ))
+            try:
+                LOG.error("User {0} has a held ticket, but QR generation failed for {1}".format(
+                    user.full_name.encode('utf-8'), "-" ))
+                    # user.full_name.encode('utf-8'), user.held_ticket.object_id ))
+            except Exception as e:
+                pass
             return False
         else:
             APP.email_manager.send_image_html(
@@ -106,8 +112,11 @@ def send_claim_code(user,ticket):
                 user=user,
                 ticket=ticket
             )
-            # APP.log_manager.log_event("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id, user.held_ticket.barcode))
-            APP.log_manager.log_event("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), "-", user.held_ticket.barcode))
+            try:
+                # APP.log_manager.log_event("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id, user.held_ticket.barcode))
+                APP.log_manager.log_event("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), "-", user.held_ticket.barcode))
+            except Exception as e:
+                pass
         return True
 # def send_claim_code(user):
 #     """Send qr code to user that holds ticket"""
@@ -144,11 +153,17 @@ def send_chunk(tickets):
             # if send_claim_code(ticket.holder):
                 successes = successes + 1
                 print '[Sent: {0}]'.format(ticket.object_id)
-                LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.owner.full_name.encode('utf-8')))
+                try:
+                    LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.owner.full_name.encode('utf-8')))
+                except Exception as e:
+                    pass
             else:
                 ticket.barcode = None
                 DB.session.commit()
-                LOG.error("Failed to send ticket to {0}".format(ticket.owner.full_name.encode('utf-8')))
+                try:
+                    LOG.error("Failed to send ticket to {0}".format(ticket.owner.full_name.encode('utf-8')))
+                except Exception as e:
+                    pass
                 print '[Failed to Send: {0}]'.format(ticket.object_id)
                 failures = failures + 1
         except:
@@ -156,8 +171,11 @@ def send_chunk(tickets):
             ticket.barcode = None
             DB.session.commit()
             failures = failures + 1
-            # LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder.full_name.encode('utf-8')))
-            LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder_name.encode('utf-8')))
+            try:
+                # LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder.full_name.encode('utf-8')))
+                LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder_name.encode('utf-8')))
+            except Exception as e:
+                pass
         sleep(0.5)
 
     print "All done sending claim codes. Total #codes that we should have sent: {0}".format(len(tickets))
