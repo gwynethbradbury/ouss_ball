@@ -15,7 +15,7 @@ DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 2300, -1,
 TICKET_TYPES = [
     ticket_type.TicketType("OUSS Member (Early Bird)", "early_member", 1500, 1, 30,
                            True, True),
-    ticket_type.TicketType("Standard (Early Bird)", "early_standard", 2000, 2, 50,
+    ticket_type.TicketType("Standard (Early Bird)", "early_standard", 2000, 2, 40,
                            True, True),
     ticket_type.TicketType("OUSS Member", "member", 1800, 1, -1,
                            True, True),
