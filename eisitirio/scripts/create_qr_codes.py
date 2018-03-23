@@ -94,7 +94,8 @@ def send_claim_code(user,ticket):
         qr_code = generate_ticket_qr(ticket)
         if qr_code is None:
             LOG.error("User {0} has a held ticket, but QR generation failed for {1}".format(
-                user.full_name.encode('utf-8'), user.held_ticket.object_id ))
+                user.full_name.encode('utf-8'), "-" ))
+                # user.full_name.encode('utf-8'), user.held_ticket.object_id ))
             return False
         else:
             APP.email_manager.send_image_html(
@@ -105,7 +106,8 @@ def send_claim_code(user,ticket):
                 user=user,
                 ticket=ticket
             )
-            LOG.info("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id, user.held_ticket.barcode))
+            # APP.log_manager.log_event("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), user.held_ticket.object_id, user.held_ticket.barcode))
+            APP.log_manager.log_event("Sent ticket to {0} holding ticket {1}----{2}".format(user.full_name.encode('utf-8'), "-", user.held_ticket.barcode))
         return True
 # def send_claim_code(user):
 #     """Send qr code to user that holds ticket"""
@@ -142,11 +144,11 @@ def send_chunk(tickets):
             # if send_claim_code(ticket.holder):
                 successes = successes + 1
                 print '[Sent: {0}]'.format(ticket.object_id)
-                LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.holder_name.encode('utf-8')))
+                LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.owner.full_name.encode('utf-8')))
             else:
                 ticket.barcode = None
                 DB.session.commit()
-                LOG.error("Failed to send ticket to {0}".format(ticket.holder.full_name.encode('utf-8')))
+                LOG.error("Failed to send ticket to {0}".format(ticket.owner.full_name.encode('utf-8')))
                 print '[Failed to Send: {0}]'.format(ticket.object_id)
                 failures = failures + 1
         except:
