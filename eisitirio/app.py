@@ -4,8 +4,12 @@
 from __future__ import unicode_literals
 
 import flask
+from flask_sslify import SSLify
+
 
 APP = flask.Flask('eisitirio', static_folder=None)
+
+sslify = SSLify(APP)
 
 APP.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', False)
 

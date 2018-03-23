@@ -14,6 +14,7 @@ from werkzeug import exceptions
 import flask
 import jinja2
 
+
 # from eisitirio import app
 import app, sys
 
