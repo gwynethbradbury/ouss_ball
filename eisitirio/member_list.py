@@ -13,16 +13,14 @@ else:
 
 real_member_list = [
     ["josef.hazi@queens.ox.ac.uk",1],
-    ["joachim.hagel@keble.ox.ac.uk",1],
-    ["alice.correiamorton@oriel.ox.ac.uk",1],
-    ["quincy.vandenberg@physics.ox.ac.uk",1],
     ["Gwyneth.anne.dj@gmail.com",1],
     ["dario.beraldo@maths.ox.ac.uk",1],
-    ["mlaw@jsl.co.nz",1],
     ["alice.scharmeli@wadham.ox.ac.uk",1],
     ["eleanorjaneuk@yahoo.co.uk",1],
     ["philip.torr@eng.ox.ac.uk",1],
     #
+    ["joachim.hagel@keble.ox.ac.uk",-1],
+    ["alice.correiamorton@oriel.ox.ac.uk",-1],
     ["4dianasaleh@gmail.com",-1],
     ["lindleybushnell@live.co.uk",-1],
     ["richard_3986@yahoo.co.uk",-1],
