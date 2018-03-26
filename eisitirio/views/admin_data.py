@@ -30,13 +30,20 @@ def view_statistics2():
     Computes a number of statistics about the ball (live), and displays them
     alongside graphs.
     """
+
+    tickets = models.Ticket.query.filter(models.Ticket.paid == True)
+    p=0
+    for t in tickets:
+        p=p+\
+          t.price_ + 80 - 0.034 * (t.price_ + 80) - 20
+
     return flask.render_template(
         'admin_data/statistics2.html',
-        revenue=statistics.get_revenue(),
         em = models.Ticket.query.filter(models.Ticket.ticket_type=='early_member').filter(models.Ticket.paid==True).count(),
         es = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard').filter(models.Ticket.paid==True).count(),
         m = models.Ticket.query.filter(models.Ticket.ticket_type=='member').filter(models.Ticket.paid==True).count(),
-        s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count()
+        s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count(),
+        p=p
     )
 
 @ADMIN_DATA.route('/admin/statistics')

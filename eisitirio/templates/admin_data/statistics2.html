@@ -12,11 +12,6 @@
         <p>Standard: {{ s }}</p>
 
         <h4>Revenue Statistics</h4>
-
-        {% for title, value in revenue.iteritems() %}
-            {% if title=="Total value of paid tickets" %}
-            <p>{{ title }}: &pound;{{ '%.2f' % (value / 100) }}</p>
-            {% endif %}
-        {% endfor %}
+        <p>Total value of paid tickets: £{{ '%.2f' % (p / 100) }}</p>
     </section>
 {% endblock %}
