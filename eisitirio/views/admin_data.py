@@ -24,7 +24,6 @@ from eisitirio.app import eisitiriodb as DB
 ADMIN_DATA = flask.Blueprint('admin_data', __name__)
 
 @ADMIN_DATA.route('/report')
-@login.login_required
 def view_statistics2():
     """Display simple report about the ball.
 
