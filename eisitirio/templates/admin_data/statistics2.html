@@ -1,0 +1,22 @@
+<!-- admin_data/statistics.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Data and Statistics{% endblock %}
+
+{% block content %}
+    <section id="admin_home" class="columns">
+
+        <p>Early member: {{ em }}</p>
+        <p>Early standard: {{ es }}</p>
+        <p>Member: {{ m }}</p>
+        <p>Standard: {{ s }}</p>
+
+        <h4>Revenue Statistics</h4>
+
+        {% for title, value in revenue.iteritems() %}
+            {% if title=="Total value of paid tickets" %}
+            <p>{{ title }}: &pound;{{ '%.2f' % (value / 100) }}</p>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endblock %}

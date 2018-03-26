@@ -444,3 +444,7 @@ def view_purchase_group(group_id, events_page=1):
         events=events,
         events_page=events_page
     )
+
+
+
+

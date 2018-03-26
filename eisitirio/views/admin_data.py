@@ -23,6 +23,23 @@ from eisitirio.app import eisitiriodb as DB
 
 ADMIN_DATA = flask.Blueprint('admin_data', __name__)
 
+@ADMIN_DATA.route('/report')
+@login.login_required
+def view_statistics2():
+    """Display simple report about the ball.
+
+    Computes a number of statistics about the ball (live), and displays them
+    alongside graphs.
+    """
+    return flask.render_template(
+        'admin_data/statistics2.html',
+        revenue=statistics.get_revenue(),
+        em = models.Ticket.query.filter(models.Ticket.ticket_type=='early_member').filter(models.Ticket.paid==True).count(),
+        es = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard').filter(models.Ticket.paid==True).count(),
+        m = models.Ticket.query.filter(models.Ticket.ticket_type=='member').filter(models.Ticket.paid==True).count(),
+        s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count()
+    )
+
 @ADMIN_DATA.route('/admin/statistics')
 @login.login_required
 @login_manager.admin_required
