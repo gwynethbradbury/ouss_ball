@@ -1,7 +1,7 @@
 <!-- purchase/resell.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Resell Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Resell Tickets</div>{% endblock %}
 
 {% block content %}
     <section id="resell" class="columns">
@@ -51,6 +51,8 @@
 {% endblock %}
 
 {% block javascripts %}
+    {% include 'purchase/blocks/smoothscroll.html' %}
+
     <script type="text/javascript">
         var resell_to = $("#resell_to");
         var resale_message = $("#resale_message");

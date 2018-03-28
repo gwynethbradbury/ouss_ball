@@ -1,7 +1,7 @@
 <!-- purchase/pay_admin_fee.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Pay Administration Fee{% endblock %}
+{% block title %}<div class="scrollDestination">Pay Administration Fee</div>{% endblock %}
 
 {% block content %}
     <section id="pay_admin_fee" class="columns">
@@ -19,4 +19,8 @@
             </ul>
         </form>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'purchase/blocks/smoothscroll.html' %}
 {% endblock %}

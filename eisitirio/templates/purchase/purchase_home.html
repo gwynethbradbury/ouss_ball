@@ -1,7 +1,7 @@
 <!-- purchase/purchase_home.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Buy Tickets{% endblock %}
+{% block title %}<div class="scrollDestination">Buy Tickets</div>{% endblock %}
 
 {% block content %}
       <section id="purchase" class="columns">
@@ -67,6 +67,8 @@
   {% endblock %}
 
 {% block javascripts %}
+    {% include 'purchase/blocks/smoothscroll.html' %}
+
     <script type="text/javascript">
         String.prototype.toInt = function(){
             return parseInt(this, 10);

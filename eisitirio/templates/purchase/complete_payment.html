@@ -1,7 +1,7 @@
 <!-- purchase/complete_payment.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Complete Payment{% endblock %}
+{% block title %}<div class="scrollDestination">Complete Payment</div> {% endblock %}
 
 {% block content %}
     <section id="complete_payment" class="columns">
@@ -50,5 +50,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    {% include 'purchase/blocks/smoothscroll.html' %}
     {% include 'purchase/blocks/script_show_postage_address.html' %}
 {% endblock %}

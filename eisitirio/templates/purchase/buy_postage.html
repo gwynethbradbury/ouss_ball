@@ -1,7 +1,7 @@
 <!-- purchase/buy_postage.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Buy Postage{% endblock %}
+{% block title %}<div class="scrollDestination">Buy Postage</div>{% endblock %}
 
 {% block content %}
     <section id="postage" class="columns">
@@ -50,5 +50,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    {% include 'purchase/blocks/smoothscroll.html' %}
     {% include 'purchase/blocks/script_show_postage_address.html' %}
 {% endblock %}

@@ -1,7 +1,7 @@
 <!-- purchase/wait.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Join Waiting List{% endblock %}
+{% block title %}<div class="scrollDestination">Join Waiting List</div>{% endblock %}
 
 {% block content %}
     <section id="wait" class="columns">
@@ -41,4 +41,8 @@
             $('#num_tickets_display').html($(this).val());
         });
     </script>
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'purchase/blocks/smoothscroll.html' %}
 {% endblock %}
