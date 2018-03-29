@@ -36,15 +36,15 @@ def view_statistics2():
     p=0
     for t in tickets:
         p=p+\
-          t.price_ + 80 - 0.034 * (t.price_ + 80) - 20
+          t.price_
     p2=0
     for t in transactions:
         if p2<150000:
             p2=p2+\
-               t.charged*(1.0-0.034)
+               t.charged*(0.966)-20
         else:
             p2=p2+\
-               t.charged*(1.0-0.029)
+               t.charged*(0.971)-20
 
 
 
@@ -54,7 +54,8 @@ def view_statistics2():
         es = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard').filter(models.Ticket.paid==True).count(),
         m = models.Ticket.query.filter(models.Ticket.ticket_type=='member').filter(models.Ticket.paid==True).count(),
         s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count(),
-        p=p2,
+        p=p,
+        p2=p2,
         tickets=tickets
     )
 
