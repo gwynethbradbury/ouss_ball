@@ -37,7 +37,7 @@ def view_statistics2():
     for t in tickets:
         p=p+\
           t.price_
-    p2=0
+    p2=10800*(0.966)-20
     for t in transactions:
         if p2<150000:
             p2=p2+\
