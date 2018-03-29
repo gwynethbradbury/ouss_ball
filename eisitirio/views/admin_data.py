@@ -43,7 +43,8 @@ def view_statistics2():
         es = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard').filter(models.Ticket.paid==True).count(),
         m = models.Ticket.query.filter(models.Ticket.ticket_type=='member').filter(models.Ticket.paid==True).count(),
         s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count(),
-        p=p
+        p=p,
+        tickets=tickets
     )
 
 @ADMIN_DATA.route('/admin/statistics')

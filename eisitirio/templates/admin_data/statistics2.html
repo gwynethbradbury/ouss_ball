@@ -13,5 +13,19 @@
 
         <h4>Revenue Statistics</h4>
         <p>Total value of paid tickets: £{{ '%.2f' % (p / 100) }}</p>
+    <hr/>
+
+        <table>
+            <thead>
+                <td>Ticket Type</td>
+                <td>Price</td>
+            </thead>
+            {% for t in tickets %}
+                <tr>
+                    <td>{{ t.ticket_type }}</td>
+                    <td>{{ '%0.2f'| format(t.price_/100|float) }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </section>
 {% endblock %}
