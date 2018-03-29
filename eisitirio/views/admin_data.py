@@ -32,10 +32,21 @@ def view_statistics2():
     """
 
     tickets = models.Ticket.query.filter(models.Ticket.paid == True)
+    transactions = models.PayPalTransaction.query.filter(models.PayPalTransaction.charged >0)
     p=0
     for t in tickets:
         p=p+\
           t.price_ + 80 - 0.034 * (t.price_ + 80) - 20
+    p2=0
+    for t in transactions:
+        if p2<150000:
+            p2=p2+\
+               t.charged*(1.0-0.034)
+        else:
+            p2=p2+\
+               t.charged*(1.0-0.029)
+
+
 
     return flask.render_template(
         'admin_data/statistics2.html',
@@ -43,7 +54,7 @@ def view_statistics2():
         es = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard').filter(models.Ticket.paid==True).count(),
         m = models.Ticket.query.filter(models.Ticket.ticket_type=='member').filter(models.Ticket.paid==True).count(),
         s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count(),
-        p=p,
+        p=p2,
         tickets=tickets
     )
 
