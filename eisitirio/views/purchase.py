@@ -682,6 +682,7 @@ def payment_paypal(transaction_id):
     form, hash, amount = paypal_logic.generate_payment_form(
         t
     )
+
     isServer = True
     if dbconfig.dbhost=='localhost':
         isServer=False

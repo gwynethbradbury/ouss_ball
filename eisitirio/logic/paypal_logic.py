@@ -289,6 +289,29 @@ def process_payment(request,order_id,hash,paypal_id):
 
         transaction.mark_as_paid()
 
+        try:
+            APP.log_manager.log_event(
+                'This was a group transaction',
+                tickets=transaction.tickets,
+                user=transaction.user,
+                transaction=transaction,
+                in_app=True
+            )
+            if transaction.tickets.count > 6:
+                for ti in transaction.tickets:
+                    ti.price_ = 1800
+                db.session.commit()
+        except Exception as e:
+            APP.log_manager.log_event(
+                'something went wrong resetting the group price for this transaction',
+                tickets=transaction.tickets,
+                user=transaction.user,
+                transaction=transaction,
+                in_app=True
+            )
+
+        db.session.commit()
+
         APP.log_manager.log_event(
             'Completed Card Payment',
             tickets=transaction.tickets,

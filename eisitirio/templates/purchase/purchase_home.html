@@ -105,8 +105,14 @@
                 var p = ticket_type.price;
                 group_discount_message.hide(0);
                 if (ticket_type.slug.includes('tandard') && ordered>={{ template_config['GROUP_SIZE'] }}){
-                    p = 1800;
-                    var msg="group rate ({{ template_config['GROUP_SIZE'] }}+) £{{ template_config['GROUP_TICKET_PRICE'] }}"
+                    if(ordered>={{ template_config['GROUP_SIZE2'] }}){
+                        p = 1600;
+                        var msg="group rate ({{ template_config['GROUP_SIZE2'] }}+) £{{ template_config['GROUP_TICKET_PRICE2'] }}"
+                    }
+                    else{
+                        p = 1800;
+                        var msg="group rate ({{ template_config['GROUP_SIZE'] }}+) £{{ template_config['GROUP_TICKET_PRICE'] }}"
+                    }
 
                     group_discount_message.html(msg);
                     group_discount_message.show(0);
