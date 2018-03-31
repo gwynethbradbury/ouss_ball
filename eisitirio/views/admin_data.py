@@ -37,7 +37,10 @@ def view_statistics2():
     for t in tickets:
         p=p+\
           t.price_
+    #  first group
     p2=10800*(0.966)-20
+    #  refunds
+    p2=p2-3000 - (18.95*(0.966)-20)
     for t in transactions:
         if p2<150000:
             p2=p2+\
@@ -45,7 +48,6 @@ def view_statistics2():
         else:
             p2=p2+\
                t.charged*(0.971)-20
-
 
 
     return flask.render_template(
