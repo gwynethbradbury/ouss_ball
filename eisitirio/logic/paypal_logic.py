@@ -297,7 +297,7 @@ def process_payment(request,order_id,hash,paypal_id):
                 transaction=transaction,
                 in_app=True
             )
-            if transaction.tickets.count > 6:
+            if transaction.tickets.count() > 6:
                 for ti in transaction.tickets:
                     ti.price_ = 1800
                 db.session.commit()
