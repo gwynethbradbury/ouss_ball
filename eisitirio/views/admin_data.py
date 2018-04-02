@@ -31,7 +31,7 @@ def view_statistics2():
     alongside graphs.
     """
 
-    tickets = models.Ticket.query.filter(models.Ticket.paid == True)
+    tickets = models.Ticket.query.filter(models.Ticket.paid == True).sort_by(models.Ticket.object_id)
     transactions = models.PayPalTransaction.query.filter(models.PayPalTransaction.charged >0)
     p=0
     for t in tickets:

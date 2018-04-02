@@ -23,11 +23,13 @@
             <thead>
                 <td>Ticket Type</td>
                 <td>Price</td>
+                <td></td>
             </thead>
             {% for t in tickets %}
                 <tr>
                     <td>{{ t.ticket_type }}</td>
                     <td>{{ '%0.2f'| format(t.price_/100|float) }}</td>
+                    <td>{{ t.object_id) }}</td>
                 </tr>
             {% endfor %}
         </table>
