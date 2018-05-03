@@ -310,7 +310,7 @@ def process_payment(request,order_id,hash,paypal_id):
                 in_app=True
             )
 
-        db.session.commit()
+        DB.session.commit()
 
         APP.log_manager.log_event(
             'Completed Card Payment',
