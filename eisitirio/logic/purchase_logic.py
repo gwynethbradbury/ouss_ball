@@ -56,6 +56,8 @@ def guest_tickets_available():
         models.Ticket.ticket_type.in_(app.APP.config['GUEST_TYPE_SLUGS'])
     ).filter(
         models.Ticket.cancelled == False  # pylint: disable=singleton-comparison
+    ).filter(
+        models.Ticket.paid == True
     ).count()
 
     return max(

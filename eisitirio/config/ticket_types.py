@@ -21,6 +21,8 @@ TICKET_TYPES = [
                            True, True),
     ticket_type.TicketType("OUSS Comittee", "comittee", 0, 1, -1,
                            True, True),
+    ticket_type.TicketType("OUSS Comittee", "cash", 0, -1, -1,
+                           True, True),
     # ticket_type.TicketType("OUSS Extended Comittee", "extended_comittee", 2000, 1, -1, True,
     #                        True),
     # ticket_type.TicketType("Artist", "artist", 0, 1, -1,
