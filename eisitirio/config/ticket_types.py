@@ -8,7 +8,7 @@ from eisitirio.helpers import ticket_type
 
 # The default ticket type must count towards the guest limit, as it is the
 # ticket type assigned to people on the waiting list.
-DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 2300, -1,
+DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 2300, 2,
                                              -1, True,
                                              True)#ticket_logic.can_buy_standard)
 
@@ -20,6 +20,8 @@ TICKET_TYPES = [
     ticket_type.TicketType("OUSS Member", "member", 1800, 1, -1,
                            True, True),
     ticket_type.TicketType("OUSS Comittee", "comittee", 0, 1, -1,
+                           True, True),
+    ticket_type.TicketType("OUSS Comittee", "cash", 0, -1, -1,
                            True, True),
     # ticket_type.TicketType("OUSS Extended Comittee", "extended_comittee", 2000, 1, -1, True,
     #                        True),
