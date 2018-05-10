@@ -609,50 +609,50 @@ def payment_interstitial(transaction_id):
 
 
 
-import braintree
+# import braintree
 
-gateway = braintree.BraintreeGateway(access_token='access_token$sandbox$z8yxpx29x7tqntyb$efc5ea183c041f87ec0f678b35baa11d')
-@PURCHASE.route("/purchase/client_token", methods=["GET"])
-def client_token():
-    return gateway.client_token.generate()
+# gateway = braintree.BraintreeGateway(access_token='access_token$sandbox$z8yxpx29x7tqntyb$efc5ea183c041f87ec0f678b35baa11d')
+# @PURCHASE.route("/purchase/client_token", methods=["GET"])
+# def client_token():
+#     return gateway.client_token.generate()
 
-@PURCHASE.route("/checkout", methods=["POST"])
-def create_purchase():
-    nonce = flask.request.form["payment_method_nonce"]
-    # Use payment method nonce here...
+# @PURCHASE.route("/checkout", methods=["POST"])
+# def create_purchase():
+#     nonce = flask.request.form["payment_method_nonce"]
+#     # Use payment method nonce here...
 
 
 
-    result = gateway.transaction.sale({
-        "amount" : flask.request.form["amount"],
-        "merchant_account_id": "USD",
-        "payment_method_nonce" : flask.request.form["payment_method_nonce"],
-        "order_id" : "Mapped to PayPal Invoice Number",
-        "descriptor": {
-          "name": "Descriptor displayed in customer CC statements. 22 char max"
-        },
-        "shipping": {
-          "first_name": "OU",
-          "last_name": "SS",
-          "company": "OUSS",
-          "street_address": "Oxford",
-          "extended_address": "Oxford",
-          "locality": "Oxford",
-          "region": "OX",
-          "postal_code": "OX1 2EA",
-          "country_code_alpha2": "UK"
-        },
-        "options" : {
-          "paypal" : {
-            "custom_field" : "PayPal custom field",
-            "description" : "Description for PayPal email receipt"
-          },
-        }
-    })
-    if result.is_success:
-        "Success ID: ".format(result.transaction.id)
-    else:
-        format(result.message)
+    # result = gateway.transaction.sale({
+    #     "amount" : flask.request.form["amount"],
+    #     "merchant_account_id": "USD",
+    #     "payment_method_nonce" : flask.request.form["payment_method_nonce"],
+    #     "order_id" : "Mapped to PayPal Invoice Number",
+    #     "descriptor": {
+    #       "name": "Descriptor displayed in customer CC statements. 22 char max"
+    #     },
+    #     "shipping": {
+    #       "first_name": "OU",
+    #       "last_name": "SS",
+    #       "company": "OUSS",
+    #       "street_address": "Oxford",
+    #       "extended_address": "Oxford",
+    #       "locality": "Oxford",
+    #       "region": "OX",
+    #       "postal_code": "OX1 2EA",
+    #       "country_code_alpha2": "UK"
+    #     },
+    #     "options" : {
+    #       "paypal" : {
+    #         "custom_field" : "PayPal custom field",
+    #         "description" : "Description for PayPal email receipt"
+    #       },
+    #     }
+    # })
+    # if result.is_success:
+    #     "Success ID: ".format(result.transaction.id)
+    # else:
+    #     format(result.message)
 
 
 
