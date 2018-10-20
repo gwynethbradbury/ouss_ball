@@ -121,7 +121,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2018, 05, 9)
+LOCKDOWN_STARTS = datetime.datetime(2018, 11, 29)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -171,13 +171,13 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2018, 5, 11, 20) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2018, 5, 12, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2018, 5, 12, 01,30) # 1am, 12th May 2018
-THEME = "Oxford's Biggest Salsa Event"
+START_TIME = datetime.datetime(2018, 11, 30, 19,30) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2018, 11, 30, 00,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2018, 12, 01, 01,30) # 1am, 12th May 2018
+THEME = "Oxford's Winter Salsa ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
-BALL_NAME = 'Oxford Salsa Ball'
+BALL_NAME = 'OUSS Winter Masquerade Ball'
 # TITLE = '{0} {1}'.format(BALL_NAME, START_TIME.year)
 TITLE = '{0}'.format(BALL_NAME)
 DATE_FORMAT = '%d.%m.%Y'
@@ -205,14 +205,14 @@ WEBSITE_EMAIL = 'webmaster@oxfordsalsaball.co.uk'
 GRAPH_STORAGE_FOLDER='static/admin/graphs'
 
 # TICKETS:
-STANDARD_PRICE = '23.00'
-EARLY_STANDARD = '20.00'
-OTD_STANDARD = '25.00'
-MEMBER_PRICE = '18.00'
-EARLY_MEMBER = '15.00'
-OTD_MEMBER = '20.00'
+STANDARD_PRICE = '18.00'
+EARLY_STANDARD = '17.00'
+OTD_STANDARD = '20.00'
+MEMBER_PRICE = '15.00'
+EARLY_MEMBER = '14.00'
+OTD_MEMBER = '18.00'
 ARTIST_PRICE = 0
-GROUP_TICKET_PRICE = '18.00'
+GROUP_TICKET_PRICE = '15.00'
 GROUP_TICKET_PRICE2 = '16.00'
 # GROUP_TICKET_PRICE_p = 1800
 GROUP_SIZE=6
