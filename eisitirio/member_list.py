@@ -41,7 +41,6 @@ real_member_list = [
         ["belenaparrocho@hotmail.com",2],
         ["ioana.bica@emg.ox.ac.uk",2],
         ["michael.painter@pmb.ox.ac.uk",2],
-        ["g.shiroki@gmail.com",2],
         ["thulgiathessa@gmail.com",2],
         ["jonathan.downing@gmail.com",2],
         ["lgmanya@live.co.uk",2],
