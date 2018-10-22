@@ -186,7 +186,7 @@ EMAIL_SIGNOFF = 'The {0} Committee'.format(BALL_NAME)
 
 # Location of installed system
 # Should be set in environment specific config
-EISITIRIO_URL = ''
+EISITIRIO_URL = 'www.oxfordsalsaball.co.uk'
 
 TREASURER_EMAIL_LINK = (
     'mailto:treasurer@oxfordsalsaball.co.uk'
