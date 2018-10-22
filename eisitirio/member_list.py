@@ -15,7 +15,7 @@ real_member_list = [
         # ["Gwyneth.anne.dj@gmail.com",1],
         ["philip.torr@eng.ox.ac.uk",1],
         #
-        ["richardpstrange@outlook.com",-1]
+        ["richardpstrange@outlook.com",-1],
         ["pauledoux@hotmail.com", -1],
         ["rowie_borst@hotmail.com",-1],
         ["isabella.walker@gmail.com",-1],
