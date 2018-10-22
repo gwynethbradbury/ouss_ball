@@ -31,7 +31,7 @@ real_member_list = [
         ["riva11306@gmail.com",2],
         ["weis@maths.ox.ac.uk",2],
         ["jordan.wheelybin@gmail.com",2],
-        ["tahnee.oons@inet.ox.ac.uk",2],
+        ["tahnee.ooms@inet.ox.ac.uk",2],
         ["sophia.middlehurst@ssho.ox.ac.uk",2],
         ["christopher.mcgamy@merton.ox.ac.uk",2],
         ["julia.vassileva@worc@ox.ac.uk",2],
