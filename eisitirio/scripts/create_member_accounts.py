@@ -95,6 +95,8 @@ class CreateMemberAccountsCommand(script.Command):
                     aff = member_aff#normal member: 1
                 elif c==1:
                     aff=commit_aff#comittee - free ticket: 2
+                elif c==2:
+                    aff=member_aff#comittee - free ticket: 2
                 user = models.User(
                     m,
                     'oussmember',
