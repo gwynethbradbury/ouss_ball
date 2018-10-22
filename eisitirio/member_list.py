@@ -58,7 +58,7 @@ real_member_list = [
         ["joanna.heyl@lmh.ox.ac.uk",-1],
         ["Rayarigueras@gmail.com",-1],
         ["samanta.fien-helteman@keble.ox.ac.uk",-1],
-        ["coloy@hotmail.com",-1],"
+        ["coloy@hotmail.com",-1],
         ["anjali.shah@learning.ox.ac.uk",-1],
         # ["jakub....",-1],
         ["samuel.lippl@seh.ox.ac.uk",-1],
