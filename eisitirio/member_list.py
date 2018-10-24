@@ -76,7 +76,7 @@ real_member_list = [
         ["emily.didodo@magd.ox.ac.uk",2],
         ["hugh.lindley@worc.ox.ac.uk",2],
         ["matchardy@hotmail.co.uk",2],
-        ["ykymm@nifty.com",2],
-        ["dragana.savic@dpag.ox.ac.uk",2],
+        # ["ykymm@nifty.com",2],
+        # ["dragana.savic@dpag.ox.ac.uk",2],
         # ["pl205306@gmail.com",2],
     ]
