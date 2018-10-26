@@ -176,7 +176,19 @@ def _get_total_ticket_sales():
 def _get_guest_ticket_sales():
     """Get the total number of guest tickets in various states."""
     statistics = collections.OrderedDict([
-        ('Available', APP.config['GUEST_TICKETS_AVAILABLE']),
+        ('Available', APP.config['GUEST_TICKETS_AVAILABLE'] -
+         models.Ticket.query.filter(
+             models.Ticket.ticket_type.in_(
+                 APP.config['GUEST_TYPE_SLUGS']
+             )
+         ).filter(
+             models.Ticket.cancelled == False
+         ).filter(
+             models.Ticket.paid == True
+             # ).filter(
+             #     models.Ticket.collected == False
+         ).count()
+         ),
     ])
 
     statistics.update(
@@ -218,20 +230,20 @@ def _get_ticket_sales(query):
                 models.Ticket.cancelled == False
             ).filter(
                 models.Ticket.paid == True
-            ).filter(
-                models.Ticket.collected == False
+            # ).filter(
+            #     models.Ticket.collected == False
             ).count(),
         ),
         (
-            'Collected',
+            'Sent',
             query.filter(
                 models.Ticket.cancelled == False
             ).filter(
                 models.Ticket.paid == True
             ).filter(
                 models.Ticket.collected == True
-            ).filter(
-                models.Ticket.entered == False
+            # ).filter(
+            #     models.Ticket.entered == False
             ).count(),
         ),
         (
