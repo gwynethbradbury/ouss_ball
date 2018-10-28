@@ -8,7 +8,7 @@ from eisitirio.helpers import ticket_type
 
 # The default ticket type must count towards the guest limit, as it is the
 # ticket type assigned to people on the waiting list.
-DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 1800, 6,
+DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard", "standard", 1800, 10,
                                              -1, True,
                                              True)#ticket_logic.can_buy_standard)
 
