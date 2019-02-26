@@ -317,6 +317,20 @@
             </div>
 
             <div class="card" style="max-width:200px">
+                <img src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}" alt=""
+                     class="card-img-top">
+                <div class="card-body">
+                    <h4>Junyi Hou</h4>
+                    <h5 class="role">Ball Manager</h5>
+                    <!--<p>Optional text about yourself.</p>-->
+                    <ul class="social-icons clearfix">
+                        <!--<li><a href="https://www.facebook.com/kathryn.aveyard" target="_blank"><span class="fa fa-facebook"></span></a></li>-->
+                        <li><a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">@</a> </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="max-width:200px">
                 <img src="{{ url_for('static', filename='images/IMG-2413.JPG') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
@@ -354,12 +368,12 @@
     <div class="col col-sm-12 col-lg-12 col-md-12">
 
         <p  class="wow fadeInDown animated">
-        The winter ball will be held in the beautiful Museum of Modern Art, Oxford.<br> <br>
+        The summer ball will be held in the beautiful Oxford Town Hall.<br> <br>
         Address:<br>
-        Museum of Modern Art Oxford<br>
-        30 Pembroke Street<br>
+        Oxford Town Hall<br>
+        st Aldates<br>
         Oxford<br>
-        OX1 1BP
+        OX1 1BX
         </p>
 
         </div>
@@ -368,7 +382,7 @@
         <div id="map-row" >
 {#                <div class="col-xs-12">#}
                 <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2470.027101889496!2d-1.2612606843229983!3d51.750827979675876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876c6a54eaa21f9%3A0x388e99e0d1f494cb!2sModern+Art+Oxford!5e0!3m2!1sen!2suk!4v1540053609984">
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1777.0711329580477!2d-1.2564014878461662!3d51.75163302991391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb6c8d8b783546a4a!2sOxford+Town+Hall!5e0!3m2!1sen!2suk!4v1551180717723">
                 </iframe>
 {#                </div>#}
         </div>
