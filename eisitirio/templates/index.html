@@ -207,16 +207,16 @@
         </p>
 
         <p class="wow fadeInDown animated">
-            On the door, tickets will be £{{ template_config['OTD_MEMBER'] }} for members
-            and £{{ template_config['OTD_STANDARD'] }} for non-members.
+            On the door, all-day tickets will be £{{ template_config['MEMBER_ALL_PRICE'] }} for members
+            and £{{ template_config['STD_ALL_PRICE'] }} for non-members.
         </p>
         <p class="wow fadeInDown animated">
             We have a limited number of <b>early bird tickets</b> which include all workshops available at £{{ template_config['MEMBER_ALL_EARLY_PRICE'] }} for OUSS members
-            and £{{ template_config['STANDARD_ALL_EARLY_PRICE'] }} for non-members.
+            and £{{ template_config['STD_ALL_EARLY_PRICE'] }} for non-members.
         </p>
         <p class="wow fadeInDown animated">
-            Once these run out, tickets are £{{ template_config['MEMBER_ALL_PRICE'] }} for OU Salsa Society members
-            and £{{ template_config['STANDARD_ALL_PRICE'] }} for non-members.
+            Once these run out, all-day tickets are £{{ template_config['MEMBER_ALL_PRICE'] }} for OU Salsa Society members
+            and £{{ template_config['STD_ALL_PRICE'] }} for non-members.
         </p>
         <p>Party-only passes will be released nearer the time.</p>
         <p class="wow fadeInDown animated">
@@ -242,10 +242,30 @@
     <div class="col col-sm-12 col-lg-12 col-md-12">
 
         <p class="wow fadeInDown animated">Oxford Salsa Ball has been around
-            for many years, so here are some memories from last years.</p>
+            for many years, so here are some memories from previous years.</p>
 
         <div class="row no-gutter">
             <div id="gallerycol">
+            {% for n in gallery_images2018 %}
+{#                {% if loop.index0%4==1 %}#}
+                    <div class="work" >
+                    <a href="{{ url_for('static', filename='images/gallery/2018/'+n) }}"
+                       class="work-box">
+                    <img src="{{ url_for('static', filename='images/gallery/2018/'+n) }}" alt="{{ n }}"/>
+                        <div class="overlay">
+                            <div class="overlay-caption">
+{#                                <p><span class="icon icon-magnifying-glass"></span></p>#}
+                            </div>
+                        </div>
+
+                    </a></div>
+{#                {% endif %}#}
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="row no-gutter">
+            <div id="gallerycol2018">
             {% for n in gallery_images %}
 {#                {% if loop.index0%4==1 %}#}
                     <div class="work" >
