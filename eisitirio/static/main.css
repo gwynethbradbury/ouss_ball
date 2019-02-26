@@ -617,6 +617,16 @@ font-weight: bold;
 	padding: 0;
 	margin:0;
 }
+#gallerycol2017 {
+  -moz-column-count: 4;
+  -webkit-column-count: 4;
+  column-count: 4;
+	-webkit-column-gap:0;
+	-moz-column-gap:0;
+	column-gap:0;
+	padding: 0;
+	margin:0;
+}
 
 /* ------------------------------------------------------------------------------
 	 Teams
