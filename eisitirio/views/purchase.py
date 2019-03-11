@@ -684,8 +684,8 @@ def payment_paypal(transaction_id):
     )
 
     isServer = True
-    if dbconfig.dbhost=='localhost':
-        isServer=False
+    # if dbconfig.dbhost=='localhost':
+    #     isServer=False
 
     return flask.render_template('purchase/payment_paypal.html',
                                  amount = t.value_pounds_surcharge( app.APP.config['PAYPAL_SURCHARGE']),
