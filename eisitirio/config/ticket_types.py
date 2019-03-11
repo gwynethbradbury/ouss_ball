@@ -13,7 +13,7 @@ DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard Ball Only", "standard_bal
                                              False)#ticket_logic.can_buy_standard)
 
 TICKET_TYPES = [
-    ticket_type.TicketType("Standard (Early Bird)", "early_standard_ball", 2300, 1, 20,
+    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2300, 1, 5,
                            True, True),
     ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 2800, 1, 70,
                            True, True),
