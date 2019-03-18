@@ -85,7 +85,7 @@ class EmailManager(object):
         if self.app.config['SMTP_LOGIN']:
             try:
                 self.smtp.login(self.app.config['SMTP_USER'],
-                                self.app.config['SMTP_PASSWORD'])
+                                c)
             except smtplib.SMTPHeloError as error:
                 self.log(
                     'error',
@@ -288,9 +288,17 @@ class EmailManager(object):
             return
 
         try:
+            self.smtp = smtplib.SMTP('smtp.gmail.com', 587)
+            self.smtp.ehlo()
+            self.smtp.starttls()
+            self.smtp.ehlo()
+            self.smtp.login(message['From'], self.app.config['SMTP_PASSWORD'])
             self.smtp.sendmail(message['From'],
                                message.get_all('To'),
                                message.as_string())
+            self.smtp.close()
+
+
         except smtplib.SMTPRecipientsRefused as error:
             self.log(
                 'error',
