@@ -292,7 +292,7 @@ class EmailManager(object):
             self.smtp.ehlo()
             self.smtp.starttls()
             self.smtp.ehlo()
-            self.smtp.login(message['From'], self.app.config['SMTP_PASSWORD'])
+            self.smtp.login(self.app.config['SMTP_USER'], self.app.config['SMTP_PASSWORD'])
             self.smtp.sendmail(message['From'],
                                message.get_all('To'),
                                message.as_string())
