@@ -57,7 +57,8 @@ MAX_TICKETS = GENERAL_RELEASE_MAX_TICKETS#timed_config.Until(
 #     GENERAL_RELEASE_MAX_TICKETS
 # )
 CURRENT_TERM = 'TT'
-EMAIL_FROM = 'noreply@oxfordsalsaball.co.uk'
+EMAIL_FROM = 'oxfordsalsaball2019@gmail.com'
+# EMAIL_FROM = 'noreply@oxfordsalsaball.co.uk'
 SEND_EMAILS = True
 LIMITED_RELEASE = timed_config.Until(
     False,
