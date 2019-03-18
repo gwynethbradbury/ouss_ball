@@ -85,7 +85,7 @@ class EmailManager(object):
         if self.app.config['SMTP_LOGIN']:
             try:
                 self.smtp.login(self.app.config['SMTP_USER'],
-                                c)
+                                self.app.config['SMTP_PASSWORD'])
             except smtplib.SMTPHeloError as error:
                 self.log(
                     'error',
