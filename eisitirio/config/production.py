@@ -29,7 +29,7 @@ EWAY_API_PASSCODE = base64.b64encode(
 
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
-SMTP_SSL = True
+SMTP_SSL = False
 SMTP_STARTTLS = True
 SMTP_LOGIN = True
 SMTP_USER = 'oxfordsalsaball2019@gmail.com'
