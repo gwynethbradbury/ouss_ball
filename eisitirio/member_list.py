@@ -115,7 +115,7 @@ real_member_list = [
         ["catherine.hall.uk@gmail.com",2],
         ["christinejhawkins@yahoo.co.uk",2],
         ["katarzynasolak@gmail.com",2],
-        ["carla.dasilvasantos@linacre.ox.ac.uk",2],
+        # ["carla.dasilvasantos@linacre.ox.ac.uk",2],
         ["grayvey@hotmail.com",2],
         ["esmefrances@hotmail.com",2],
         ["yayoitk@gmail.com",2],
