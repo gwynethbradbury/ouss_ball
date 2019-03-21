@@ -6,19 +6,18 @@
 {% block content %}
     <section id="admin_home" class="columns">
 
-        <p>Early member: {{ em }}</p>
-        <p>Early standard: {{ es }}</p>
-        <p>Member: {{ m }}</p>
-        <p>Standard: {{ s }}</p>
+        <p>Early member (both): {{ emb }}</p>
+        <p>Member both: {{ mbo }}</p>
+        <p>Member ball only: {{ mba }}</p>
+        <p>Early standard (both): {{ esb }}</p>
+        <p>Standard (both): {{ sbo }}</p>
+        <p>Standard ball only: {{ sba }}</p>
+        
 
         <h4>Revenue Statistics</h4>
         <p>Total value of paid tickets: £{{ '%.2f' % (p / 100) }}</p>
         <p>Total paypal income after fees: £{{ '%.2f' % (p2 / 100) }}</p>
-    <p>Note user 18
-{#        Diana Saleh #}
-        paid £15 direct to account, user 92
-{#    Richard Darbinian#}
-     paid £23 direct</p>
+
     <hr/>
 
         <table>

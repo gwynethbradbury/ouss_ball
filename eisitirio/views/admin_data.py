@@ -52,14 +52,21 @@ def view_statistics2():
 
     return flask.render_template(
         'admin_data/statistics2.html',
-        em = models.Ticket.query.filter(models.Ticket.ticket_type=='early_member').filter(models.Ticket.paid==True).count(),
-        es = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard').filter(models.Ticket.paid==True).count(),
-        m = models.Ticket.query.filter(models.Ticket.ticket_type=='member').filter(models.Ticket.paid==True).count(),
-        s = models.Ticket.query.filter(models.Ticket.ticket_type=='standard').filter(models.Ticket.paid==True).count(),
+        emb = models.Ticket.query.filter(models.Ticket.ticket_type=='early_member_both').filter(models.Ticket.paid==True).count(),
+        mbo = models.Ticket.query.filter(models.Ticket.ticket_type=='member_both').filter(models.Ticket.paid==True).count(),
+        mba = models.Ticket.query.filter(models.Ticket.ticket_type=='member_ball').filter(models.Ticket.paid==True).count(),
+        esb = models.Ticket.query.filter(models.Ticket.ticket_type=='early_standard_ball').filter(models.Ticket.paid==True).count(),
+        sbo = models.Ticket.query.filter(models.Ticket.ticket_type=='standard_both').filter(models.Ticket.paid==True).count(),
+        sba = models.Ticket.query.filter(models.Ticket.ticket_type=='standard_ball').filter(models.Ticket.paid==True).count(),
         p=p,
         p2=p2,
         tickets=tickets
     )
+
+
+
+
+
 
 @ADMIN_DATA.route('/admin/statistics')
 @login.login_required
