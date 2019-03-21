@@ -38,9 +38,9 @@ def view_statistics2():
         p=p+\
           t.price_
     #  first group
-    p2=10800*(0.966)-20
+    p2=0
     #  refunds
-    p2=p2-3000 - (18.95*(0.966)-20)
+    p2=p2-0
     for t in transactions:
         if p2<150000:
             p2=p2+\
