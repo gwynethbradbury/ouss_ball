@@ -22,7 +22,7 @@ TICKET_TYPES = [
 
     ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2500, 1, 15,
                            True, True),
-    ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 3000, 1, 70,
+    ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 3000, 10, 70,
                            True, True),
 
 
