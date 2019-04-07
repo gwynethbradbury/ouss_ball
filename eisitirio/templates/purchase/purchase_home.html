@@ -104,13 +104,26 @@
 {#                TODO: CHECK THAT THIS APPLIES TO THE TOTAL#}
                 var p = ticket_type.price;
                 group_discount_message.hide(0);
-                if (ticket_type.slug.includes('tandard') && ordered>={{ template_config['GROUP_SIZE'] }}){
+                if (ticket_type.slug.includes('standard_ball') && ordered>={{ template_config['GROUP_SIZE'] }}){
                     if(ordered>={{ template_config['GROUP_SIZE2'] }}){
-                        p = 1450;
+                        p = 1950;
                         var msg="group rate ({{ template_config['GROUP_SIZE2'] }}+) £{{ template_config['GROUP_TICKET_PRICE2'] }}"
                     }
                     else{
-                        p = 1500;
+                        p = 2000;
+                        var msg="group rate ({{ template_config['GROUP_SIZE'] }}+) £{{ template_config['GROUP_TICKET_PRICE'] }}"
+                    }
+
+                    group_discount_message.html(msg);
+                    group_discount_message.show(0);
+                }
+                else if (ticket_type.slug.includes('standard_both') && ordered>={{ template_config['GROUP_SIZE'] }}){
+                    if(ordered>={{ template_config['GROUP_SIZE2'] }}){
+                        p = 2450;
+                        var msg="group rate ({{ template_config['GROUP_SIZE2'] }}+) £{{ template_config['GROUP_TICKET_PRICE2'] }}"
+                    }
+                    else{
+                        p = 2500;
                         var msg="group rate ({{ template_config['GROUP_SIZE'] }}+) £{{ template_config['GROUP_TICKET_PRICE'] }}"
                     }
 
