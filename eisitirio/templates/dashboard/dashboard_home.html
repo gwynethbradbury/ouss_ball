@@ -21,7 +21,7 @@
 {#                    <tr id="ticket-{{ current_user.held_ticket.object_id }}">#}
 {#                        <td>#{{ '%05d' % current_user.held_ticket.object_id }}</td>#}
 {#                        <td>{{ current_user.held_ticket.status }}</td>#}
-{#                        <td>{{ current_user.held_ticket.slug }}</td>#}
+{#                        <td>{{ current_user.held_ticket.slug() }}</td>#}
 {#                        <td>#}
 {#                            {% if current_user.held_ticket.can_be_reclaimed() %}#}
 {#                                <a href="{{ url_for('dashboard.relinquish_ticket') }}" class="button">Relinquish</a>#}
@@ -61,6 +61,7 @@
                         <th>Ticket Status</th>
                         <!--<th>Ticket Claim Code</th>-->
                         <!--<th>Actions</th>-->
+                        <th>Ticket Type</th>
                         <th>Assign Ticket</th>
                     </tr>
                 </thead>
@@ -80,6 +81,7 @@
 {#                                        Ticket has been claimed by {{ ticket.holder.full_name }}.#}
 {#                                    {% endif %}#}
 {#                                {% endif %} </td>#}
+                            <td> {{ ticket.slug() }}</td>
                             <td>
                                 {% if not ticket.cancelled %}
                                     {% if not ticket.paid %}
