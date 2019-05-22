@@ -292,3 +292,19 @@ class Ticket(DB.Model):
             self.owner_id,
             self.owner.full_name.encode('utf-8'),
         ])
+
+    def slug(self):
+        if self.ticket_type=='early_member_both':
+            return 'Early Bird Member Including Afternoon Workshops'
+        elif self.ticket_type=='member_both':
+            return 'Member Including Afternoon Workshops'
+        elif self.ticket_type=='member_ball':
+            return 'Member Ball Only'
+        elif self.ticket_type=='early_standard_ball':
+            return 'Early Bird Ball Including Afternoon Workshops'
+        elif self.ticket_type=='standard_ball':
+            return 'Ball Only'
+        elif self.ticket_type=='standard_both':
+            return 'Ball Including Afternoon Workshops'
+
+        return 'not specified'

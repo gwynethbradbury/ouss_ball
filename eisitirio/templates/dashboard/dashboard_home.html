@@ -13,6 +13,7 @@
 {#                    <tr>#}
 {#                        <th>Ticket Number</th>#}
 {#                        <th>Ticket Status</th>#}
+{#                        <th>Ticket Type</th>#}
 {#                        <th>Actions</th>#}
 {#                    </tr>#}
 {#                </thead>#}
@@ -20,6 +21,7 @@
 {#                    <tr id="ticket-{{ current_user.held_ticket.object_id }}">#}
 {#                        <td>#{{ '%05d' % current_user.held_ticket.object_id }}</td>#}
 {#                        <td>{{ current_user.held_ticket.status }}</td>#}
+{#                        <td>{{ current_user.held_ticket.slug }}</td>#}
 {#                        <td>#}
 {#                            {% if current_user.held_ticket.can_be_reclaimed() %}#}
 {#                                <a href="{{ url_for('dashboard.relinquish_ticket') }}" class="button">Relinquish</a>#}
