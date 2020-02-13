@@ -41,7 +41,7 @@ _LIMITED_RELEASE_STARTS = datetime.datetime(2015, 11, 30, 9, 0, 0)
 _LIMITED_RELEASE_ENDS = datetime.datetime(2016, 01, 25, 9, 0, 0)
 GENERAL_RELEASE_STARTS = datetime.datetime(2018, 02, 01, 10, 0, 0)
 
-GUEST_TICKETS_AVAILABLE_TOTAL =  0#560
+GUEST_TICKETS_AVAILABLE_TOTAL =  550
 GUEST_TICKETS_AVAILABLE = GUEST_TICKETS_AVAILABLE_TOTAL#timed_config.Until(
 #     1550,
 #     datetime.datetime(2018, 05, 10, 23, 59, 0),
@@ -57,7 +57,7 @@ MAX_TICKETS = GENERAL_RELEASE_MAX_TICKETS#timed_config.Until(
 #     GENERAL_RELEASE_MAX_TICKETS
 # )
 CURRENT_TERM = 'TT'
-EMAIL_FROM = 'oxfordsalsaball2019@gmail.com'
+EMAIL_FROM = 'oxfordsalsaball2020@gmail.com'
 # EMAIL_FROM = 'noreply@oxfordsalsaball.co.uk'
 SEND_EMAILS = True
 LIMITED_RELEASE = timed_config.Until(
@@ -122,7 +122,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2019, 05, 23)
+LOCKDOWN_STARTS = datetime.datetime(2020, 05, 21)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -172,9 +172,9 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2019, 05, 25, 15,30) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2019, 05, 25, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2019, 05, 26, 03,30) # 1am, 12th May 2018
+START_TIME = datetime.datetime(2020, 05, 23, 13,30) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2020, 05, 24, 00,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2020, 05, 24, 01,30) # 1am, 12th May 2018
 THEME = "Oxford's Salsa ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
@@ -206,19 +206,19 @@ WEBSITE_EMAIL = 'webmaster@oxfordsalsaball.co.uk'
 GRAPH_STORAGE_FOLDER='static/admin/graphs'
 
 # TICKETS:
-STD_ALL_PRICE = '30.00'
-STD_ALL_EARLY_PRICE = '25.00'
-STD_PARTY_PRICE = '25.00'
+STD_ALL_PRICE = '26.00'
+STD_ALL_EARLY_PRICE = '21.00'
+STD_PARTY_PRICE = '21.00'
 
 
-MEMBER_ALL_PRICE = '25.00'
-MEMBER_ALL_EARLY_PRICE = '20.00'
-MEMBER_PARTY = '20.00'
+MEMBER_ALL_PRICE = '21.00'
+MEMBER_ALL_EARLY_PRICE = '17.00'
+MEMBER_PARTY = '17.00'
 
 
 ARTIST_PRICE = 0
-GROUP_TICKET_PRICE = '25.00'
+GROUP_TICKET_PRICE = '21.00'
 GROUP_TICKET_PRICE2 = '20.00'
 # GROUP_TICKET_PRICE_p = 1800
 GROUP_SIZE=6
-GROUP_SIZE2=30
+GROUP_SIZE2=10

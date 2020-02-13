@@ -19,7 +19,7 @@ APP = app.APP
 
 BCRYPT = bcrypt.Bcrypt(APP)
 
-class User(DB.Model):
+class  User(DB.Model):
     """Model for users."""
     __tablename__ = 'user'
 
