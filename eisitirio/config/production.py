@@ -33,7 +33,7 @@ SMTP_SSL = True
 SMTP_STARTTLS = False
 SMTP_LOGIN = True
 SMTP_USER = 'oxfordsalsaball2020@gmail.com'
-SMTP_PASSWORD = 'blagoevgrad'
+SMTP_PASSWORD = 'ecdrgvozwxmtqkbv'
 
 AWS_ACCESS_KEY_ID = 'AWS Access Key ID'
 AWS_SECRET_ACCESS_KEY = 'AWS Secret Access Key'
