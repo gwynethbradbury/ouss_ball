@@ -361,7 +361,7 @@ ul li {
 	background-image: linear-gradient(
 		rgba(0, 0, 0, 0.4),
 		rgba(0, 0, 0, 0.4)
-	  ),url(../images/banner.jpg);
+	  ),url(../images/web_banner.png);
 	background-position: center top;
 	background-repeat: no-repeat;
 	opacity: 0.9;
