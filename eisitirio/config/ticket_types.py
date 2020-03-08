@@ -13,16 +13,16 @@ DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard Ball Only", "standard_bal
                                              False)#ticket_logic.can_buy_standard)
 
 TICKET_TYPES = [
-    ticket_type.TicketType("OUSS Member Ball + Workshops (Early Bird)", "early_member_both", 1500, 1, 15,
+    ticket_type.TicketType("OUSS Member Ball + Workshops (Early Bird)", "early_member_both", 1500, 1, 10,
                            True, True),
-    ticket_type.TicketType("OUSS Member Ball + Workshops", "member_both", 2000, 1, 0,
+    ticket_type.TicketType("OUSS Member Ball + Workshops", "member_both", 2000, 1, 20,
                            True, True),
     ticket_type.TicketType("OUSS Member Ball Only", "member_ball", 1600, 1, -1,
                            True, False),
 
-    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2000, 1, 15,
+    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2000, 1, 10,
                            True, True),
-    ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 2500, 10, 50,
+    ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 2500, 10, 40,
                            True, True),
 
 
