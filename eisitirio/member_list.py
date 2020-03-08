@@ -15,7 +15,8 @@ is_member=2
 is_comittee=1
 
 real_member_list = [
-        ["Gwyneth.anne.dj@gmail.com",1],
+        # ["Gwyneth.anne.dj@gmail.com",1],
+    ["David@fed202.com",is_member],
     # ["Iveta.mikalajunaite@gmail.com",is_member],
     # ["norman.ives@gmail.com",is_member],
     # ["alsalsa@nym.hush.com",is_member],
