@@ -12,7 +12,7 @@ else:
     ]
 
 is_member=2
-is_comittee=3
+is_comittee=1
 
 real_member_list = [
         ["Gwyneth.anne.dj@gmail.com",1],

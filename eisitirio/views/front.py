@@ -502,10 +502,9 @@ def member_password_create(user):
         #     'Started password creation',
         #     user=user
         # )
-
         APP.email_manager.send_template(
             user.email,
-            'Confirm Password Reset',
+            'Member welcome to the OUSS Ball ticketing site',
             'create_user_password.email',
             name=user.forenames,
             confirmurl="{}resetpassword/{}/{}".format(app.APP.config['EISITIRIO_URL'],user.object_id,user.secret_key)
