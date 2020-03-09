@@ -172,6 +172,8 @@ real_member_list_done = [
     ["anna.kotanska@jesus.ox.ac.uk",is_member],
     ["amdrei.dreghich@stcatz.ox.ac.uk",is_member],
     ["ioan.vevera@gmail.com",is_member],
+    ]
+real_member_list=[
     ["r.bengoechea@live.co.uk",is_member],
     ["ioana.grigoras@sjc.ox.ac.uk",is_member],
     ["marcosdiaz@diaztarrago.com",is_member],
@@ -190,8 +192,6 @@ real_member_list_done = [
     ["sara.zella@gmail.com",is_member],
     ["ritika.anand@st-annes.ox.ac.uk",is_member],
     ["jon.gruszczynsk@wadham.ox.ac.uk",is_member],
-    ]
-real_member_list=[
     ["Helena.umcentelli@pmb.ox.ac.uk",is_member],
     ["andreas.kirsch@cs.ox.ac.uk",is_member],
     ["yuki.asano@balliol.ox.ac.uk",is_member],
