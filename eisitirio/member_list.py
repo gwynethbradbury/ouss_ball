@@ -235,7 +235,7 @@ real_member_list=[
     ["phyllistea99@gmail.com",is_member],
     ["abraslavsky13@gmail.com",is_member],
     ["megandivilly@gmail.com",is_member],
-    ["kara.juul@sant.ox.ac.uk",is_member],
+    # ["kara.juul@sant.ox.ac.uk",is_member],
     ["16aleoux@gmail.com",is_member],
     ["olivero.starlyn@gmail.com",is_member],
     ["ismael.daconceicao@lincoln.ox.ac.uk",is_member],
@@ -243,7 +243,7 @@ real_member_list=[
     ["fortuna.nuzzolese@hotmail.com",is_member],
     ["wowhepp.denise@gmail.com",is_member],
     ["totti_phan@yahoo.com",is_member],
-    ["carla.dasilvasantos@linarce.ox.ac.uk",is_member],
+    # ["carla.dasilvasantos@linarce.ox.ac.uk",is_member],
     ["mikehardman01@hotmail.co.uk",is_member],
     ]
 not_yet=[
