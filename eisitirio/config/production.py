@@ -26,14 +26,20 @@ EWAY_API_PASSCODE = base64.b64encode(
     )
 )
 
-
+import os
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 465
 SMTP_SSL = True
 SMTP_STARTTLS = False
 SMTP_LOGIN = True
 SMTP_USER = 'oxfordsalsaball2020@gmail.com'
-SMTP_PASSWORD = 'ecdrgvozwxmtqkbv'
+
+import os
+from dotenv import load_dotenv
+project_folder = os.path.expanduser('~/ouss_ball')  # adjust as appropriate
+load_dotenv(os.path.join(project_folder, '.env'))
+SMTP_PASSWORD = os.getenv("SECRET_KEY")
+#SMTP_PASSWORD = 'ecdrgvozwxmtqkbv'
 
 AWS_ACCESS_KEY_ID = 'AWS Access Key ID'
 AWS_SECRET_ACCESS_KEY = 'AWS Secret Access Key'
