@@ -228,7 +228,7 @@ real_member_list_done = [
 real_member_list=[
     ["jan.brauner@gmx.de",is_member],
     ["frankie.wood123@gmail.com",is_member],
-    ["soren.mindermann@linacre.ox.ac.uk",is_member],
+    # ["soren.mindermann@linacre.ox.ac.uk",is_member],
     ["rajatgupta123891@hotmail.com",is_member],
     ["crowmagna1@gmail.com",is_member],
     ["nikadipalma@gmail.com",is_member],
