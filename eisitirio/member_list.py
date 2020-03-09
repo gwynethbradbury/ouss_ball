@@ -207,8 +207,6 @@ real_member_list_done = [
     ["aholmestofts@gmail.com",is_member],
     ["sally.galal@ymail.com",is_member],
     ["damilolabolaji@gmail.com",is_member],
-    ]
-real_member_list=[
     ["ehannielu@gmail.com",is_member],
     ["rowie_borst@hotmail.com",is_member],
     ["bobbybojovic@gmail.com",is_member],
@@ -227,7 +225,7 @@ real_member_list=[
     ["elainecolligan@gmail.com",is_member],
     ["rbrooks156@gmail.com",is_member],
     ]
-not_yet=[
+real_member_list=[
     ["jan.brauner@gmx.de",is_member],
     ["frankie.wood123@gmail.com",is_member],
     ["soren.mindermann@linacre.ox.ac.uk",is_member],
@@ -247,4 +245,6 @@ not_yet=[
     ["totti_phan@yahoo.com",is_member],
     ["carla.dasilvasantos@linarce.ox.ac.uk",is_member],
     ["mikehardman01@hotmail.co.uk",is_member],
+    ]
+not_yet=[
     ]
