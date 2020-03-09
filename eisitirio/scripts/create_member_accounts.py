@@ -105,7 +105,7 @@ class CreateMemberAccountsCommand(script.Command):
                     '01234567890',
                     college,
                     aff,
-                    photo
+                    photo,is_member=True
                 )
 
 

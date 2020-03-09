@@ -190,7 +190,7 @@ class  User(DB.Model):
 
 
     def __init__(self, email, password, forenames, surname, phone, college,
-                 affiliation, photo):
+                 affiliation, photo,is_member=False):
         self.email = email
         self.forenames = forenames
         self.surname = surname
@@ -205,14 +205,15 @@ class  User(DB.Model):
         self.verified = False
         self.deleted = False
         self.role = 'User'
-        if affiliation.name=='None':
-            self.affiliation_verified = True
-        else:
-            self.affiliation_verified = False
-            APP.email_manager.send_text('gwyneth.bradbury@gmail.com', 'verify '+self.forenames+' '+self.surname,
-                                        '<a href="www.oxfordsalsaball.co.uk/admin/verify_affiliations">verify user</a>',
-                                        APP.config['EMAIL_FROM'])
-            #todo add logic for checking if they are on the member list
+        if not is_member:
+            if affiliation.name=='None':
+                self.affiliation_verified = True
+            else:
+                self.affiliation_verified = False
+                APP.email_manager.send_text('gwyneth.bradbury@gmail.com', 'verify '+self.forenames+' '+self.surname,
+                                            '<a href="www.oxfordsalsaball.co.uk/admin/verify_affiliations">verify user</a>',
+                                            APP.config['EMAIL_FROM'])
+                #todo add logic for checking if they are on the member list
 
         self.battels = battels.Battels.query.filter(
             battels.Battels.email == email

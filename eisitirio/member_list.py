@@ -14,7 +14,7 @@ else:
 is_member=2
 is_comittee=1
 
-real_member_list = [
+real_member_list_done = [
         # ["Gwyneth.anne.dj@gmail.com",1],
     # ["David@fed202.com",is_member],
     ["Iveta.mikalajunaite@gmail.com",is_member],
@@ -190,6 +190,8 @@ real_member_list = [
     ["sara.zella@gmail.com",is_member],
     ["ritika.anand@st-annes.ox.ac.uk",is_member],
     ["jon.gruszczynsk@wadham.ox.ac.uk",is_member],
+    ]
+real_member_list=[
     ["Helena.umcentelli@pmb.ox.ac.uk",is_member],
     ["andreas.kirsch@cs.ox.ac.uk",is_member],
     ["yuki.asano@balliol.ox.ac.uk",is_member],
@@ -207,6 +209,8 @@ real_member_list = [
     ["aholmestofts@gmail.com",is_member],
     ["sally.galal@ymail.com",is_member],
     ["damilolabolaji@gmail.com",is_member],
+    ]
+not_yet=[
     ["ehannielu@gmail.com",is_member],
     ["rowie_borst@hotmail.com",is_member],
     ["bobbybojovic@gmail.com",is_member],
