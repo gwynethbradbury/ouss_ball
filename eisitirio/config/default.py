@@ -122,7 +122,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2020, 05, 21)
+LOCKDOWN_STARTS = datetime.datetime(2020, 11, 27)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -172,9 +172,9 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2020, 05, 23, 13,30) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2020, 05, 24, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2020, 05, 24, 01,30) # 1am, 12th May 2018
+START_TIME = datetime.datetime(2020, 11, 28, 13,30) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2020, 11, 29, 00,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2020, 11, 29, 01,30) # 1am, 12th May 2018
 THEME = "Oxford's Salsa ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
