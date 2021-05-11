@@ -122,7 +122,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2020, 11, 27)
+LOCKDOWN_STARTS = datetime.datetime(2022, 04, 28)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -168,13 +168,15 @@ TEMPLATE_CONFIG_KEYS = [
     'GROUP_TICKET_PRICE2',
     'GROUP_SIZE',
     'GROUP_SIZE2',
+    'GROUP_TICKET_PRICENUM',
+    'GROUP_TICKET_PRICE2NUM'
     # 'GROUP_TICKET_PRICE_p'
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2020, 11, 28, 13,30) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2020, 11, 29, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2020, 11, 29, 01,30) # 1am, 12th May 2018
+START_TIME = datetime.datetime(2022, 04, 29, 13,30) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2022, 04, 29, 00,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2022, 05, 29, 01,30) # 1am, 12th May 2018
 THEME = "Oxford's Salsa ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
@@ -228,7 +230,9 @@ MEMBER_PARTY = '16.00'
 
 ARTIST_PRICE = 0
 GROUP_TICKET_PRICE = '18.00'
+GROUP_TICKET_PRICENUM = 1800
 GROUP_TICKET_PRICE2 = '16.00'
+GROUP_TICKET_PRICE2NUM = 1600
 # GROUP_TICKET_PRICE_p = 1800
 GROUP_SIZE=6
 GROUP_SIZE2=10
