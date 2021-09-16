@@ -69,9 +69,9 @@ class Transaction(DB.Model):
         """Get the total value of the transaction."""
         if self.items.count()>=APP.config['GROUP_SIZE']:
             if self.items.count()>=APP.config['GROUP_SIZE2']:
-                return sum(1450 for item in self.items)#APP.config['GROUP_TICKET_PRICE_p']
+                return sum(APP.config['GROUP_TICKET_PRICENUM'] for item in self.items)#APP.config['GROUP_TICKET_PRICE_p']
             else:
-                return sum(1500 for item in self.items)#APP.config['GROUP_TICKET_PRICE_p']
+                return sum(APP.config['GROUP_TICKET_PRICENUM'] for item in self.items)#APP.config['GROUP_TICKET_PRICE_p']
         return sum(item.value for item in self.items)
 
     @property

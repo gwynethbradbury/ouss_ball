@@ -174,9 +174,9 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2022, 04, 29, 13,30) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2022, 04, 29, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2022, 05, 29, 01,30) # 1am, 12th May 2018
+START_TIME = datetime.datetime(2022, 05, 13, 13,30) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2022, 05, 13, 00,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2022, 05, 13, 01,30) # 1am, 12th May 2018
 THEME = "Oxford's Salsa ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
