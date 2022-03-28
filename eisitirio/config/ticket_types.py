@@ -20,7 +20,7 @@ TICKET_TYPES = [
     ticket_type.TicketType("OUSS Member Ball", "member_ball", 2000, 1, -1,
                            True, False),
 
-    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2500, 1, 0,
+    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2500, 10, 0,
                            True, True),
     ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 3000, 10, 0,
                            True, True),
