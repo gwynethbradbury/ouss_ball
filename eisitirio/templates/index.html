@@ -171,7 +171,7 @@
 
 
             <div class="card" style="max-width:200px">
-                <img class="card-img-top" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"/>
+                <img class="card-img-top" src="{{ url_for('static', filename='images/artists/default_logo.jpg') }}"/>
                 <div class="card-body">
                     <h5 class="card-title">More TBC!</h5>
                     <p class="card-text"><b></b></p>
@@ -279,7 +279,7 @@
             </div>
 
             <div class="card" style="max-width:200px">
-                <img class="card-img-top" src="{{ url_for('static', filename='images/artists/artist_xyz.jpg') }}"/>
+                <img class="card-img-top" src="{{ url_for('static', filename='images/artists/default_logo.jpg') }}"/>
                 <div class="card-body">
                     <h5 class="card-title">More TBC!</h5>
                     <p class="card-text"><b></b></p>
@@ -414,14 +414,28 @@
     </div>
     <div class="card-group">
             <div class="card" style="max-width:200px">
-                <img src="{{ url_for('static', filename='images/jakub.jpg') }}" alt=""
+                <img src="{{ url_for('static', filename='images/default_logo.jpg') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
-                    <h4>Jakub "Mściwój Ogórkowski"</h4>
+                    <h4>Maya Blanco Bilbao</h4>
                     <h5 class="role">Society president</h5>
                     <!--<p>Optional text about yourself.</p>-->
                     <ul class="social-icons clearfix">
-                        <li><a href="https://www.facebook.com/msciwoj" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.facebook.com/mayablancobilbao9/" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">@</a> </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="max-width:200px">
+                <img src="{{ url_for('static', filename='images/giulia.jpg') }}" alt=""
+                     class="card-img-top">
+                <div class="card-body">
+                    <h4>Giulia Moretti</h4>
+                    <h5 class="role">Society Secretary</h5>
+                    <!--<p>Optional text about yourself.</p>-->
+                    <ul class="social-icons clearfix">
+                        <li><a href="https://www.facebook.com/giulia.moretti.73744" target="_blank"><span class="fa fa-facebook"></span></a></li>
                         <li><a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">@</a> </li>
                     </ul>
                 </div>
@@ -443,14 +457,14 @@
             </div>
 
             <div class="card" style="max-width:200px">
-                <img src="{{ url_for('static', filename='images/christoph.jpg') }}" alt=""
+                <img src="{{ url_for('static', filename='images/sankalp.jpg') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
-                    <h4>Christoph Höppke</h4>
+                    <h4>Sankalp Garud</h4>
                     <h5 class="role">Treasurer</h5>
                     <!--<p>Optional text about yourself.</p>-->
                     <ul class="social-icons clearfix">
-                        <li><a href="https://www.facebook.com/profile.php?id=100017522021746" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.facebook.com/sankalp35" target="_blank"><span class="fa fa-facebook"></span></a></li>
                         <li><a href="mailto:{{ template_config['TREASURER_EMAIL'] }}">@</a> </li>
                     </ul>
                 </div>
