@@ -33,8 +33,8 @@
                 <tr>
                     <td>{{ t.ticket_type }}</td>
                     <td>{{ '%0.2f'| format(t.price_/100|float) }}</td>
-                    <td>(( t.user.forenames }}</td>
-                    <td>(( t.user.surname }}</td>
+                    <td>{{ t.owner.forenames }}</td>
+                    <td>{{ t.owner.surname }}</td>
                 </tr>
             {% endfor %}
         </table>
