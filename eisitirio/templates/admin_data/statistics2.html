@@ -32,9 +32,12 @@
             {% for t in tickets %}
                 <tr>
                     <td>{{ t.ticket_type }}</td>
+                    <td>{{ t.ticket_type.name }}</td>
+                    <td>{{ t.ticket_type.price_pounds }}</td>
                     <td>{{ '%0.2f'| format(t.price_/100|float) }}</td>
                     <td>{{ t.owner.forenames }}</td>
                     <td>{{ t.owner.surname }}</td>
+                    <td>{{ t.holder_name }}</td>
                 </tr>
             {% endfor %}
         </table>
