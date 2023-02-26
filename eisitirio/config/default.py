@@ -122,7 +122,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2022, 05, 14)
+LOCKDOWN_STARTS = datetime.datetime(2023, 05, 05)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -174,9 +174,9 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2022, 05, 13, 15,30) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2022, 05, 13, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2022, 05, 13, 01,30) # 1am, 12th May 2018
+START_TIME = datetime.datetime(2023, 05, 06, 15,00) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2023, 05, 06, 00,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2023, 05, 06, 01,00) # 1am, 12th May 2018
 THEME = "Oxford's Salsa ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
@@ -218,14 +218,14 @@ GRAPH_STORAGE_FOLDER='static/admin/graphs'
 # OTD party student/member	18
 
 
-STD_ALL_PRICE = '30.00'
-STD_ALL_EARLY_PRICE = '25.00'
-STD_PARTY_PRICE = '25.00'
+STD_ALL_PRICE = '35.00'
+STD_ALL_EARLY_PRICE = '29.00'
+STD_PARTY_PRICE = '29.00'
 
 
-MEMBER_ALL_PRICE = '25.00'
-MEMBER_ALL_EARLY_PRICE = '20.00'
-MEMBER_PARTY = '20.00'
+MEMBER_ALL_PRICE = '29.00'
+MEMBER_ALL_EARLY_PRICE = '24.00'
+MEMBER_PARTY = '24.00'
 
 
 ARTIST_PRICE = 0

@@ -123,7 +123,7 @@ class Ticket(DB.Model):
 
 
     def can_be_cancelled(self):
-        if datetime.datetime.utcnow()<datetime.datetime(2022,5,23) and not self.cancelled and not self.paid:
+        if datetime.datetime.utcnow()<datetime.datetime(2023,5,5) and not self.cancelled and not self.paid:
             return True
         return False
 
