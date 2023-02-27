@@ -37,7 +37,7 @@ POSTAGE_OPTIONS = {
 # Quick way to generate a JS array.
 POSTAGE_OPTIONS_NEED_ADDRESS = [
     option.slug
-    for option in POSTAGE_OPTIONS.itervalues()
+    for option in POSTAGE_OPTIONS.values()
     if option.needs_address
 ]
 

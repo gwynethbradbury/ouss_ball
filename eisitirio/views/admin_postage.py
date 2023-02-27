@@ -3,7 +3,7 @@
 
 from __future__ import unicode_literals
 
-import StringIO
+import io
 
 import flask_login as login
 # from flask.ext import login
@@ -101,7 +101,7 @@ def export_postage(unposted_only, postage_type=None):
 
     Exports the statistics used to render the graphs as a CSV file.
     """
-    csvdata = StringIO.StringIO()
+    csvdata = io.StringIO.StringIO()
     csvwriter = unicode_csv.UnicodeWriter(csvdata)
 
     csvwriter.writerow(

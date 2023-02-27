@@ -16,15 +16,15 @@ ENVIRONMENT = 'PRODUCTION'
 SEND_EMAILS = True
 LOG_LEVEL = logging.WARNING
 
-EWAY_API_BASE = 'https://api.ewaypayments.com/'
-EWAY_API_KEY = 'eWay API Key'
-EWAY_PASSWORD = 'eWay Password'
-EWAY_API_PASSCODE = base64.b64encode(
-    '{0}:{1}'.format(
-        EWAY_API_KEY,
-        EWAY_PASSWORD
-    )
-)
+# EWAY_API_BASE = 'https://api.ewaypayments.com/'
+# EWAY_API_KEY = 'eWay API Key'
+# EWAY_PASSWORD = 'eWay Password'
+# EWAY_API_PASSCODE = base64.b64encode(
+#     '{0}:{1}'.format(
+#         EWAY_API_KEY,
+#         EWAY_PASSWORD
+#     )
+# )
 
 import os
 SMTP_HOST = "smtp.gmail.com"

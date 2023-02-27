@@ -15,7 +15,7 @@ import sqlalchemy
 
 from eisitirio.helpers import permissions
 
-class CustomModelMeta(flask_sqlalchemy._BoundDeclarativeMeta): # pylint: disable=protected-access
+class CustomModelMeta(flask_sqlalchemy.DefaultMeta): # pylint: disable=protected-access
     """Metaclass for the custom model to magically create get_by methods."""
 
     def __getattr__(cls, name): # this is a metaclass, pylint: disable=E0213

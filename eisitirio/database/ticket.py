@@ -77,7 +77,8 @@ class Ticket(DB.Model):
         backref=DB.backref(
             'tickets',
             lazy='dynamic',
-            order_by=b'Ticket.cancelled'
+            order_by='Ticket.cancelled'
+                     # todo: check, was b.'Ticket.cancelled'
         ),
         foreign_keys=[owner_id]
     )

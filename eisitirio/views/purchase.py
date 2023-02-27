@@ -830,7 +830,7 @@ def paypal_processed(transaction_id,hash,paypal_id):
 def api_verify_ticket(ticket_id):
     ticket = models.Ticket.query.get_or_404(ticket_id)
 
-    print ticket
+    print(ticket)
 
     if ticket is not None:
         return "true"

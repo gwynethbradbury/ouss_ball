@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import csv
 import os
-import StringIO
+import io
 
 import flask_login as login
 # from flask.ext import login
@@ -122,7 +122,7 @@ def data(group):
         models.Statistic.timestamp
     ).all()
 
-    csvdata = StringIO.StringIO()
+    csvdata = io.StringIO.StringIO()
     csvwriter = csv.writer(csvdata)
 
     for stat in stats:
@@ -144,7 +144,7 @@ def dietary_requirements():
     """Export dietary requirements as a csv."""
     requirements = models.DietaryRequirements.query.all()
 
-    csvdata = StringIO.StringIO()
+    csvdata = io.StringIO.StringIO()
     csvwriter = csv.writer(csvdata)
 
     csvwriter.writerow([

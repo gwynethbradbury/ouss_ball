@@ -38,8 +38,8 @@ ANALYTICS_DOMAIN = ''
 # Tickets Config
 
 _LIMITED_RELEASE_STARTS = datetime.datetime(2015, 11, 30, 9, 0, 0)
-_LIMITED_RELEASE_ENDS = datetime.datetime(2016, 01, 25, 9, 0, 0)
-GENERAL_RELEASE_STARTS = datetime.datetime(2018, 02, 01, 10, 0, 0)
+_LIMITED_RELEASE_ENDS = datetime.datetime(2016, 1, 25, 9, 0, 0)
+GENERAL_RELEASE_STARTS = datetime.datetime(2018, 2, 1, 10, 0, 0)
 
 GUEST_TICKETS_AVAILABLE_TOTAL =  550
 GUEST_TICKETS_AVAILABLE = GUEST_TICKETS_AVAILABLE_TOTAL#timed_config.Until(
@@ -122,7 +122,7 @@ FEATURE_CONSTANTS = [
 # * Users purchasing postage
 # * Users changing personal details or photos
 
-LOCKDOWN_STARTS = datetime.datetime(2023, 05, 05)
+LOCKDOWN_STARTS = datetime.datetime(2023, 5, 5)
 LOCKDOWN_MODE = timed_config.Until(False, LOCKDOWN_STARTS, True)
 
 # Template config
@@ -174,10 +174,10 @@ TEMPLATE_CONFIG_KEYS = [
 ]
 TEMPLATE_CONFIG_KEYS.extend(FEATURE_CONSTANTS)
 
-START_TIME = datetime.datetime(2023, 05, 06, 15,00) # 8pm, 11th May 2018
-GATES_CLOSE = datetime.datetime(2023, 05, 06, 00,30) # 1am, 12th May 2018
-END_TIME = datetime.datetime(2023, 05, 06, 01,00) # 1am, 12th May 2018
-THEME = "Oxford's Salsa ball"
+START_TIME = datetime.datetime(2023, 5, 6, 15,0) # 8pm, 11th May 2018
+GATES_CLOSE = datetime.datetime(2023, 5, 6, 0,30) # 1am, 12th May 2018
+END_TIME = datetime.datetime(2023, 5, 6, 1,0) # 1am, 12th May 2018
+THEME = "Oxford's Salsa and Bachata Ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
 BALL_NAME = 'OUSS Salsa Ball'

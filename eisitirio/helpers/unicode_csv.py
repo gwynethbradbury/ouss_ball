@@ -2,7 +2,7 @@
 """Helper to support writing Unicode CSV files."""
 
 import codecs
-import cStringIO
+import io
 import csv
 
 import six
@@ -14,7 +14,7 @@ class UnicodeWriter(object):
     """
 
     def __init__(self, stream, dialect=csv.excel, encoding="utf-8", **kwds):
-        self.buffer = cStringIO.StringIO()
+        self.buffer = io.StringIO.StringIO()
         self.writer = csv.writer(self.buffer, dialect=dialect, **kwds)
         self.stream = stream
         self.encoder = codecs.getincrementalencoder(encoding)()

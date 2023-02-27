@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 
 import csv
-import StringIO
+import io
 
 from dateutil import parser
 import flask_login as login
@@ -322,7 +322,7 @@ def admin_home(page=1):
             'action' in flask.request.form and
             flask.request.form['action'] == 'Export'
     ):
-        csvdata = StringIO.StringIO()
+        csvdata = io.StringIO.StringIO()
         csvwriter = csv.writer(csvdata)
 
         model.write_csv_header(csvwriter)

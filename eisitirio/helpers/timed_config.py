@@ -60,7 +60,7 @@ def augment_config(app):
     old_getitem = app.config.__getitem__
 
     app.config.__class__ = type(
-        b'Config',
+        'Config',# todo: should this be b'Config'?
         (flask.config.Config,),
         {'__getitem__': (lambda self, k: parse_until(old_getitem(k)))}
     )
