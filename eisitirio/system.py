@@ -15,8 +15,9 @@ import flask
 import jinja2
 
 
-# from eisitirio import app
-import app, sys
+from eisitirio import app
+# import app
+import sys
 
 APP = app.APP
 
