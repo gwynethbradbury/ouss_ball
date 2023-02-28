@@ -360,7 +360,7 @@ class  User(DB.Model):
         and is a defined class method which returns a unique identifier for the
         user, in this case their database ID.
         """
-        return unicode(self.object_id)
+        return str(self.object_id)
 
     @staticmethod
     def get_by_email(email):

@@ -61,7 +61,7 @@ def generate_barcodes(send_only_new):
     for ticket in tickets:
         if not ticket.barcode: # Need to generate a bar code
             # Generate a unique key for this ticket.
-            key = util.generate_key(20).decode('utf-8')
+            key = util.generate_key(20)
             # and add it
             ticket.barcode = key
             DB.session.commit()

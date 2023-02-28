@@ -97,7 +97,7 @@ class LogManager(object):
             elif not login.current_user.is_anonymous:
                 actor = login.current_user
 
-            ip_address = flask.request.remote_addr.decode()
+            ip_address = flask.request.remote_addr
         else:
             ip_address = 'interactive'
 

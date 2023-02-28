@@ -37,7 +37,7 @@ class UnicodeWriter(object):
 
         self.stream.write(
             self.encoder.encode(
-                self.buffer.getvalue().decode("utf-8")
+                self.buffer.getvalue()
             )
         )
 
