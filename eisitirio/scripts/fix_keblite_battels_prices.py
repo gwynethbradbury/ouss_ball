@@ -37,8 +37,8 @@ class FixKebliteBattelsPricesCommand(script.Command):
                     else:
                         failed_rebates += 1
 
-            print >> f1, "SUCCESSFUL REBATES: {0}".format(successful_rebates)
-            print >> f1, "FAILED REBATES: {0}".format(failed_rebates)
+            # print >> f1, "SUCCESSFUL REBATES: {0}".format(successful_rebates)
+            # print >> f1, "FAILED REBATES: {0}".format(failed_rebates)
 
             # APP.log_manager.log_event(
             #     'Finished Keblite Rebates. Successes: {0}, failures: {1}'.format(
@@ -52,13 +52,13 @@ def user_needs_rebate(user):
     return all(ticket.price_ > 9000 for ticket in user.tickets) and ticket_logic.can_buy_keblite(user) and (user.active_ticket_count > 0)
 
 def refund_user(user):
-    print >> f1, '###########################################################################'
-    print >> f1, '########### Refund user {0}:{1} {2} pounds #######'.format(user.full_name, user.email, 1000)
-    print >> f1, '########### Current tickets that the user owns are #######'
-    print >> f1, '+--------------------------------------------------------------------------'
-    for i, ticket in enumerate(user.tickets):
-        print >> f1, '| Ticket {0}: {1} price: {2}'.format(i, ticket, ticket.price_pounds)
-    print >> f1, '+--------------------------------------------------------------------------'
+    # print >> f1, '###########################################################################'
+    # print >> f1, '########### Refund user {0}:{1} {2} pounds #######'.format(user.full_name, user.email, 1000)
+    # print >> f1, '########### Current tickets that the user owns are #######'
+    # print >> f1, '+--------------------------------------------------------------------------'
+    # for i, ticket in enumerate(user.tickets):
+    #     print >> f1, '| Ticket {0}: {1} price: {2}'.format(i, ticket, ticket.price_pounds)
+    # print >> f1, '+--------------------------------------------------------------------------'
     return True
 
 #def refund_user(user):

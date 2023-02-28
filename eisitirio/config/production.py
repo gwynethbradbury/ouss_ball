@@ -39,7 +39,7 @@ from dotenv import load_dotenv
 project_folder = os.path.expanduser('~/ouss_ball')  # adjust as appropriate
 load_dotenv(os.path.join(project_folder, '.env'))
 SMTP_PASSWORD = os.getenv("SECRET_KEY")
-#SMTP_PASSWORD = 'ecdrgvozwxmtqkbv'
+# SMTP_PASSWORD = 'ecdrgvozwxmtqkbv'
 
 AWS_ACCESS_KEY_ID = 'AWS Access Key ID'
 AWS_SECRET_ACCESS_KEY = 'AWS Secret Access Key'

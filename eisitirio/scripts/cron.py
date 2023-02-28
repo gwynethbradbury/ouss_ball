@@ -55,7 +55,7 @@ def get_last_run_time(timestamp_file):
         with open(timestamp_file, 'r') as file_handle:
             timestamp = int(file_handle.read().strip())
     except IOError:
-        print 'Timestamp not found'
+        print('Timestamp not found')
         timestamp = 0
 
     return datetime.datetime.fromtimestamp(timestamp)

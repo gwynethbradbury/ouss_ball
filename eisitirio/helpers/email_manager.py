@@ -268,6 +268,36 @@ class EmailManager(object):
 
         self.send_message(message)
 
+    def send_html(self, recipient, subject, message_html, email_from=None):
+        """Send an text email.
+
+        Composes the email into a text.MIMEText object and passes it to the
+        email sending routine.
+
+        Args:
+            recipient: (str) the email address of the recipient
+            subject: (str) the subject line of the email to be sent
+            text: (str) the body of the email
+            email_from: (str or None) the reported sender of the email. If this
+                is none, the default value from the application configuration is
+                used.
+        """
+        if email_from is None:
+            email_from = self.app.config['EMAIL_FROM']
+
+
+        # Set up the MIME stuff so that we can send the images
+        message = MIMEMultipart('related')
+        message.attach(MIMEText((message_html), 'html'))
+
+
+        message['Subject'] = '[{0}] {1}'.format(self.app.config['BALL_NAME'],
+                                                subject)
+        message['From'] = email_from
+        message['To'] = recipient
+
+        self.send_message(message)
+
     def send_message(self, message):
         """Send a marked up email via SMTP.
 

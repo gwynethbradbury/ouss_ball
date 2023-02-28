@@ -96,13 +96,13 @@ def send_chunk(tickets):
         try:
             if send_claim_code(ticket.holder):
                 successes = successes + 1
-                print '[Sent: {0}]'.format(ticket.object_id)
+                print('[Sent: {0}]'.format(ticket.object_id))
                 LOG.info('[{0}] sent QR code to: {1}'.format(ticket.object_id, ticket.holder.full_name.encode('utf-8')))
             else:
                 ticket.barcode = None
                 DB.session.commit()
                 LOG.error("Failed to send ticket to {0}".format(ticket.holder.full_name.encode('utf-8')))
-                print '[Failed to Send: {0}]'.format(ticket.object_id)
+                print('[Failed to Send: {0}]'.format(ticket.object_id))
                 failures = failures + 1
         except:
             # We've failed to send this one out, so mark it for review
@@ -112,9 +112,9 @@ def send_chunk(tickets):
             LOG.error("[EXCEPTION] Possibly failed to send ticket to: {0}".format(ticket.holder.full_name.encode('utf-8')))
         sleep(0.5)
 
-    print "All done sending claim codes. Total #codes that we should have sent: {0}".format(len(tickets))
-    print "Total that were sent successfully: {0}".format(successes)
-    print "Total that we failed to send successfully: {0}".format(failures)
+    print("All done sending claim codes. Total #codes that we should have sent: {0}".format(len(tickets)))
+    print("Total that were sent successfully: {0}".format(successes))
+    print("Total that we failed to send successfully: {0}".format(failures))
 
 def send_list(send_only_new=True):
     """Generate list of all tickets, and send to webmaster.

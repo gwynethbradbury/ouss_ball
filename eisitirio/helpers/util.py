@@ -27,7 +27,7 @@ def generate_key(length, choices=None):
             string.digits
         )
 
-    return ''.join(random.choice(choices) for x in xrange(length))
+    return ''.join(random.choice(choices) for x in range(length))
 
 
 def parse_pounds_pence(form, pounds_key, pence_key):

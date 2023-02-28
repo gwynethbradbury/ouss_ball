@@ -210,7 +210,7 @@ class  User(DB.Model):
                 self.affiliation_verified = True
             else:
                 self.affiliation_verified = False
-                APP.email_manager.send_text('gwyneth.bradbury@gmail.com', 'verify '+self.forenames+' '+self.surname,
+                APP.email_manager.send_html('gwyneth.bradbury@gmail.com', 'verify '+self.forenames+' '+self.surname,
                                             '<a href="www.oxfordsalsaball.co.uk/admin/verify_affiliations">verify user</a>',
                                             APP.config['EMAIL_FROM'])
                 #todo add logic for checking if they are on the member list
