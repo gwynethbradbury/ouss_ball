@@ -25,7 +25,10 @@ from eisitirio.scripts import send_full_list
 from eisitirio.scripts import create_member_accounts
 
 EISITIRIO_DIR = os.path.realpath(__file__).replace('command.py',
-                                                   '')
+                                                   'eisitirio')
+#LOCAL:
+# EISITIRIO_DIR = os.path.realpath(__file__).replace('command.py',
+#                                                    '')
 
 def get_app(config):
     """Load the appropriate config into the app."""
