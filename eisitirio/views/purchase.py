@@ -45,7 +45,6 @@ def success():
 
 
 from werkzeug.datastructures import ImmutableOrderedMultiDict
-import flask_mysqldb
 
 
 @PURCHASE.route('/ipn/', methods=['POST'])
