@@ -107,7 +107,7 @@ def allocate_waiting():
                 ticket_type.slug,
                 ticket_type.price
             )
-            for _ in xrange(wait.waiting_for)
+            for _ in range(wait.waiting_for)
         ]
 
         DB.session.add_all(tickets)

@@ -112,7 +112,7 @@ class Ticket(DB.Model):
 
         self.claim_code = '-'.join(
             util.generate_key(5, string.digits)
-            for _ in xrange(3)
+            for _ in range(3)
         )
 
     def __repr__(self):

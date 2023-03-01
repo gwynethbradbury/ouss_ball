@@ -175,7 +175,7 @@ def give_user(user_id):
 
         tickets = [
             models.Ticket(user, ticket_type.slug, price)
-            for _ in xrange(num_tickets)
+            for _ in range(num_tickets)
         ]
 
         for ticket in tickets:

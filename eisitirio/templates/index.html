@@ -468,8 +468,8 @@
         <!--<p>Early bird and afternoon workshop passes are now sold out. Evening ball passes are £20 for members, £25 for non-members</p>-->
         <p>Tickets cost:
         <ul>
-        <li>Early Bird, workshops and party:	£24</li>
-        <li>Early Full, workshops and party, OUSS Member price:	£29</li>
+        <li>Early Bird, workshops and party:	£29</li>
+        <li>Early Full, workshops and party, OUSS Member price:	£24</li>
         <li>Full ticket, workshops and party:	£35</li>
         <li>Full ticket, workshops and party, OUSS Member price:	£29</li>
         <li>Party only:	£29</li>
@@ -499,6 +499,26 @@
 
         <p class="wow fadeInDown animated">Oxford Salsa Ball has been around
             for many years, so here are some memories from previous years. <a href="https://www.facebook.com/pg/SPAPhotographerAndFilmmaker/photos/?tab=album&album_id=2448239285227576">(2019 photos)</a></p>
+
+        <div class="row no-gutter">
+            <div id="gallerycol2022">
+            {% for n in gallery_images2022 %}
+{#                {% if loop.index0%4==1 %}#}
+                    <div class="work" >
+                    <a href="{{ url_for('static', filename='images/gallery/2022/'+n) }}"
+                       class="work-box">
+                    <img src="{{ url_for('static', filename='images/gallery/2022/'+n) }}" alt="{{ n }}"/>
+                        <div class="overlay">
+                            <div class="overlay-caption">
+{#                                <p><span class="icon icon-magnifying-glass"></span></p>#}
+                            </div>
+                        </div>
+
+                    </a></div>
+{#                {% endif %}#}
+            {% endfor %}
+            </div>
+        </div>
 
         <div class="row no-gutter">
             <div id="gallerycol">
@@ -562,7 +582,7 @@
                 <img src="{{ url_for('static', filename='images/default_logo.jpg') }}" alt=""
                      class="card-img-top">
                 <div class="card-body">
-                    <h4>Maya Blanco Bilbao</h4>
+                    <h4>Sekela Ngamilo</h4>
                     <h5 class="role">Society president</h5>
                     <!--<p>Optional text about yourself.</p>-->
                     <ul class="social-icons clearfix">
@@ -572,19 +592,6 @@
                 </div>
             </div>
 
-            <div class="card" style="max-width:200px">
-                <img src="{{ url_for('static', filename='images/giulia.jpg') }}" alt=""
-                     class="card-img-top">
-                <div class="card-body">
-                    <h4>Giulia Moretti</h4>
-                    <h5 class="role">Society Secretary</h5>
-                    <!--<p>Optional text about yourself.</p>-->
-                    <ul class="social-icons clearfix">
-                        <li><a href="https://www.facebook.com/giulia.moretti.73744" target="_blank"><span class="fa fa-facebook"></span></a></li>
-                        <li><a href="mailto:{{ template_config['TICKETS_EMAIL'] }}">@</a> </li>
-                    </ul>
-                </div>
-            </div>
 
 
             <div class="card" style="max-width:200px">
@@ -606,7 +613,7 @@
                      class="card-img-top">
                 <div class="card-body">
                     <h4>Sankalp Garud</h4>
-                    <h5 class="role">Treasurer</h5>
+                    <h5 class="role">Treasurer and Co Ball Manager</h5>
                     <!--<p>Optional text about yourself.</p>-->
                     <ul class="social-icons clearfix">
                         <li><a href="https://www.facebook.com/sankalp35" target="_blank"><span class="fa fa-facebook"></span></a></li>

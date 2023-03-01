@@ -8,21 +8,21 @@ from eisitirio.helpers import ticket_type
 
 # The default ticket type must count towards the guest limit, as it is the
 # ticket type assigned to people on the waiting list.
-DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard Ball", "standard_ball", 2500, 10,
-                                             0, True,
+DEFAULT_TICKET_TYPE = ticket_type.TicketType("Standard Ball", "standard_ball", 2900, 6,
+                                             400, True,
                                              True)#ticket_logic.can_buy_standard)
 
 TICKET_TYPES = [
-    ticket_type.TicketType("OUSS Member Ball + Workshops (Early Bird)", "early_member_both", 2000, 1, 0,
+    ticket_type.TicketType("OUSS Member Ball + Workshops (Early Bird)", "early_member_both", 2400, 1, 10,
                            True, True),
-    ticket_type.TicketType("OUSS Member Ball + Workshops", "member_both", 2500, 1, 0,
+    ticket_type.TicketType("OUSS Member Ball + Workshops", "member_both", 2900, 1, 50,
                            True, True),
-    ticket_type.TicketType("OUSS Member Ball", "member_ball", 2000, 1, 0,
+    ticket_type.TicketType("OUSS Member Ball", "member_ball", 2400, 1, 400,
                            True, True),
 
-    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2500, 10, 0,
+    ticket_type.TicketType("Standard Ball + Workshops (Early Bird)", "early_standard_ball", 2900, 10, 10,
                            True, True),
-    ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 3000, 10, 0,
+    ticket_type.TicketType("Standard Ball + Workshops", "standard_both", 3500, 10, 50,
                            True, True),
 
 

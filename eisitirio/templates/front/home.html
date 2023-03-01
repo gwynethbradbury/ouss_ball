@@ -10,7 +10,7 @@
         <p>
             Welcome to the {{ template_config['BALL_NAME'] }} ticketing page.
 {#            From here, you can#}
-{#            purchase, manage, and trade tickets.#}
+{#            purchase tickets.#}
             If you have any problems while using
             the system, please contact <a href="{{ template_config['TICKETS_EMAIL_LINK'] }}">the ticketing officer</a>.
         </p>
@@ -80,25 +80,25 @@
                         <label for="register-phone">Phone Number</label>
                         <input type="text" name="phone" id="register-phone"{% if form['phone'] %} value="{{ form['phone'] }}"{% endif %} />
                 </div>
+<!--                <div class="form-group" display="none">-->
+<!--                        <label for="register-college">College</label>-->
+<!--                        <select name="college" id="register-college">-->
+<!--                            {% if form['college'] %}-->
+<!--                                <option value="-&#45;&#45;" disabled="disabled">-&#45;&#45;</option>-->
+<!--                            {% else %}-->
+<!--                                <option value="-&#45;&#45;" disabled="disabled" selected="selected">-&#45;&#45;</option>-->
+<!--                            {% endif %}-->
+<!--                            {% for college in colleges %}-->
+<!--                                {% if form['college'] and form['college']|int(-1) == college.object_id %}-->
+<!--                                    <option value="{{ college.object_id }}" selected="selected">{{ college.name }}</option>-->
+<!--                                {% else %}-->
+<!--                                    <option value="{{ college.object_id }}">{{ college.name }}</option>-->
+<!--                                {% endif %}-->
+<!--                            {% endfor %}-->
+<!--                        </select>-->
+<!--                </div>-->
                 <div class="form-group">
-                        <label for="register-college">College</label>
-                        <select name="college" id="register-college">
-                            {% if form['college'] %}
-                                <option value="---" disabled="disabled">---</option>
-                            {% else %}
-                                <option value="---" disabled="disabled" selected="selected">---</option>
-                            {% endif %}
-                            {% for college in colleges %}
-                                {% if form['college'] and form['college']|int(-1) == college.object_id %}
-                                    <option value="{{ college.object_id }}" selected="selected">{{ college.name }}</option>
-                                {% else %}
-                                    <option value="{{ college.object_id }}">{{ college.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                </div>
-                <div class="form-group">
-                        <label for="register-affiliation">Affiliation</label>
+                        <label for="register-affiliation">Are you an OUSS or OUDC member?</label>
                         <select name="affiliation" id="register-affiliation">
                             {% if form['affiliation'] %}
                                 <option value="---" disabled="disabled">---</option>

@@ -93,16 +93,16 @@ class PayPalForm(object):
                                                APP.config['PAYPAL_MERCHANT_ID'],
                                                self.fields['order_id'],
                                                self.fields['amount'],
-                                               self.fields['currency']]))
+                                               self.fields['currency']]).encode('utf-8'))
         self.sha1hash2 = hashlib.sha1(".".join([
             str(transaction.object_id),
                                                self.fields['amount'],
-                                               self.fields['currency']]))
+                                               self.fields['currency']]).encode('utf-8'))
         # sign fields hash with secret and create new hash
         self.fields['sha1hash'] = hashlib.sha1(".".join([
-            self.sha1hash.hexdigest(), APP.config['PAYPAL_SECRET']])).hexdigest()
+            self.sha1hash.hexdigest(), APP.config['PAYPAL_SECRET']]).encode('utf-8')).hexdigest()
         self.sha1hash2 = hashlib.sha1(".".join([
-            self.sha1hash2.hexdigest(), APP.config['PAYPAL_SECRET']])).hexdigest()
+            self.sha1hash2.hexdigest(), APP.config['PAYPAL_SECRET']]).encode('utf-8')).hexdigest()
         self.fields['auto_settle_flag'] = 1
 
         # setting additional values that will be returned to you

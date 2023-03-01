@@ -10,6 +10,9 @@ If this was not you, you can delete the account in question by visiting the foll
 
 {{ destroyurl }}
 
+If you are a member of OUSS or OUDC this year, please also reply to this email with a picture of your membership card so that we can verify your status and you can benefit from the member discount.
+The card must be in date and clearly show your name.
+
 Best Wishes,
 
 {{ template_config['EMAIL_SIGNOFF'] }}

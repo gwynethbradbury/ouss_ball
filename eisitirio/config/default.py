@@ -180,7 +180,7 @@ END_TIME = datetime.datetime(2023, 5, 6, 1,0) # 1am, 12th May 2018
 THEME = "Oxford's Salsa and Bachata Ball"
 
 COLLEGE = "/".join(HOST_COLLEGES)
-BALL_NAME = 'OUSS Salsa Ball'
+BALL_NAME = 'OUSS Salsa and Bachata Ball'
 # TITLE = '{0} {1}'.format(BALL_NAME, START_TIME.year)
 TITLE = '{0}'.format(BALL_NAME)
 DATE_FORMAT = '%d.%m.%Y'
@@ -219,12 +219,12 @@ GRAPH_STORAGE_FOLDER='static/admin/graphs'
 
 
 STD_ALL_PRICE = '35.00'
-STD_ALL_EARLY_PRICE = '29.00'
+STD_ALL_EARLY_PRICE = '1.00'
 STD_PARTY_PRICE = '29.00'
 
 
 MEMBER_ALL_PRICE = '29.00'
-MEMBER_ALL_EARLY_PRICE = '24.00'
+MEMBER_ALL_EARLY_PRICE = '1.00'
 MEMBER_PARTY = '24.00'
 
 

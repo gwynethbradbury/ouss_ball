@@ -285,7 +285,7 @@ def checkout():
             request.ticket_type.price
         )
         for request in login.current_user.purchase_group.requests
-        for _ in xrange(request.number_requested)
+        for _ in range(request.number_requested)
     ]
 
     DB.session.add_all(tickets)

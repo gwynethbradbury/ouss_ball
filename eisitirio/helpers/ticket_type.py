@@ -39,11 +39,11 @@ class TicketType(_TicketType):
 
     # @property
     def can_buy(self,user):
-        if u'tandard' in self.name:
+        if 'tandard' in self.name:
             return True
-        if u'ember' in self.name:
+        if 'ember' in self.name:
             for t in user.tickets:
-                if u'ember' in t.ticket_type and not t.cancelled:
+                if 'ember' in t.ticket_type and not t.cancelled:
                     return False
         if user.affiliation_verified:
             if user.affiliation.name in self.name:

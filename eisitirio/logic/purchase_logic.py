@@ -256,7 +256,7 @@ def create_tickets(user, ticket_info, num_tickets):
     tickets = [
         models.Ticket(user, ticket_type.slug, ticket_type.price)
         for ticket_type, _ in ticket_info.ticket_types
-        for _ in xrange(num_tickets[ticket_type.slug])
+        for _ in range(num_tickets[ticket_type.slug])
     ]
 
 

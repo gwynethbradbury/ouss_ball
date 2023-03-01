@@ -111,7 +111,7 @@ def vouchers(page=1):
             num_vouchers = int(form['num_vouchers'])
             single_use = 'single_use' in form and form['single_use'] == 'yes'
 
-            for _ in xrange(num_vouchers):
+            for _ in range(num_vouchers):
                 key = util.generate_key(10)
                 voucher = models.Voucher(
                     '{0}-{1}'.format(

@@ -50,8 +50,13 @@ def get_img_urls():
         if n.startswith('.'):
             names2018.remove(n)
 
+    names2022 = os.listdir(os.path.join(APP.root_path, 'static/images/gallery/2022/'))
+    for n in names2018:
+        if n.startswith('.'):
+            names2018.remove(n)
 
-    return names,names2018
+
+    return names,names2018,names2022
 
 @FRONT.route('/')
 def index():
@@ -59,12 +64,13 @@ def index():
 
     Contains forms for registering and logging in.
     """
-    [names , names2018] = get_img_urls()
+    [names , names2018, names2022] = get_img_urls()
 
     return flask.render_template(
         'index.html',
         gallery_images = names,
-        gallery_images2018 = names2018
+        gallery_images2018 = names2018,
+        gallery_images2022 = names2022
     )
 
 @FRONT.route('/login', methods=['GET', 'POST'])
