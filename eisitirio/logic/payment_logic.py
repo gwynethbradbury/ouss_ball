@@ -8,10 +8,11 @@ import flask_login as login
 import flask
 
 # from eisitirio import app
-app=flask.current_app
+app = flask.current_app
 from eisitirio.database import db
 from eisitirio.database import models
 from eisitirio.logic import realex_logic
+
 
 def get_transaction(payment_method, tickets=None, postage_option=None,
                     admin_fee=None):
@@ -36,6 +37,7 @@ def get_transaction(payment_method, tickets=None, postage_option=None,
     elif payment_method == 'PayPal':
         return models.PayPalTransaction(login.current_user)
 
+
 def create_postage(transaction, tickets, postage_option, address):
     """Create a postage object and corresponding transaction item."""
     if postage_option and postage_option is not app.config['NO_POSTAGE_OPTION']:
@@ -49,6 +51,7 @@ def create_postage(transaction, tickets, postage_option, address):
         db.DB.session.add(postage)
 
         db.DB.session.add(models.PostageTransactionItem(transaction, postage))
+
 
 def complete_payment(transaction, payment_term):
     """Do the payment, or redirect the user to eWay."""
@@ -67,11 +70,12 @@ def complete_payment(transaction, payment_term):
 
         flask.flash('Battels payment completed.', 'success')
     elif transaction.payment_method == 'Card':
-            return flask.redirect(flask.url_for('purchase.payment_interstitial', transaction_id=transaction.object_id))
+        return flask.redirect(flask.url_for('purchase.payment_interstitial', transaction_id=transaction.object_id))
     elif transaction.payment_method == 'PayPal':
-            return flask.redirect(flask.url_for('purchase.payment_paypal', transaction_id=transaction.object_id))
+        return flask.redirect(flask.url_for('purchase.payment_paypal', transaction_id=transaction.object_id))
 
     return flask.redirect(flask.url_for('dashboard.dashboard_home'))
+
 
 def do_payment(tickets, postage_option, payment_method, payment_term,
                address=None):
@@ -104,6 +108,7 @@ def do_payment(tickets, postage_option, payment_method, payment_term,
 
     return complete_payment(transaction, payment_term)
 
+
 def buy_postage(tickets, postage_option, payment_method, payment_term,
                 address=None):
     """Run the payment process for postage only.
@@ -129,6 +134,7 @@ def buy_postage(tickets, postage_option, payment_method, payment_term,
     db.DB.session.commit()
 
     return complete_payment(transaction, payment_term)
+
 
 def pay_admin_fee(admin_fee, payment_method, payment_term):
     """Run the payment process for an admin fee."""

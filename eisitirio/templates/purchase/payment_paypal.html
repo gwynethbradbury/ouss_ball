@@ -1,28 +1,8 @@
-<!-- purchase/purchase_interstitial.html -->
-{% extends 'layout.html' %}
-
-
-{% block additional_scripts %}
-{#  <meta http-equiv="X-UA-Compatible" content="IE=edge" />#}
-{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{#  <script src="https://www.paypalobjects.com/api/checkout.js"></script>#}
-{##}
-{##}
-{#    <!-- Load the required components. -->#}
-{#<script src="https://js.braintreegateway.com/web/3.25.0/js/client.min.js"></script>#}
-{#<script src="https://js.braintreegateway.com/web/3.25.0/js/paypal-checkout.min.js"></script>#}
-{##}
-{#<script>#}
-{#paypal.Button.render({#}
-{#  braintree: braintree,#}
-{#  // Other configuration#}
-{#{, '#id-of-element-where-paypal-button-will-render');#}
-{#</script>#}
+{% extends "layout.html" %}
 
 
 
-  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-{% endblock %}
+
 
 
 {% block title %}<div class="scrollDestination">Proceed to Payment Provider</div>{% endblock %}
@@ -31,7 +11,7 @@
 <p>
   Please note that once tickets have been payed for, cancellations and refunds
     will only be made in exceptional circumstances and may be charged an administration fee.</p>
-    <p>An additional charge of {{ surcharge }}p will be added to your order to cover PayPal fees.</p>
+    <p>An additional charge of £{{ surcharge/100 }} will be added to your order to cover PayPal fees.</p>
 <br/>
 <div class="div small-12 columns" style="margin-left: auto; margin-right: auto; float: none !important;">
   {{ form|safe}}
@@ -40,132 +20,40 @@
     <div id="paypal-button"></div>
 
 
+	<div class="container">
+			<form name="topaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+								<INPUT TYPE="hidden" name="cmd" value="_xclick">
+				<input type="hidden" name="custom" value="{{session['username']}}"/>
+				<input type="hidden" name="business" value="admin-facilitator@paperdinosaur.co.uk">
+				<input type="hidden" name="item_name" value="OUSS BALL TICKET">
+				<input type="hidden" name="item_number" value="500">
+				<input type="hidden" name="no_shipping" value="1">
+                <input type="hidden" name="currency_code" value="GBP">
+				<input type="hidden" name="amount" value="{{ amount }}">
+<!--				<input type="hidden" name="a3" value="{{amount}}">-->
+<!--				<input type="hidden" name="p3" value="1">-->
+<!--				<input type="hidden" name="t3" value="M">-->
+				<input type="hidden" name="src" value="1">
+				<input type="hidden" name="sra" value="1">
+				<input type="hidden" name="return" value="/success/">
+				<input type="hidden" name="cancel_return" value="">
+				<input type="hidden" name="notify_url" value="{{url_for('purchase.ipn')}}">
+				<input type="submit" value="Make Payment" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
+			</form>
+	</div>
 
+
+
+
+<!--    &lt;!&ndash; Set up a container element for the button &ndash;&gt;-->
+<!--    <div id="paypal-button-container"></div>-->
 
 
 
 </div>
 
-{#  <script>#}
-{#    // Be sure to have PayPal's checkout.js library and the Braintree client and PayPal checkout scripts loaded on your page.#}
-{#// <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>#}
-{#// <script src="https://js.braintreegateway.com/web/3.25.0/js/client.min.js"></script>#}
-{#// <script src="https://js.braintreegateway.com/web/3.25.0/js/paypal-checkout.min.js"></script>#}
-{##}
-{#paypal.Button.render({#}
-{#  braintree: braintree,#}
-{#  client: {#}
-{#    production: 'CLIENT_TOKEN_FROM_SERVER',#}
-{#    sandbox: '{{ url_for('purchase.client_token' }}'#}
-{#  },#}
-{#  env: 'production', // Or 'sandbox'#}
-{#  commit: true, // This will add the transaction amount to the PayPal button#}
-{##}
-{#  payment: function (data, actions) {#}
-{#    return actions.braintree.create({#}
-{#      flow: 'checkout', // Required#}
-{#      amount: 10.00, // Required#}
-{#      currency: 'GBP', // Required#}
-{#      enableShippingAddress: true,#}
-{#      shippingAddressEditable: false,#}
-{#      shippingAddressOverride: {#}
-{#        recipientName: 'OUSS',#}
-{#        line1: 'Oxford.',#}
-{#        line2: 'Oxford',#}
-{#        city: 'Oxford',#}
-{#        countryCode: 'UK',#}
-{#        postalCode: 'OX1 2EA',#}
-{#        state: 'OX',#}
-{#        phone: '123.456.7890'#}
-{#      }#}
-{#    });#}
-{#  },#}
-{##}
-{#  onAuthorize: function (payload) {#}
-{#    // Submit `payload.nonce` to your server.#}
-{#  },#}
-{# }, '#paypal-button');#}
-{#  </script>#}
 
 
 
-    <script>
-    paypal.Button.render({
-        env: {% if isServer %}'production'{% else %}'sandbox'{% endif %},
-        client: {
-            sandbox:    'AbFkU1_elkxwJLtjyJn-pSaSzZZsXE4Nyjp4lbTvf8ANVeFIJhwJXisMVd8QafPAq2y3U3YByrUuMtBQ',
-            production: 'Ab_62G8Nl6M1JC27GDVZ5pQ-N1s5o6Pf2wszZr8q5X2ca4MqWUdQ2rXxDak1fiSmzoiveo-5o6_lE47A'
-        },
 
-        commit: true, // Show a 'Pay Now' button
-
-        style: {
-            color: 'gold',
-            size: 'small'
-        },
-
-      payment: function(data, actions) {
-        /*
-         * Set up the payment here
-         */
-        return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '{{ amount }}', currency: 'GBP' }
-                        }
-                    ],
-                    note_to_payer: "An additional charge of {{ surcharge }}p has been added to your order to cover PayPal fees.",
-                    redirect_urls: {
-                      return_url: "{{ url_for('purchase.payment_processed') }}",
-                      cancel_url: "{{ url_for('purchase.paypal_cancel',transaction_id=transaction_id) }}"
-                    }
-                }
-            });
-      },
-
-      onAuthorize: function(data, actions) {
-        /*
-         * Execute the payment here
-         */
-        return actions.payment.execute().then(function(payment) {
-
-                // The payment is complete!
-                // You can now show a confirmation message to the customer
-            window.location = "{{ url_for('purchase._paypal_processed',transaction_id=transaction_id,hash=hash) }}/"+payment.transactions[0].related_resources[0].sale.id;
-            });
-
-{#          // Get the payment details#}
-{##}
-{#            return actions.payment.get().then(function(paymentDetails) {#}
-{##}
-{#                // Show a confirmation using the details from paymentDetails#}
-{#                // Then listen for a click on your confirm button#}
-{##}
-{#                document.querySelector('#confirm-button')#}
-{#                    .addEventListener('click', function() {#}
-{##}
-{#                    // Execute the payment#}
-{##}
-{#                    return actions.payment.execute().then(function() {#}
-{#                        // Show a success page to the buyer#}
-{#                        return actions.redirect()#}
-{#                    });#}
-{#                });#}
-{#            });#}
-      },
-
-      onCancel: function(data, actions) {
-        /*
-         * Buyer cancelled the payment
-         */
-      },
-
-      onError: function(err) {
-        /*
-         * An error occurred during the transaction
-         */
-      }
-    }, '#paypal-button');
-  </script>
 {% endblock %}

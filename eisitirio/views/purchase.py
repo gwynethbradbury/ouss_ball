@@ -27,6 +27,84 @@ from eisitirio import dbconfig
 
 PURCHASE = flask.Blueprint('purchase', __name__)
 
+
+# todo:
+def thwart(a):
+    return a
+
+
+import time
+
+
+@PURCHASE.route('/success/')
+def success():
+    try:
+        return flask.render_template("success.html")
+    except Exception as e:
+        return str(e)
+
+
+from werkzeug.datastructures import ImmutableOrderedMultiDict
+import flask_mysqldb
+
+
+@PURCHASE.route('/ipn/', methods=['POST'])
+def ipn():
+    try:
+        arg = ''
+        flask.request.parameter_storage_class = ImmutableOrderedMultiDict
+        values = flask.request.form
+        for x, y in values.iteritems():
+            arg += "&{x}={y}".format(x=x, y=y)
+
+        validate_url = 'https://www.sandbox.paypal.com' \
+                       '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
+            .format(arg=arg)
+        r = flask.request.get(validate_url)
+        if r.text == 'VERIFIED':
+            try:
+                payer_email = thwart(flask.request.form.get('payer_email'))
+                unix = int(time.time())
+                payment_date = thwart(flask.request.form.get('payment_date'))
+                username = thwart(flask.request.form.get('custom'))
+                last_name = thwart(flask.request.form.get('last_name'))
+                payment_gross = thwart(flask.request.form.get('payment_gross'))
+                payment_fee = thwart(flask.request.form.get('payment_fee'))
+                payment_net = float(payment_gross) - float(payment_fee)
+                payment_status = thwart(flask.request.form.get('payment_status'))
+                txn_id = thwart(flask.request.form.get('txn_id'))
+            except Exception as e:
+                with open('/tmp/ipnout.txt', 'a') as f:
+                    data = 'ERROR WITH IPN DATA\n' + str(values) + '\n'
+                    f.write(data)
+
+            with open('/tmp/ipnout.txt', 'a') as f:
+                data = 'SUCCESS\n' + str(values) + '\n'
+                f.write(data)
+
+            # TODO PAYMENT COMPLETE LOGIC
+            # c, conn = connection()
+            # c.execute(
+            #     "INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            #     (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status,
+            #      txn_id))
+            # conn.commit()
+            # c.close()
+            # conn.close()
+            # gc.collect()
+
+        else:
+            with open('/tmp/ipnout.txt', 'a') as f:
+                data = 'FAILURE\n' + str(values) + '\n'
+                f.write(data)
+
+        return r.text
+    except Exception as e:
+        return str(e)
+
+
+
+
 @PURCHASE.route('/purchase', methods=['GET', 'POST'])
 @login.login_required
 def purchase_home():
@@ -688,7 +766,7 @@ def payment_paypal(transaction_id):
     #     isServer=False
 
     return flask.render_template('purchase/payment_paypal.html',
-                                 amount = t.value_pounds_surcharge( app.APP.config['PAYPAL_SURCHARGE']),
+                                 amount=t.value_pounds_surcharge( app.APP.config['PAYPAL_SURCHARGE']),
                                  transaction_id=transaction_id, hash=hash, surcharge=app.APP.config['PAYPAL_SURCHARGE'],
                                  isServer = isServer)
 
