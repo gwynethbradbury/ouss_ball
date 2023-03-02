@@ -22,33 +22,24 @@ from eisitirio.logic import payment_logic
 # APP = app.APP#DB = db.DB
 APP = flask.current_app
 from eisitirio.app import eisitiriodb as DB
-
 from eisitirio import dbconfig
 
 PURCHASE = flask.Blueprint('purchase', __name__)
 
 
 
+# CREATE TABLE ipn (unix INT(10), payment_date VARCHAR(30), transhash VARCHAR(200), last_name VARCHAR(30), payment_gross FLOAT(6,2), payment_fee FLOAT(6,2), payment_net FLOAT(6,2), payment_status VARCHAR(15), txn_id VARCHAR(25));
 
 import time
 
-@PURCHASE.route('/success/', methods=['GET'])
+@PURCHASE.route('/success/', methods=['POST'])
 @login.login_required
 def success():
-    try:
-        return flask.render_template("success.html")
-    except Exception as e:
-        return str(e)
+    print(flask.request.form)
+    if flask.request.method == 'POST':
+        payer_id = flask.request.form.get('payer_id')
+        print(payer_id)
 
-import requests
-from werkzeug.datastructures import ImmutableOrderedMultiDict
-import flask_mysqldb
-# todo:
-def thwart(a):
-    return flask_mysqldb.escape_string(a)
-
-@PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
-def ipn(transaction_id,hash):
     print("HIHIHIHIHI")
     try:
         arg = ''
@@ -59,7 +50,7 @@ def ipn(transaction_id,hash):
             arg += "&{x}={y}".format(x=x, y=y)
         print('ZZZZZZZ')
 
-        validate_url = 'https://www.sandbox.paypal.com' \
+        validate_url = 'https://www.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         print('ZZZZZZZ')
@@ -69,21 +60,21 @@ def ipn(transaction_id,hash):
             print(flask.request.form.get('item_number'))
         except Exception as e:
             return print(e)
-        if r.text == 'VERIFIED':
+        if True: #r.text == 'VERIFIED':
             try:
                 payer_email = thwart(flask.request.form.get('payer_email'))
                 unix = int(time.time())
                 payment_date = thwart(flask.request.form.get('payment_date'))
-                username = thwart(flask.request.form.get('custom'))
+                transhash = thwart(flask.request.form.get('custom'))
                 last_name = thwart(flask.request.form.get('last_name'))
                 payment_gross = thwart(flask.request.form.get('payment_gross'))
                 payment_fee = thwart(flask.request.form.get('payment_fee'))
                 payment_net = float(payment_gross) - float(payment_fee)
                 payment_status = thwart(flask.request.form.get('payment_status'))
                 txn_id = thwart(flask.request.form.get('txn_id'))
-                transaction_number = thwart(flask.request.form.get('item_number'))
-                print("transaction_number is "+transaction_number)
-                paypal_logic.process_payment_new(transaction_id, hash, paypal_id=txn_id)
+                transaction_number = int(thwart(flask.request.form.get('item_number')))
+                print("transaction_number is " + thwart(flask.request.form.get('item_number')))
+                paypal_logic.process_payment_new(transaction_number, transhash, paypal_id=txn_id, payment_gross=float(payment_gross))
             except Exception as e:
                 with open('/tmp/ipnout.txt', 'a') as f:
                     data = 'ERROR WITH IPN DATA\n' + str(values) + '\n'
@@ -94,9 +85,17 @@ def ipn(transaction_id,hash):
                 f.write(data)
 
             # TODO PAYMENT COMPLETE LOGIC
-            print("INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status,
-                 txn_id))
+            # print("INSERT INTO ipn (unix, payment_date, transhash, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {})"
+            #         .format(unix, payment_date, transhash, last_name, payment_gross, payment_fee, payment_net, payment_status,txn_id)
+            #      )
+            # from eisitirio.app import eisitiriodb as DB
+            # from sqlalchemy.sql import text
+            # DB.session.execute(text
+            #     ("INSERT INTO ipn (unix, payment_date, transhash, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {})"
+            #         .format(unix, payment_date, transhash, last_name, payment_gross, payment_fee, payment_net, payment_status,txn_id)
+            #      ))
+            # DB.session.commit()
+
             # c, conn = connection()
             # c.execute(
             #     "INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -112,10 +111,108 @@ def ipn(transaction_id,hash):
                 data = 'FAILURE\n' + str(values) + '\n'
                 f.write(data)
 
-        return r.text
+        # return r.text
+        print(r.text)
+
+        try:
+            return flask.render_template("success.html")
+        except Exception as e:
+            return str(e)
+
     except Exception as e:
         print(e)
         return str(e)
+
+
+
+
+
+    try:
+        return flask.render_template("success.html")
+    except Exception as e:
+        return str(e)
+
+import requests
+from werkzeug.datastructures import ImmutableOrderedMultiDict
+import flask_mysqldb
+# todo:
+def thwart(a):
+    return a #flask_mysqldb.escape_string(a)
+
+# @PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
+# def ipn(transaction_id,hash):
+#     print("HIHIHIHIHI")
+#     try:
+#         arg = ''
+#         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
+#         print('ZZZZZZZ')
+#         values = flask.request.form
+#         for x, y in values.items():
+#             arg += "&{x}={y}".format(x=x, y=y)
+#         print('ZZZZZZZ')
+#
+#         validate_url = 'https://www.sandbox.paypal.com' \
+#                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
+#             .format(arg=arg)
+#         print('ZZZZZZZ')
+#         print(requests.get(validate_url))
+#         r = requests.get(validate_url)
+#         try:
+#             print(flask.request.form.get('item_number'))
+#         except Exception as e:
+#             return print(e)
+#         if r.text == 'VERIFIED':
+#             try:
+#                 payer_email = thwart(flask.request.form.get('payer_email'))
+#                 unix = int(time.time())
+#                 payment_date = thwart(flask.request.form.get('payment_date'))
+#                 username = thwart(flask.request.form.get('custom'))
+#                 last_name = thwart(flask.request.form.get('last_name'))
+#                 payment_gross = thwart(flask.request.form.get('payment_gross'))
+#                 payment_fee = thwart(flask.request.form.get('payment_fee'))
+#                 payment_net = float(payment_gross) - float(payment_fee)
+#                 payment_status = thwart(flask.request.form.get('payment_status'))
+#                 txn_id = thwart(flask.request.form.get('txn_id'))
+#                 transaction_number = thwart(flask.request.form.get('item_number'))
+#                 print("transaction_number is "+transaction_number)
+#                 paypal_logic.process_payment_new(transaction_id, hash, paypal_id=txn_id)
+#             except Exception as e:
+#                 with open('/tmp/ipnout.txt', 'a') as f:
+#                     data = 'ERROR WITH IPN DATA\n' + str(values) + '\n'
+#                     f.write(data)
+#
+#             with open('/tmp/ipnout.txt', 'a') as f:
+#                 data = 'SUCCESS\n' + str(values) + '\n'
+#                 f.write(data)
+#
+#             # TODO PAYMENT COMPLETE LOGIC
+#             print("INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+#                 (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status,
+#                  txn_id))
+#             from eisitirio.app import eisitiriodb as DB
+#             DB.session.execute("INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+#                 (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status,
+#                  txn_id))
+#             DB.session.commit()
+#             # c, conn = connection()
+#             # c.execute(
+#             #     "INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+#             #     (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status,
+#             #      txn_id))
+#             # conn.commit()
+#             # c.close()
+#             # conn.close()
+#             # gc.collect()
+#
+#         else:
+#             with open('/tmp/ipnout.txt', 'a') as f:
+#                 data = 'FAILURE\n' + str(values) + '\n'
+#                 f.write(data)
+#
+#         return r.text
+#     except Exception as e:
+#         print(e)
+#         return str(e)
 
 
 
