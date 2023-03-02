@@ -59,7 +59,7 @@ def ipn():
             arg += "&{x}={y}".format(x=x, y=y)
         print('ZZZZZZZ')
 
-        validate_url = 'https://www.sandbox.paypal.com' \
+        validate_url = 'https://www.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         print('ZZZZZZZ')
