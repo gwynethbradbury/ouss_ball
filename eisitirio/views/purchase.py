@@ -74,6 +74,8 @@ def ipn():
                 payment_net = float(payment_gross) - float(payment_fee)
                 payment_status = thwart(flask.request.form.get('payment_status'))
                 txn_id = thwart(flask.request.form.get('txn_id'))
+                transaction_number = thwart(flask.request.form.get('item_number'))
+                print("transaction_number is "+transaction_number)
             except Exception as e:
                 with open('/tmp/ipnout.txt', 'a') as f:
                     data = 'ERROR WITH IPN DATA\n' + str(values) + '\n'
