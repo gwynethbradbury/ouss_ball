@@ -49,7 +49,7 @@ from werkzeug.datastructures import ImmutableOrderedMultiDict
 
 
 @PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
-def ipn():
+def ipn(transaction_id,hash):
     print("HIHIHIHIHI")
     try:
         arg = ''
