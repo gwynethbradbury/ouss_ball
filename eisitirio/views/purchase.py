@@ -47,8 +47,8 @@ import flask_mysqldb
 def thwart(a):
     return flask_mysqldb.escape_string(a)
 
-@PURCHASE.route('/ipn/', methods=['POST'])
-def ipn():
+@PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
+def ipn(transaction_id,hash):
     print("HIHIHIHIHI")
     try:
         arg = ''
@@ -59,7 +59,7 @@ def ipn():
             arg += "&{x}={y}".format(x=x, y=y)
         print('ZZZZZZZ')
 
-        validate_url = 'https://www.sandbox.paypal.com' \
+        validate_url = 'https://www.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         print('ZZZZZZZ')
@@ -83,6 +83,7 @@ def ipn():
                 txn_id = thwart(flask.request.form.get('txn_id'))
                 transaction_number = thwart(flask.request.form.get('item_number'))
                 print("transaction_number is "+transaction_number)
+                paypal_logic.process_payment_new(transaction_id, hash, paypal_id=txn_id)
             except Exception as e:
                 with open('/tmp/ipnout.txt', 'a') as f:
                     data = 'ERROR WITH IPN DATA\n' + str(values) + '\n'

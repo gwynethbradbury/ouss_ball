@@ -347,6 +347,124 @@ def process_payment(request,order_id,hash,paypal_id):
         )
         return None
 
+
+def process_payment_new(order_id,hash,paypal_id):
+
+    APP.log_manager.log_event('Received callback from PAYPAL')
+
+    transaction = models.Transaction.query.get_or_404(
+        order_id
+    )
+
+    if transaction is None:
+        flask.flash(
+            (
+                'There was a problem with our payment provider, '
+                'please contact <a href="{0}">the treasurer</a> '
+                'to confirm that payment has not been taken before trying again'
+            ).format(
+                APP.config['TREASURER_EMAIL_LINK'],
+            ),
+            'warning'
+        )
+        APP.log_manager.log_event(
+            (
+                'Error processing payment: unable to find transaction in database.'
+                ' ORDER_ID was {0}'
+            ).format(
+                order_id #request.form['ORDER_ID']
+            )
+        )
+
+        return None
+
+    # todo
+    form = PayPalForm(transaction=transaction)
+
+    if hash==form.sha1hash2:
+        print('success')
+    else:
+    #     print("fail")
+    #
+    #
+    # # Path 1: SHA1HASH check does not match
+    # try:
+    #     form.is_valid()
+    # except SHA1CheckError as exc:
+        APP.log_manager.log_event(
+            'Suspicious Response from PAYPAL: SHA1HASH does not match.',
+            transaction=transaction
+        )
+
+        flask.flash(
+            (
+                'There is a possible problem with our payment provider, '
+                'please contact <a href="{0}">the treasurer</a> '
+                'to confirm that payment has not been taken before trying again'
+            ).format(
+                APP.config['TREASURER_EMAIL_LINK'],
+            ),
+            'warning'
+        )
+        return None
+
+    paypal_transaction = models.PayPalTransaction(transaction.user)# transaction.eway_transaction
+    paypal_transaction.completed = datetime.datetime.utcnow()
+    # Stored result codes are only of length two
+    paypal_transaction.result_code = 0#request.form['RESULT'][:2]
+    paypal_transaction.charged = transaction.value#int(request.form['AMOUNT'])
+    paypal_transaction.paypal_id = paypal_id#request.form['PASREF']
+    paypal_transaction.order_id = transaction.object_id
+
+    DB.session.commit()
+
+    # Good payment
+    # todo
+    if True:#paypal_transaction.status[0]:
+
+        transaction.mark_as_paid()
+
+        try:
+            APP.log_manager.log_event(
+                'This was a group transaction',
+                tickets=transaction.tickets,
+                user=transaction.user,
+                transaction=transaction,
+                in_app=True
+            )
+            if transaction.tickets.count() > 6:
+                for ti in transaction.tickets:
+                    ti.price_ = 1800
+                db.session.commit()
+        except Exception as e:
+            APP.log_manager.log_event(
+                'something went wrong resetting the group price for this transaction',
+                tickets=transaction.tickets,
+                user=transaction.user,
+                transaction=transaction,
+                in_app=True
+            )
+
+        DB.session.commit()
+
+        APP.log_manager.log_event(
+            'Completed Card Payment',
+            tickets=transaction.tickets,
+            user=transaction.user,
+            transaction=transaction,
+            in_app=True
+        )
+
+        APP.email_manager.send_template(
+            transaction.user.email,
+            'Paypal payment confirmed',
+            'payment_confirmation.email',
+            transaction=transaction
+        )
+
+        return paypal_transaction
+
+
 ## def _send_request(endpoint, data, transaction):
 ##     """Helper to send requests to the eWay API.
 ##
