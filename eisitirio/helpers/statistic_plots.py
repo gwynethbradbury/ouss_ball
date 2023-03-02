@@ -82,7 +82,7 @@ def create_plot(group):
                 line_style=plot['line_style'],
                 current_value=plot['current_value'],
                 label=label
-            ) for (label, plot) in plots.iteritems()
+            ) for (label, plot) in plots.items()
         ],
         statistics[0].timestamp,
         statistics[-1].timestamp

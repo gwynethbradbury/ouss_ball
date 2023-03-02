@@ -152,7 +152,7 @@ def _get_payment_methods():
                 ('Card', 'Card'),
                 ('Free', 'Free'),
                 ('Unknown', 'Dummy'),
-            ]).iteritems()
+            ]).items()
         ])
 
 def _get_ticket_types():

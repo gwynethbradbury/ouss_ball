@@ -177,7 +177,7 @@ def generate_statistics():
                 group,
                 name,
                 value
-            ) for name, value in statistics.get(group).iteritems()
+            ) for name, value in statistics.get(group).items()
         )
 
         DB.session.commit()

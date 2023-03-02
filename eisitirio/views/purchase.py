@@ -52,10 +52,10 @@ def ipn():
     print("HIHIHIHIHI")
     try:
         arg = ''
-        print('ZZZZZZZ')
         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
+        print('ZZZZZZZ')
         values = flask.request.form
-        for x, y in values.iteritems():
+        for x, y in values.items():
             arg += "&{x}={y}".format(x=x, y=y)
         print('ZZZZZZZ')
 

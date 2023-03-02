@@ -182,11 +182,11 @@ def update_request():
         for request in login.current_user.group_purchase_requests
     }
 
-    for slug, request in existing_requests.iteritems():
+    for slug, request in existing_requests.items():
         if slug not in num_tickets or num_tickets[slug] == 0:
             DB.session.delete(request)
 
-    for slug, requested in num_tickets.iteritems():
+    for slug, requested in num_tickets.items():
         if slug in existing_requests:
             existing_requests[slug].number_requested = requested
         else:

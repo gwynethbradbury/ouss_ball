@@ -46,7 +46,7 @@ def cancel_tickets(tickets, quiet=False):
 
     DB.session.commit()
 
-    for transaction, tickets in transactions.iteritems():
+    for transaction, tickets in transactions.items():
         refund_transaction = models.BattelsTransaction(
             transaction.user
         )
