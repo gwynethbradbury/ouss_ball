@@ -48,10 +48,9 @@ def success():
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 
 
-@PURCHASE.route('/ipn/', methods=['POST'])
+@PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
 def ipn():
     print("HIHIHIHIHI")
-    return
     try:
         arg = ''
         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
@@ -85,6 +84,9 @@ def ipn():
                 f.write(data)
 
             # TODO PAYMENT COMPLETE LOGIC
+            print("INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status,
+                 txn_id))
             # c, conn = connection()
             # c.execute(
             #     "INSERT INTO ipn (unix, payment_date, username, last_name, payment_gross, payment_fee, payment_net, payment_status, txn_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",

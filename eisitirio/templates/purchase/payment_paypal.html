@@ -36,7 +36,7 @@
 <!--				<input type="hidden" name="return" value="https://127.0.0.1:5001{{ url_for('purchase._paypal_processed',transaction_id=transaction_id,hash=hash) }}/">-->
 <!--				<input type='hidden' name='rm' value='2'>-->
 				<input type="hidden" name="cancel_return" value="">
-				<input type="hidden" name="notify_url" value="https://www.oxfordsalsaball.co.uk{{url_for('purchase.ipn')}}">
+				<input type="hidden" name="notify_url" value="https://www.oxfordsalsaball.co.uk{{url_for('purchase.ipn',transaction_id=transaction_id,hash=hash)}}">
 				<input type="submit" value="Make Payment" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
 			</form>
 
