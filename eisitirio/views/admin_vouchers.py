@@ -147,8 +147,8 @@ def vouchers(page=1):
         )
 
     voucher_results = voucher_query.paginate(
-        page,
-        10
+        page=page,
+        per_page=10
     )
 
     return flask.render_template(
