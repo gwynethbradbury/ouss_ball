@@ -42,10 +42,10 @@ def success():
 
 import requests
 from werkzeug.datastructures import ImmutableOrderedMultiDict
-import MySQLdb
+import flask_mysqldb
 # todo:
 def thwart(a):
-    return MySQLdb.escape_string(a)
+    return flask_mysqldb.escape_string(a)
 
 @PURCHASE.route('/ipn/', methods=['POST'])
 def ipn():
