@@ -59,7 +59,7 @@ def ipn(transaction_id,hash):
             arg += "&{x}={y}".format(x=x, y=y)
         print('ZZZZZZZ')
 
-        validate_url = 'https://www.paypal.com' \
+        validate_url = 'https://www.sandbox.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         print('ZZZZZZZ')

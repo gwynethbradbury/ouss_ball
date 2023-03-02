@@ -21,22 +21,22 @@
 
 
 	<div class="container">
-			<form name="topaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<form name="topaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 				<INPUT TYPE="hidden" name="cmd" value="_xclick">
 				<input type="hidden" name="custom" value="{{session['username']}}/{{transaction_id}}"/>
 				<input type="hidden" name="item_number" value="{{transaction_id}}"/>
-				<input type="hidden" name="business" value="admin@paperdinosaur.co.uk">
+				<input type="hidden" name="business" value="admin-facilitator@paperdinosaur.co.uk">
 				<input type="hidden" name="item_name" value="OUSS BALL TICKET">
 				<input type="hidden" name="no_shipping" value="1">
                 <input type="hidden" name="currency_code" value="GBP">
 				<input type="hidden" name="amount" value="{{ amount }}">
 				<input type="hidden" name="src" value="1">
 				<input type="hidden" name="sra" value="1">
-				<input type="hidden" name="return" value="https://www.oxfordsalsaball.co.uk{{ url_for('purchase.success') }}">
+				<input type="hidden" name="return" value="http://127.0.0.1:5001{{ url_for('purchase.success') }}">
 <!--				<input type="hidden" name="return" value="https://127.0.0.1:5001{{ url_for('purchase._paypal_processed',transaction_id=transaction_id,hash=hash) }}/">-->
 <!--				<input type='hidden' name='rm' value='2'>-->
 				<input type="hidden" name="cancel_return" value="">
-				<input type="hidden" name="notify_url" value="https://www.oxfordsalsaball.co.uk{{url_for('purchase.ipn')}}/{{transaction_id}}/{{hash}}/">
+				<input type="hidden" name="notify_url" value="http://127.0.0.1:5001{{url_for('purchase.ipn',transaction_id=transaction_id,hash=hash)}}/">
 				<input type="submit" value="Make Payment" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
 			</form>
 
