@@ -59,12 +59,12 @@ def ipn():
             arg += "&{x}={y}".format(x=x, y=y)
         print('ZZZZZZZ')
 
-        validate_url = 'https://www.paypal.com' \
+        validate_url = 'https://www.sandbox.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         print('ZZZZZZZ')
-        print(flask.request.get(validate_url))
-        r = flask.request.get(validate_url)
+        print(requests.get(validate_url))
+        r = requests.get(validate_url)
         try:
             print(flask.request.form.get('item_number'))
         except Exception as e:
