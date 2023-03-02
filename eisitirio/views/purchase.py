@@ -48,8 +48,8 @@ def success():
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 
 
-@PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
-def ipn(transaction_id,hash):
+@PURCHASE.route('/ipn/', methods=['POST'])
+def ipn():
     print("HIHIHIHIHI")
     try:
         arg = ''
