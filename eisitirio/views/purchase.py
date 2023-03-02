@@ -63,7 +63,7 @@ def ipn():
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         print('ZZZZZZZ')
-        print(request.get(validate_url))
+        print(flask.request.get(validate_url))
         r = flask.request.get(validate_url)
         try:
             print(flask.request.form.get('item_number'))
