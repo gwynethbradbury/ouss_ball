@@ -32,28 +32,31 @@ PURCHASE = flask.Blueprint('purchase', __name__)
 
 import time
 
-@PURCHASE.route('/success/', methods=['POST'])
+@PURCHASE.route('/success/', methods=['GET'])
 @login.login_required
 def success():
-    print(flask.request.form)
+    print(flask.request.args)
     if flask.request.method == 'POST':
         payer_id = flask.request.form.get('payer_id')
         print(payer_id)
+        data = flask.request.form
+    else:
+        payer_id = flask.request.args.get('payer_id')
+        print(payer_id)
+        data = flask.request.args
 
-    print("HIHIHIHIHI")
+
+
     try:
         arg = ''
         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
-        print('ZZZZZZZ')
-        values = flask.request.form
+        values = data
         for x, y in values.items():
             arg += "&{x}={y}".format(x=x, y=y)
-        print('ZZZZZZZ')
 
         validate_url = 'https://www.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
-        print('ZZZZZZZ')
         print(requests.get(validate_url))
         r = requests.get(validate_url)
         try:
@@ -62,18 +65,18 @@ def success():
             return print(e)
         if True: #r.text == 'VERIFIED':
             try:
-                payer_email = thwart(flask.request.form.get('payer_email'))
+                payer_email = thwart(data.get('payer_email'))
                 unix = int(time.time())
-                payment_date = thwart(flask.request.form.get('payment_date'))
-                transhash = thwart(flask.request.form.get('custom'))
-                last_name = thwart(flask.request.form.get('last_name'))
-                payment_gross = thwart(flask.request.form.get('payment_gross'))
-                payment_fee = thwart(flask.request.form.get('payment_fee'))
+                payment_date = thwart(data.get('payment_date'))
+                transhash = thwart(data.get('custom'))
+                last_name = thwart(data.get('last_name'))
+                payment_gross = thwart(data.get('payment_gross'))
+                payment_fee = thwart(data.get('payment_fee'))
                 payment_net = float(payment_gross) - float(payment_fee)
-                payment_status = thwart(flask.request.form.get('payment_status'))
-                txn_id = thwart(flask.request.form.get('txn_id'))
-                transaction_number = int(thwart(flask.request.form.get('item_number')))
-                print("transaction_number is " + thwart(flask.request.form.get('item_number')))
+                payment_status = thwart(data.get('payment_status'))
+                txn_id = thwart(data.get('txn_id'))
+                transaction_number = int(thwart(data.get('item_number')))
+                print("transaction_number is " + thwart(data.get('item_number')))
                 paypal_logic.process_payment_new(transaction_number, transhash, paypal_id=txn_id, payment_gross=float(payment_gross))
             except Exception as e:
                 with open('/tmp/ipnout.txt', 'a') as f:
