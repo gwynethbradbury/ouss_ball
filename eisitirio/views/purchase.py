@@ -28,13 +28,9 @@ from eisitirio import dbconfig
 PURCHASE = flask.Blueprint('purchase', __name__)
 
 
-# todo:
-def thwart(a):
-    return a
 
 
 import time
-
 
 @PURCHASE.route('/success/', methods=['GET'])
 @login.login_required
@@ -44,26 +40,31 @@ def success():
     except Exception as e:
         return str(e)
 
-
+import requests
 from werkzeug.datastructures import ImmutableOrderedMultiDict
-
+import MySQLdb
+# todo:
+def thwart(a):
+    return MySQLdb.escape_string(a)
 
 @PURCHASE.route('/ipn/', methods=['POST'])
 def ipn():
     print("HIHIHIHIHI")
     try:
         arg = ''
+        print('ZZZZZZZ')
         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
         values = flask.request.form
         for x, y in values.iteritems():
             arg += "&{x}={y}".format(x=x, y=y)
+        print('ZZZZZZZ')
 
         validate_url = 'https://www.sandbox.paypal.com' \
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
-        r = flask.request.get(validate_url)
         print('ZZZZZZZ')
-        print(r)
+        print(request.get(validate_url))
+        r = flask.request.get(validate_url)
         try:
             print(flask.request.form.get('item_number'))
         except Exception as e:
@@ -112,6 +113,7 @@ def ipn():
 
         return r.text
     except Exception as e:
+        print(e)
         return str(e)
 
 
