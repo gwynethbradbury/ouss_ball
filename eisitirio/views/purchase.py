@@ -64,7 +64,10 @@ def ipn():
         r = flask.request.get(validate_url)
         print('ZZZZZZZ')
         print(r)
-        print(flask.request.form.get('item_number'))
+        try:
+            print(flask.request.form.get('item_number'))
+        except Exception as e:
+            return print(e)
         if r.text == 'VERIFIED':
             try:
                 payer_email = thwart(flask.request.form.get('payer_email'))
