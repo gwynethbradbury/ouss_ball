@@ -40,66 +40,6 @@
 				<input type="submit" value="Make Payment" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
 			</form>
 
-<!--<div id="smart-button-container">-->
-<!--      <div style="text-align: center;">-->
-<!--        <div id="paypal-button-container"></div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  <script src="https://www.paypal.com/sdk/js?client-id=Ab_62G8Nl6M1JC27GDVZ5pQ-N1s5o6Pf2wszZr8q5X2ca4MqWUdQ2rXxDak1fiSmzoiveo-5o6_lE47A&enable-funding=venmo&currency=GBP" data-sdk-integration-source="button-factory"></script>-->
-<!--  <script>-->
-<!--    function initPayPalButton() {-->
-<!--      paypal.Buttons({-->
-<!--        style: {-->
-<!--          shape: 'rect',-->
-<!--          color: 'gold',-->
-<!--          layout: 'vertical',-->
-<!--          label: 'pay',-->
-
-<!--        },-->
-
-<!--        createOrder: function(data, actions) {-->
-<!--          return actions.order.create({-->
-<!--            purchase_units: [{"description":"OUSS BALL","amount":{"currency_code":"GBP","value":'{{ amount }}'}}]-->
-<!--          });-->
-<!--        },-->
-
-<!--        onApprove: function(data, actions) {-->
-<!--          return actions.order.capture().then(function(orderData) {-->
-
-<!--            // Full available details-->
-<!--            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));-->
-
-<!--            // Show a success message within this page, e.g.-->
-<!--            const element = document.getElementById('paypal-button-container');-->
-<!--            element.innerHTML = '';-->
-<!--            element.innerHTML = '<h3>Thank you for your payment!</h3>';-->
-
-<!--            // Or go to another URL:  actions.redirect('thank_you.html');-->
-
-<!--          });-->
-<!--        },-->
-
-<!--        onError: function(err) {-->
-<!--          console.log(err);-->
-<!--        }-->
-<!--      }).render('#paypal-button-container');-->
-<!--    }-->
-<!--    initPayPalButton();-->
-<!--  </script>-->
-
-
-
-
-  </script>
-	</div>
-
-
-
-
-<!--    &lt;!&ndash; Set up a container element for the button &ndash;&gt;-->
-<!--    <div id="paypal-button-container"></div>-->
-
-
 
 </div>
 
