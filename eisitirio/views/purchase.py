@@ -62,6 +62,9 @@ def ipn():
                        '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
             .format(arg=arg)
         r = flask.request.get(validate_url)
+        print('ZZZZZZZ')
+        print(r)
+        print(flask.request.form.get('item_number'))
         if r.text == 'VERIFIED':
             try:
                 payer_email = thwart(flask.request.form.get('payer_email'))
