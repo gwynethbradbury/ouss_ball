@@ -36,7 +36,8 @@ def thwart(a):
 import time
 
 
-@PURCHASE.route('/success/')
+@PURCHASE.route('/success/', methods=['GET'])
+@login.login_required
 def success():
     try:
         return flask.render_template("success.html")
@@ -49,6 +50,8 @@ from werkzeug.datastructures import ImmutableOrderedMultiDict
 
 @PURCHASE.route('/ipn/', methods=['POST'])
 def ipn():
+    print("HIHIHIHIHI")
+    return
     try:
         arg = ''
         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
@@ -230,7 +233,7 @@ def purchase_home():
 
         roundup_price = purchase_logic.check_roundup_donation(flashes)
 
-        if roundup_price is not 0:
+        if roundup_price != 0:
             roundup_donation = None
 
             roundup_donation = models.RoundupDonation(
@@ -889,7 +892,7 @@ def payment_processed():
 
 
 @PURCHASE.route('/purchase/paypal-processed/<int:transaction_id>/<string:hash>', methods=['GET','POST'])
-def _paypal_processed(transaction_id,hash,paypal_id):
+def _paypal_processed(transaction_id,hash,paypal_id=0):
     pass
 @PURCHASE.route('/purchase/paypal-processed/<int:transaction_id>/<string:hash>/<string:paypal_id>', methods=['GET','POST'])
 def paypal_processed(transaction_id,hash,paypal_id):
