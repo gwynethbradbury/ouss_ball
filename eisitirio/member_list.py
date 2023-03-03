@@ -16,12 +16,10 @@ is_comittee=1
 
 real_member_list_done = [
         # ["Gwyneth.anne.dj@gmail.com",1],
+    # ["Gwyneth.anne.dj@gmail.com",1],
 
     ]
 real_member_list=[
-    ["Gwyneth.anne.dj@gmail.com",1],
-    ]
-not_yet=[
     ["Aaliyah.wallace@merton.ox.ac.uk",is_member],
     ["Adamalradwan@gmail.com",is_member],
     ["Alec.Philip.matthews@gmail.com",is_member],
@@ -136,4 +134,6 @@ not_yet=[
     ["Kaya.axelsson@ouce.ox.ac.uk",is_member],
     ["Scat9561@ox.ac.uk",is_member],
     ["euger_29@hotmail.com Maria ",is_member],
+    ]
+not_yet=[
     ]
