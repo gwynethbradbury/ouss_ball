@@ -94,9 +94,6 @@ real_member_list_done = [
     ["rob.odonoghue12@gmail.com",is_member],
     ["rosemaywyatt@yahoo.co.uk",is_member],
     ["Roworth123@btinternet.com",is_member],
-
-    ]
-real_member_list=[
     ["Rtknnd@gmail.com",is_member],
     ["SANT6034@OX.AC.UK",is_member],
     ["Scat9561@ox.ac.uk",is_member],
@@ -114,6 +111,10 @@ real_member_list=[
     ["ziatariq88@gmail.com",is_member],
     ["Zighizu@gmail.com",is_member],
     ["euger_29@hotmail.com",is_member],
+
+    ]
+real_member_list=[
+    ["nat.niekamp@gmail.com",is_member],
     ]
 not_yet=[
     ]
