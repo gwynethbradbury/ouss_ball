@@ -112,10 +112,11 @@ real_member_list_done = [
     ["Zighizu@gmail.com",is_member],
     ["euger_29@hotmail.com",is_member],
     ["nat.niekamp@gmail.com",is_member],
+    ["melissa.marx@linacre.ox.ac.uk", is_member],
 
     ]
 real_member_list=[
-    ["melissa.marx@linacre.ox.ac.uk", is_member],
+    ["luciacernadasvarela@hotmail.com", is_member],
 
 ]
 not_yet=[
