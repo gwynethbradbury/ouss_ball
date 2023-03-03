@@ -29,9 +29,6 @@ real_member_list_done = [
     ["annabellelucybuckland@hotmail.co.uk",is_member],
     ["benjiman.mclean@wadham.ox.ac.uk",is_member],
     ["Billy.weisskopf-sacre@exeter.ox.ac.uk",is_member],
-
-    ]
-real_member_list=[
     ["carlos.outeiral@stats.ox.ac.uk",is_member],
     ["Christiane.hagel@gtc.ox.ac.uk",is_member],
     ["daniel.ibanez@cardiov.ox.ac.uk",is_member],
@@ -46,8 +43,9 @@ real_member_list=[
     ["ellen.wright.dk@gmail.com",is_member],
     ["euger_29@hotmail.com Maria ",is_member],
     ["evie.holloway@yahoo.go.uk ",is_member],
+
     ]
-not_yet=[
+real_member_list=[
     ["filipokay@gmail.com",is_member],
     ["Frankie.wood123@gmail.com",is_member],
     ["Grzegorz.komorowski@univ.ox.ac.uk ",is_member],
@@ -83,6 +81,8 @@ not_yet=[
     ["marcin.konow@lczyk.xyz",is_member],
     ["marian.longa@gmail.com",is_member],
     ["Mariarb.cs@gmail.com ",is_member],
+    ]
+not_yet=[
     ["mattdewsbury@live.com",is_member],
     ["Matthew.bowen@hertford.ox.ac.uk",is_member],
     ["Matthew@fides.me.uk",is_member],
