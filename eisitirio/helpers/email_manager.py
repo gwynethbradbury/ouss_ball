@@ -197,7 +197,7 @@ class EmailManager(object):
 
         image = MIMEImage(image_bytes,'svg+xml')
         image.add_header('Content-ID', '<image>')
-        image.add_header('Content-Disposition', 'inline', filename='image.png')
+        image.add_header('Content-Disposition', 'inline', filename='image.svg')
         message.attach(image)
 
         message['From'] = self.app.config['EMAIL_FROM']
