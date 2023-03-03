@@ -113,15 +113,6 @@ real_member_list=[
     ["wilzturner@gmail.com",is_member],
     ["ziatariq88@gmail.com",is_member],
     ["Zighizu@gmail.com",is_member],
-    ["Roworth123@btinternet.com",is_member],
-    ["lushanyadayathilake@gmail.com",is_member],
-    ["dr.dragana.savich@gmail.com",is_member],
-    ["Christiane.hagel@gtc.ox.ac.uk",is_member],
-    ["evie.holloway@yahoo.go.uk ",is_member],
-    ["Jake.simian@keble.ox.ac.uk",is_member],
-    ["Ncrisp97@hotmail.co.uk",is_member],
-    ["Kaya.axelsson@ouce.ox.ac.uk",is_member],
-    ["Scat9561@ox.ac.uk",is_member],
     ["euger_29@hotmail.com",is_member],
     ]
 not_yet=[
