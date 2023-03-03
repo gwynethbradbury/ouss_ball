@@ -113,7 +113,6 @@ real_member_list=[
     ["wilzturner@gmail.com",is_member],
     ["ziatariq88@gmail.com",is_member],
     ["Zighizu@gmail.com",is_member],
-    ["wilzturner@gmail.com",is_member],
     ["Alec.Philip.matthews@gmail.com",is_member],
     ["Roworth123@btinternet.com",is_member],
     ["lushanyadayathilake@gmail.com",is_member],
