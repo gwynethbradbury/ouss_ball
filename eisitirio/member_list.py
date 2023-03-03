@@ -41,11 +41,11 @@ real_member_list_done = [
     ["Edmond.toma@chem.ox.ac.uk",is_member],
     ["ella.boot@trinity.ox.ac.uk",is_member],
     ["ellen.wright.dk@gmail.com",is_member],
-    ["euger_29@hotmail.com Maria ",is_member],
-    ["evie.holloway@yahoo.go.uk ",is_member],
 
     ]
 real_member_list=[
+    ["euger_29@hotmail.com Maria",is_member],
+    ["evie.holloway@yahoo.go.uk",is_member],
     ["filipokay@gmail.com",is_member],
     ["Frankie.wood123@gmail.com",is_member],
     ["Grzegorz.komorowski@univ.ox.ac.uk ",is_member],
