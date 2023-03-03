@@ -81,7 +81,7 @@ def generate_ticket_qr(ticket):
                                                       ticket.object_id,
                                                   ticket.barcode))
     buffer = io.BytesIO()
-    qrcode_img.png(buffer, scale=20)
+    qrcode_img.svg(buffer, scale=20)
     return buffer.getvalue()
 
 def send_claim_code(user,ticket):
