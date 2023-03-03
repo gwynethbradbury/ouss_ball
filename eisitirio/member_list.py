@@ -97,8 +97,8 @@ real_member_list_done = [
 
     ]
 real_member_list=[
-    ["Rtknnd@gmail.com ",is_member],
-    ["SANT6034@OX.AC.UK ",is_member],
+    ["Rtknnd@gmail.com",is_member],
+    ["SANT6034@OX.AC.UK",is_member],
     ["Scat9561@ox.ac.uk",is_member],
     ["seanjwest@outlook.com",is_member],
     ["Shiemaa.Ahmed@outlook.com",is_member],
@@ -109,8 +109,6 @@ real_member_list=[
     ["thomas_redston@outlook.com",is_member],
     ["Tracey.roberts@theology.ox.ac.uk",is_member],
     ["Valen.yg@gmail.com",is_member],
-    ]
-not_yet=[
     ["william.ludington@linacre.ox.ac.uk",is_member],
     ["wilzturner@gmail.com",is_member],
     ["ziatariq88@gmail.com",is_member],
@@ -124,6 +122,8 @@ not_yet=[
     ["Temitope.a@live.it",is_member],
     ["Frankie.wood123@gmail.com",is_member],
     ["Minton27@gmail.com",is_member],
+    ]
+not_yet=[
     ["wilzturner@gmail.com",is_member],
     ["Alec.Philip.matthews@gmail.com",is_member],
     ["Roworth123@btinternet.com",is_member],
