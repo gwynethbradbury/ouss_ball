@@ -113,17 +113,6 @@ real_member_list=[
     ["wilzturner@gmail.com",is_member],
     ["ziatariq88@gmail.com",is_member],
     ["Zighizu@gmail.com",is_member],
-    ["Shiemaa.Ahmed@outlook.com",is_member],
-    ["Jad.mounayer@outlook.com",is_member],
-    ["Lisenklaksvik@gmail.com",is_member],
-    ["Lindleybushnell@live.co.uk",is_member],
-    ["Valen.yg@gmail.com",is_member],
-    ["andres.vazquezbrennan@physics.ox.ac.uk",is_member],
-    ["Temitope.a@live.it",is_member],
-    ["Frankie.wood123@gmail.com",is_member],
-    ["Minton27@gmail.com",is_member],
-    ]
-not_yet=[
     ["wilzturner@gmail.com",is_member],
     ["Alec.Philip.matthews@gmail.com",is_member],
     ["Roworth123@btinternet.com",is_member],
@@ -136,4 +125,6 @@ not_yet=[
     ["Kaya.axelsson@ouce.ox.ac.uk",is_member],
     ["Scat9561@ox.ac.uk",is_member],
     ["euger_29@hotmail.com",is_member],
+    ]
+not_yet=[
     ]
