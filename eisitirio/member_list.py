@@ -32,6 +32,8 @@ real_member_list=[
     ["annabellelucybuckland@hotmail.co.uk",is_member],
     ["benjiman.mclean@wadham.ox.ac.uk",is_member],
     ["Billy.weisskopf-sacre@exeter.ox.ac.uk",is_member],
+    ]
+not_yet=[
     ["carlos.outeiral@stats.ox.ac.uk",is_member],
     ["Christiane.hagel@gtc.ox.ac.uk",is_member],
     ["daniel.ibanez@cardiov.ox.ac.uk",is_member],
@@ -134,6 +136,4 @@ real_member_list=[
     ["Kaya.axelsson@ouce.ox.ac.uk",is_member],
     ["Scat9561@ox.ac.uk",is_member],
     ["euger_29@hotmail.com Maria ",is_member],
-    ]
-not_yet=[
     ]
