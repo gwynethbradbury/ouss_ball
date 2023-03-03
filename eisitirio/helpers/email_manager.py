@@ -195,9 +195,9 @@ class EmailManager(object):
         msg_content = template.render(ticket=ticket, **kwargs)
         message.attach(MIMEText((msg_content), 'html'))
 
-        image = MIMEImage(image_bytes,'svg+xml')
+        image = MIMEImage(image_bytes)#,'svg+xml')
         image.add_header('Content-ID', '<image>')
-        image.add_header('Content-Disposition', 'inline', filename='image.svg')
+        image.add_header('Content-Disposition', 'inline', filename='image.png')
         message.attach(image)
 
         message['From'] = self.app.config['EMAIL_FROM']
