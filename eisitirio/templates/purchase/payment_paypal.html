@@ -33,6 +33,7 @@
 				<input type="hidden" name="src" value="1">
 				<input type="hidden" name="sra" value="1">
 				<input type="hidden" name="return" value="https://www.oxfordsalsaball.co.uk{{ url_for('purchase.success') }}">
+				<input type="hidden" name="ipn" value="https://www.oxfordsalsaball.co.uk{{ url_for('purchase.ipn') }}">
 <!--				<input type="hidden" name="return" value="https://127.0.0.1:5001{{ url_for('purchase._paypal_processed',transaction_id=transaction_id,hash=hash) }}/">-->
 				<input type='hidden' name='rm' value='2'>
 				<input type="hidden" name="cancel_return" value="">

@@ -142,9 +142,10 @@ import flask_mysqldb
 def thwart(a):
     return a #flask_mysqldb.escape_string(a)
 
-# @PURCHASE.route('/ipn/<int:transaction_id>/<string:hash>/', methods=['POST'])
-# def ipn(transaction_id,hash):
-#     print("HIHIHIHIHI")
+@PURCHASE.route('/ipn/', methods=['POST'])
+def ipn():
+    print("HIHIHIHIHI")
+    return
 #     try:
 #         arg = ''
 #         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
