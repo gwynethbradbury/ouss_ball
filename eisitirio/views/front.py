@@ -44,16 +44,24 @@ def get_img_urls():
     for n in names:
         if n.startswith('.'):
             names.remove(n)
+        if n.endswith('2018'):
+            names.remove(n)
+        if n.endswith('2022'):
+            names.remove(n)
 
     names2018 = os.listdir(os.path.join(APP.root_path, 'static/images/gallery/2018/'))
     for n in names2018:
         if n.startswith('.'):
             names2018.remove(n)
+        if n.endswith('2018'):
+            names2018.remove(n)
 
     names2022 = os.listdir(os.path.join(APP.root_path, 'static/images/gallery/2022/'))
-    for n in names2018:
+    for n in names2022:
         if n.startswith('.'):
-            names2018.remove(n)
+            names2022.remove(n)
+        if n.endswith('2022'):
+            names2022.remove(n)
 
 
     return names,names2018,names2022
