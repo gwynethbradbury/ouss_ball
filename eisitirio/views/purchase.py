@@ -33,7 +33,6 @@ PURCHASE = flask.Blueprint('purchase', __name__)
 import time
 
 @PURCHASE.route('/success/', methods=['GET'])
-@login.login_required
 def success():
     print(flask.request.args)
     if flask.request.method == 'POST':
