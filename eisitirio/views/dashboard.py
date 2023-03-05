@@ -26,6 +26,11 @@ DASHBOARD = flask.Blueprint('dashboard', __name__)
 @DASHBOARD.route('/dashboard')
 @login.login_required
 def dashboard_home():
+    if not login.current_user:
+        print('user wasnt logged in')
+        return flask.redirect(flask.request.referrer or
+                              flask.url_for('front.home'))
+    
     """Display the users dashboard.
 
     Does nothing special.
