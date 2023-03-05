@@ -60,7 +60,17 @@ APP.config['CONNECT_TIMEOUT']=6000
 # LOG = APP.log_manager.log_main
 
 
-eisitiriodb = SQLAlchemy(APP)
+eisitiriodb = SQLAlchemy(
+    engine_options={ 'connect_args': {'connect_timeout': 5 ,
+                                      # 'wait_timeout': 28800,
+                                      # 'interactive_timeout': 28800,
+                                      'autocommit':1}
+                     }
+)
+
+eisitiriodb.init_app(APP)
+
+# eisitiriodb = SQLAlchemy(APP)
 # db = eisitiriodb
 
 # db.create_all()
