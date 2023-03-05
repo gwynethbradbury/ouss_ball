@@ -72,9 +72,7 @@
                 {% if user.has_uncollected_tickets() %}
                     <a href="{{ url_for('admin_users.collect_tickets', user_id=user.object_id) }}" class="button large">Collect Tickets</a>
                 {% endif %}
-                {% if user.battels == None %}
-                    <a href="{{ url_for('admin_users.add_manual_battels', user_id=user.object_id) }}" class="button large">Manually setup battelling</a>
-                {% endif %}
+
                 <a href="{{ url_for('admin_users.charge_admin_fee', user_id=user.object_id) }}" class="button large">Charge admin fee</a>
               </div>
               <form action="{{ url_for('admin_users.give_user', user_id=user.object_id) }}" method="post" id="give_tickets">

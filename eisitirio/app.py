@@ -39,8 +39,9 @@ APP.config.from_pyfile('config/ticket_types.py')
 APP.config.from_pyfile('config/postage.py')
 APP.config.from_pyfile('config/payment.py')
 APP.config.from_pyfile('config/production.py')
-APP.config['SQLALCHEMY_POOL_RECYCLE'] = 299
+APP.config['SQLALCHEMY_POOL_RECYCLE'] = 280
 APP.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
+APP.config['CONNECT_TIMEOUT']=6000
 # import flask_misaka as misaka
 #
 # from eisitirio.helpers import log_manager

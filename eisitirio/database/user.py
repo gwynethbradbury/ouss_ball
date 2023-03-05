@@ -215,9 +215,9 @@ class  User(DB.Model):
                                             APP.config['EMAIL_FROM'])
                 #todo add logic for checking if they are on the member list
 
-        self.battels = battels.Battels.query.filter(
-            battels.Battels.email == email
-        ).first()
+        self.battels = None#battels.Battels.query.filter(
+            # battels.Battels.email == email
+        # ).first()
 
     def __repr__(self):
         return '<User {0}: {1} {2}>'.format(
@@ -372,22 +372,7 @@ class  User(DB.Model):
 
         return user
 
-    def add_manual_battels(self):
-        """Manually add a battels account for the user
 
-        If we don't have a battels account automatically matched to the user,
-        the admin can manually create one for them.
-        """
-        self.battels = battels.Battels.query.filter(
-            battels.Battels.email == self.email
-        ).first()
-
-        if not self.battels:
-            self.battels = battels.Battels(None, self.email, None,
-                                           self.surname, self.forenames, True)
-            DB.session.add(self.battels)
-
-        DB.session.commit()
 
     @staticmethod
     def write_csv_header(csv_writer):
@@ -417,5 +402,5 @@ class  User(DB.Model):
             self.role,
             self.college.name,
             self.affiliation.name,
-            self.battels.battels_id if self.battels is not None else 'N/A',
+            'N/A',#self.battels.battels_id if self.battels is not None else 'N/A',
         ])

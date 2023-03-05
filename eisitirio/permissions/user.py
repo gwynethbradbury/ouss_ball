@@ -106,10 +106,11 @@ def pay_by_battels(user):
     Given this, it suffices to only check if the user has a defined battels
     account on the system.
     """
-    return (
-        user.battels is not None and
-        app.APP.config['CURRENT_TERM'] != 'TT'
-    )
+    # return (
+    #     user.battels is not None and
+    #     app.APP.config['CURRENT_TERM'] != 'TT'
+    # )
+    return False
 
 @models.User.possession()
 def held_ticket(user):

@@ -39,14 +39,14 @@ class BattelsTransaction(transaction.Transaction):
 
     def charge(self, term):
         """Charge this transaction to the user's battels account."""
-        self.battels_term = term
-
-        self.user.battels.charge(self.value, term)
-
-        self.mark_as_paid()
+        # self.battels_term = term
+        #
+        # self.user.battels.charge(self.value, term)
+        #
+        # self.mark_as_paid()
 
         APP.log_manager.log_event(
-            'Completed Battels Payment',
+            'Tried to do somethign with battles which shouldnt be accessed',
             tickets=self.tickets,
             user=self.user,
             transaction=self,

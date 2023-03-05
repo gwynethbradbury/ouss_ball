@@ -23,17 +23,17 @@ class UpdateBattelsCommand(script.Command):
         """Perform the matching."""
         with APP.app_context():
             for user in models.User.query.all():
-                if user.battels is not None and user.affiliation_verified is None:
-                    print(user.full_name)
-                    user.affiliation_verified = True
-                    DB.session.commit()
-                    continue
+                # if user.battels is not None and user.affiliation_verified is None:
+                #     print(user.full_name)
+                #     user.affiliation_verified = True
+                #     DB.session.commit()
+                #     continue
 
-                battels = models.Battels.query.filter(
-                    models.Battels.email == user.email
-                ).first()
+                battels = None#models.Battels.query.filter(
+                    # models.Battels.email == user.email
+                # ).first()
 
-                if battels is not None:
-                    user.battels = battels
-                    user.affiliation_verified = True
-                    DB.session.commit()
+                # if battels is not None:
+                #     user.battels = battels
+                #     user.affiliation_verified = True
+                #     DB.session.commit()

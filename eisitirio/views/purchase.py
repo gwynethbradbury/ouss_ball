@@ -144,7 +144,7 @@ def thwart(a):
 @PURCHASE.route('/ipn/', methods=['POST'])
 def ipn():
     print("HIHIHIHIHI")
-    return
+    return 'VERIFIED'
 #     try:
 #         arg = ''
 #         flask.request.parameter_storage_class = ImmutableOrderedMultiDict
