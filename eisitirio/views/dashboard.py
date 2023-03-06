@@ -44,9 +44,9 @@ def dashboard_home():
             return flask.render_template('dashboard/dashboard_home.html')
 
     except Exception as e:
-        DB.session.rollback()
-        print("hihihihi")
-        print('rolled back in dash')
+        # DB.session.rollback()
+        # print("hihihihi")
+        print('exception in dash')
         return flask.redirect(flask.url_for('dashboard.dashboard_home'))
 
 @DASHBOARD.route('/dashboard/profile', methods=['GET', 'POST'])

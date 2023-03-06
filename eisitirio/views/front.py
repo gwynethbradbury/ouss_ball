@@ -36,8 +36,8 @@ def home():
             form={}
         )
     except Exception as e:
+        print('rolling back in home')
         DB.session.rollback()
-        print('rolled back in home')
         return flask.redirect(flask.url_for('front.home'))
 
 

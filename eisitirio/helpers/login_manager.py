@@ -27,8 +27,8 @@ def load_user(user_id):
         try:
             return models.User.query.get_or_404(user_id)
         except Exception as e:
-            print(e)
-            login.logout_user()
+            print('exception in load user, going home')
+            # login.logout_user()
             return flask.redirect(flask.url_for('front.home'))
 
 
