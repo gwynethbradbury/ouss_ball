@@ -30,20 +30,24 @@ def dashboard_home():
     #     print('user wasnt logged in')
     #     return flask.redirect(flask.request.referrer or
     #                           flask.url_for('front.home'))
-    print("hihihihi")
-    # if DB.exception and DB.session.is_active:
-    DB.session.rollback()
     """Display the users dashboard.
 
     Does nothing special.
     """
     # Hacky I know...
-    if login.current_user.held_ticket and login.current_user.held_ticket.barcode:
-        ticket = login.current_user.held_ticket
-        return flask.render_template('dashboard/dashboard_home.html',
-            barcode=base64.b64encode(create_qr_codes.generate_ticket_qr(ticket)))
-    else:
-        return flask.render_template('dashboard/dashboard_home.html')
+    try:
+        if login.current_user.held_ticket and login.current_user.held_ticket.barcode:
+            ticket = login.current_user.held_ticket
+            return flask.render_template('dashboard/dashboard_home.html',
+                barcode=base64.b64encode(create_qr_codes.generate_ticket_qr(ticket)))
+        else:
+            return flask.render_template('dashboard/dashboard_home.html')
+
+    except Exception as e:
+        DB.session.rollback()
+        print("hihihihi")
+        print('rolled back in dash')
+        return flask.redirect(flask.url_for('dashboard.dashboard_home'))
 
 @DASHBOARD.route('/dashboard/profile', methods=['GET', 'POST'])
 @login.login_required
