@@ -28,12 +28,19 @@ def home():
 
     Contains forms for registering and logging in.
     """
-    return flask.render_template(
-        'front/home.html',
-        # colleges=models.College.query.all(),
-        affiliations=models.Affiliation.query.all(),
-        form={}
-    )
+    try:
+        return flask.render_template(
+            'front/home.html',
+            # colleges=models.College.query.all(),
+            affiliations=models.Affiliation.query.all(),
+            form={}
+        )
+    except Exception as e:
+        DB.session.rollback()
+        print('rolled back in home')
+        return flask.redirect(flask.url_for('front.home'))
+
+
 
 import os
 from flask import url_for
