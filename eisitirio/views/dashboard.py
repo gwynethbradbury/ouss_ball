@@ -30,7 +30,9 @@ def dashboard_home():
         print('user wasnt logged in')
         return flask.redirect(flask.request.referrer or
                               flask.url_for('front.home'))
-    
+    print("hihihihi")
+    # if DB.exception and DB.session.is_active:
+    DB.session.rollback()
     """Display the users dashboard.
 
     Does nothing special.
