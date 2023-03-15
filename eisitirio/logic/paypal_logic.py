@@ -289,26 +289,32 @@ def process_payment(request,order_id,hash,paypal_id):
 
         transaction.mark_as_paid()
 
-        try:
-            APP.log_manager.log_event(
-                'This was a group transaction',
-                tickets=transaction.tickets,
-                user=transaction.user,
-                transaction=transaction,
-                in_app=True
-            )
-            if transaction.tickets.count() > 6:
-                for ti in transaction.tickets:
-                    ti.price_ = 1800
-                db.session.commit()
-        except Exception as e:
-            APP.log_manager.log_event(
-                'something went wrong resetting the group price for this transaction',
-                tickets=transaction.tickets,
-                user=transaction.user,
-                transaction=transaction,
-                in_app=True
-            )
+        completed = False
+        attempts = 0
+        while not completed and attempts < 6:
+            try:
+                APP.log_manager.log_event(
+                    'This was a group transaction',
+                    tickets=transaction.tickets,
+                    user=transaction.user,
+                    transaction=transaction,
+                    in_app=True
+                )
+                if transaction.tickets.count() > 6:
+                    for ti in transaction.tickets:
+                        ti.price_ = 1800
+                    db.session.commit()
+                completed=True
+            except Exception as e:
+                APP.log_manager.log_event(
+                    'something went wrong resetting the group price for this transaction',
+                    tickets=transaction.tickets,
+                    user=transaction.user,
+                    transaction=transaction,
+                    in_app=True
+                )
+                attempts+=1
+                completed=False
 
         DB.session.commit()
 
@@ -429,26 +435,33 @@ def process_payment_new(order_id,hash,paypal_id,payment_gross):
 
             transaction.mark_as_paid()
 
-            try:
-                APP.log_manager.log_event(
-                    'This was a group transaction',
-                    tickets=transaction.tickets,
-                    user=transaction.user,
-                    transaction=transaction,
-                    in_app=True
-                )
-                if transaction.tickets.count() > 6:
-                    for ti in transaction.tickets:
-                        ti.price_ = 1800
-                    db.session.commit()
-            except Exception as e:
-                APP.log_manager.log_event(
-                    'something went wrong resetting the group price for this transaction',
-                    tickets=transaction.tickets,
-                    user=transaction.user,
-                    transaction=transaction,
-                    in_app=True
-                )
+            completed = False
+            attempts = 0
+            while not completed and attempts < 6:
+
+                try:
+                    APP.log_manager.log_event(
+                        'This was a group transaction',
+                        tickets=transaction.tickets,
+                        user=transaction.user,
+                        transaction=transaction,
+                        in_app=True
+                    )
+                    if transaction.tickets.count() > 6:
+                        for ti in transaction.tickets:
+                            ti.price_ = 1800
+                        db.session.commit()
+                    completed=True
+                except Exception as e:
+                    attempts+=1
+                    completed=False
+                    APP.log_manager.log_event(
+                        'something went wrong resetting the group price for this transaction',
+                        tickets=transaction.tickets,
+                        user=transaction.user,
+                        transaction=transaction,
+                        in_app=True
+                    )
 
             DB.session.commit()
 
