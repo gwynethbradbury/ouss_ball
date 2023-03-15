@@ -389,15 +389,25 @@ def verify_affiliation(user_id):
     In limited release, users' affiliations must be varified to ensure only
     current college members and graduands are able to purchase tickets.
     """
-    user = models.User.query.get_or_404(user_id)
 
-    if user:
-        affiliation_logic.verify_affiliation(user)
+    completed = False
+    attempts=0
+    while not completed and attempts<6:
+        try:
+            user = models.User.query.get_or_404(user_id)
 
-        APP.log_manager.log_event(
-            'Verified affiliation',
-            user=user
-        )
+            if user:
+                affiliation_logic.verify_affiliation(user)
+
+                APP.log_manager.log_event(
+                    'Verified affiliation',
+                    user=user
+                )
+            completed = True
+        except Exception as e:
+            print("failed in verify affilliations")
+            completed = False
+            attempts += 1
 
     return flask.redirect(flask.url_for('admin_users.verify_affiliations'))
 
