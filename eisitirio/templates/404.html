@@ -1,33 +1,123 @@
 <!-- front/home.html -->
-{% extends 'layout.html' %}
 
-{% block title %}Welcome to {{ template_config['THEME'] }}{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} - {{ template_config['TITLE'] }}</title>
+        <meta name="description" content="{{ template_config['TITLE'] }} - Buy Tickets">
+        <meta name="author" content="OUSS">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-{% block extra_head %}
-<meta http-equiv="refresh" content="0; url=/dashboard" />
-{% endblock %}
+        <meta http-equiv="refresh" content="0; url=/dashboard" />
+{#        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />#}
 
-{% block content %}
+{#        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap4/bootstrap.css') }}">
 
-        <div id="wrapper" class="row">
-            <div class="columns">
 
-                <section id="page-title" class="row">
-                    <div class="large-12 columns">
-                        <h2>Page Not Found</h2>
-                    </div>
-                </section>
-                <section id="main" class="row">
-                    <section id="page-not-found" class="columns">
-                        <p>The pages you were looking for cannot be found. If you followed a link to get here, please contact the <a href="{{ template_config['WEBSITE_EMAIL_LINK'] }}" target="_blank">webmaster</a>, giving details of what page you were trying to find, and which page you came from.</p>
-                        <p>In the meantime, you may wish to go to the <a href="{{ url_for('router') }}">homepage</a>, and try to find what you need from there using the menus.</p>
-                    </section>
-                </section>
-                <footer class="row">
-                    <section id="copyright" class="large-8 large-centered columns">
-                        <p>&copy; {{ current_year }} {{ template_config['BALL_NAME'] }}. All rights reserved. <a href="{{ template_config['WEBSITE_EMAIL_LINK'] }}" target="_blank">Webmaster</a></p>
-                    </section>
-                </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.jpg') }}?v=2" />
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='font-icon.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='animate.min.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+
+    </head>
+    <body>
+
+
+    <header id="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg  navbar-dark " >
+                <span class="logo">
+                    <a class="navbar-brand" href="{{ url_for('front.index') }}">OUSB<b>2023</b></a>
+                </span>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+            </nav>
+
+        </div>
+    </header>
+
+
+
+
+
+
+
+    <div class="jumbotron jumbotron-fluid"
+         style="background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url({{ url_for('static', filename='images/web_banner.png') }}); background-repeat: no-repeat;">
+        <div class="container">
+            <div class="col-md-10 jumbotron-text">
+                <h1 >{{ template_config['TITLE'] }}</h1>
+                <p>{{ template_config['START_TIME'].strftime(template_config['DATE_FORMAT']) }}</p>
+                <p>{{ template_config['THEME'] }}</p>
+                <div class="countdown styled"></div>
             </div>
         </div>
-{% endblock %}
+    </div>
+
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col col-sm-12 col-lg-12 col-md-12" >
+
+
+                <section id="page-title" class="row">
+                    <div class="section-header" style="padding: 100px 0">
+                        <h2>500</h2>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-12 col-lg-12 col-md-12">
+                <section id="main" class="row">
+
+                    <div id="wrapper" class="row">
+                        <div class="columns">
+
+                            <section id="page-title" class="row">
+                                <div class="large-12 columns">
+                                    <h2>Page Not Found</h2>
+                                </div>
+                            </section>
+                            <section id="main" class="row">
+                                <section id="page-not-found" class="columns">
+                                    <p>The pages you were looking for cannot be found. If you followed a link to get here, please contact the <a href="{{ template_config['WEBSITE_EMAIL_LINK'] }}" target="_blank">webmaster</a>, giving details of what page you were trying to find, and which page you came from.</p>
+                                    <p>In the meantime, you may wish to go to the <a href="{{ url_for('router') }}">homepage</a>, and try to find what you need from there using the menus.</p>
+                                </section>
+                            </section>
+                            <footer class="row">
+                                <section id="copyright" class="large-8 large-centered columns">
+                                    <p>&copy; {{ current_year }} {{ template_config['BALL_NAME'] }}. All rights reserved. <a href="{{ template_config['WEBSITE_EMAIL_LINK'] }}" target="_blank">Webmaster</a></p>
+                                </section>
+                            </footer>
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </body>
+</html>
