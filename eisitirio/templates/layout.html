@@ -53,26 +53,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float: right">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 navbar-right ">
                         {% include 'blocks/index-navigation.html' %}
-                        {% if not current_user.is_anonymous %}
+<!--                        {% if not current_user.is_anonymous %}-->
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Account</a>
-                                <div class="dropdown-menu" style="background-opacity:50%">
-                                    {% include 'blocks/dashboard-navigation.html' %}
+<!--                            <li class="nav-item dropdown">-->
+<!--                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Account</a>-->
+<!--                                <div class="dropdown-menu" style="background-opacity:50%">-->
+<!--                                    {% include 'blocks/dashboard-navigation.html' %}-->
 
-                                    {% if current_user.is_admin %}
-                                        <div class="dropdown-divider"></div>
-                                        {% include 'blocks/admin-navigation.html' %}
-                                    {% endif %}
+<!--                                    {% if current_user.is_admin %}-->
+<!--                                        <div class="dropdown-divider"></div>-->
+<!--                                        {% include 'blocks/admin-navigation.html' %}-->
+<!--                                    {% endif %}-->
 
-                                    <a class="dropdown-item" href="{{ url_for('front.logout') }}">Log out</a>
+<!--                                    <a class="dropdown-item" href="{{ url_for('front.logout') }}">Log out</a>-->
 
 
-                                </div>
-                            </li>
-                        {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{{ url_for('front.home') }}#log-in-form">Log in</a></li>
-                        {% endif %}
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        {% else %}-->
+<!--                            <li class="nav-item"><a class="nav-link" href="{{ url_for('front.home') }}#log-in-form">Log in</a></li>-->
+<!--                        {% endif %}-->
                     </ul>
 
                 </div>
