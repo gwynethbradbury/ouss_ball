@@ -6,8 +6,8 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<!--<h1>***ONLINE TICKET SALES ARE NOW CLOSED! THERE WILL STILL BE TICKETS AVAILABLE ON THE DOOR BUT ARRIVE EARLY SO AS TO NOT MISS OUT***</h1>-->
-<!--<h2>*ALL* TICKET HOLDERS HAVE ACCESS TO THE EVENING CLASSES. DOORS OPEN 6.30PM, CLASSES START AT 7PM</h2>-->
+<h1>***ONLINE TICKET SALES ARE NOW CLOSED! THERE WILL STILL BE TICKETS AVAILABLE ON THE DOOR BUT ARRIVE EARLY SO AS TO NOT MISS OUT***</h1>
+<h2>*ALL* TICKET HOLDERS HAVE ACCESS TO THE EVENING CLASSES. DOORS OPEN 6.30PM, CLASSES START AT 7PM</h2>
 
     <section id="dashboard" class="columns">
         <h3>Your tickets</h3>
@@ -49,13 +49,13 @@
 {#            <img src="data:image/png;base64, {{ barcode }}" value="Your Ticket" />#}
 {#        {% endif %}#}
 
-        {% if current_user.has_unpaid_tickets() %}
-        <p>You currently hold tickets which have not been paid for. Please follow ths links below. Failure to pay before the ticket system closes will mean you will pay the full door price.</p>
-        {% endif %}
+<!--        {% if current_user.has_unpaid_tickets() %}-->
+<!--        <p>You currently hold tickets which have not been paid for. Please follow ths links below. Failure to pay before the ticket system closes will mean you will pay the full door price.</p>-->
+<!--        {% endif %}-->
 
-        {% if current_user.has_paid_tickets() %}
-        <p>You {% if current_user.has_unpaid_tickets() %}also {% endif %}have paid for tickets, these are shown below.</p>
-        {% endif %}
+<!--        {% if current_user.has_paid_tickets() %}-->
+<!--        <p>You {% if current_user.has_unpaid_tickets() %}also {% endif %}have paid for tickets, these are shown below.</p>-->
+<!--        {% endif %}-->
 
         <h4>Tickets You Own</h4>
         {% if current_user.tickets.count() > 0 %}
@@ -122,8 +122,8 @@
                     {% endfor %}
                 </tbody>
             </table>
-        {% else %}
-            <p>You have no tickets. Perhaps you'd like to <a href="{{ url_for('purchase.purchase_home') }}">buy some</a>?</p>
+<!--        {% else %}-->
+<!--            <p>You have no tickets. Perhaps you'd like to <a href="{{ url_for('purchase.purchase_home') }}">buy some</a>?</p>-->
         {% endif %}
 
         <h3>Waiting List Entries</h3>
