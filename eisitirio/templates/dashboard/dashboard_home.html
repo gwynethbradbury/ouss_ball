@@ -72,6 +72,7 @@
                 </thead>
                 <tbody>
                     {% for ticket in current_user.tickets %}
+                    {% if ticket.paid %}
                         <tr id="ticket-{{ ticket.object_id }}">
                             <td>#{{ '%05d' % ticket.object_id }}
                               {% if ticket.note != None and 'Upgrade' in ticket.note %}
@@ -119,6 +120,7 @@
                                 {% endif %}
                             </td>
                         </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
